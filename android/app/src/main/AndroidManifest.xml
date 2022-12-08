@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.flutter_velog_sample">
+    package="com.tyger.flutter_velog_sample">
    <application
         android:label="flutter_velog_sample"
         android:name="${applicationName}"
