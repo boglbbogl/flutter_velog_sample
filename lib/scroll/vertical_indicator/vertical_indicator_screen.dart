@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/core/app_size.dart';
-import 'package:flutter_velog_sample/scroll/scroll_provider.dart';
+import 'package:flutter_velog_sample/scroll/vertical_indicator/vertical_indicator_provider.dart';
 import 'package:provider/provider.dart';
 
 class VerticalIndicatorScreen extends StatelessWidget {
@@ -9,8 +9,9 @@ class VerticalIndicatorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => ScrollProvider()..started(context: context),
-      child: Consumer<ScrollProvider>(builder: (context, value, child) {
+      create: (_) => VerticalIndicatorProvider()..started(context: context),
+      child:
+          Consumer<VerticalIndicatorProvider>(builder: (context, value, child) {
         return NotificationListener<ScrollUpdateNotification>(
           onNotification: (ScrollUpdateNotification notification) {
             value.listener();
@@ -65,7 +66,7 @@ class VerticalIndicatorScreen extends StatelessWidget {
                   top: value.verticalPosition,
                   child: Container(
                     width: 5,
-                    height: 80,
+                    height: value.verticalHeight,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       color: const Color.fromRGBO(175, 175, 175, 1),

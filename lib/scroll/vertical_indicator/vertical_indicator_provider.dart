@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ScrollProvider extends ChangeNotifier {
+class VerticalIndicatorProvider extends ChangeNotifier {
   List<String> indexSample = [];
   List<Color> color = [];
   ScrollController scrollController = ScrollController();
   double deviceHeight = 0.0;
   bool isMoreLoading = false;
   double verticalPosition = 0.0;
+  double verticalHeight = 0.0;
 
   void started({
     required BuildContext context,
@@ -35,9 +36,12 @@ class ScrollProvider extends ChangeNotifier {
   }
 
   void _verticalIndicatorPosition() {
+    verticalHeight =
+        (deviceHeight / scrollController.position.maxScrollExtent) *
+            deviceHeight;
     double _currentPixels = scrollController.position.pixels;
-    double _mainContainer =
-        (scrollController.position.maxScrollExtent) / (deviceHeight - 250);
+    double _mainContainer = (scrollController.position.maxScrollExtent) /
+        (deviceHeight - verticalHeight - 150);
     verticalPosition = _currentPixels / _mainContainer;
     notifyListeners();
   }
