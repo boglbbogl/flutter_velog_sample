@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/core/app_size.dart';
-import 'package:flutter_velog_sample/scroll/vertical_indicator/vertical_indicator_provider.dart';
+import 'package:flutter_velog_sample/scroll_indicator/vertical_indicator/vertical_indicator_provider.dart';
 import 'package:provider/provider.dart';
 
 class VerticalIndicatorScreen extends StatelessWidget {

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/core/app_size.dart';
 import 'package:flutter_velog_sample/main_provider.dart';
-import 'package:flutter_velog_sample/scroll/horizontal_indicator/horizontal_indicator_screen.dart';
-import 'package:flutter_velog_sample/scroll/vertical_indicator/vertical_indicator_screen.dart';
+import 'package:flutter_velog_sample/scroll_indicator/horizontal_indicator/horizontal_indicator_screen.dart';
+import 'package:flutter_velog_sample/scroll_indicator/vertical_indicator/vertical_indicator_screen.dart';
 import 'package:provider/provider.dart';
+
+import 'infinity_scroll/vertical/vertical_infinity_scroll_screen.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -22,77 +24,86 @@ class MainScreen extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 24),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    const Text(
-                      'Scroll',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 20),
-                    Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    const VerticalIndicatorScreen()));
-                          },
-                          child: Container(
-                            width: (size.width / 2) - (50 / 2),
-                            height: 40,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: const Color.fromRGBO(125, 125, 125, 1),
-                            ),
-                            child: const Center(
-                              child: Text(
-                                'Vertical Indicator',
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    color: Color.fromRGBO(215, 215, 215, 1)),
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    const HorizontalIndicatorScreen()));
-                          },
-                          child: Container(
-                            width: (size.width / 2) - (50 / 2),
-                            height: 40,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: const Color.fromRGBO(125, 125, 125, 1),
-                            ),
-                            child: const Center(
-                              child: Text(
-                                'Horizontal Indicator',
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    color: Color.fromRGBO(215, 215, 215, 1)),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
+              _category(title: 'Scroll Indicator', widgets: [
+                _item(
+                  context: context,
+                  content: 'Vertical',
+                  namedRouter: '/scrollIndicator/vertical',
                 ),
-              )
+                _item(
+                  context: context,
+                  content: 'Horizontal',
+                  namedRouter: '/scrollIndicator/horizontal',
+                ),
+              ]),
+              _category(title: 'Infinity Scroll', widgets: [
+                _item(
+                  context: context,
+                  content: 'Vertical',
+                  namedRouter: '/infinityScroll/vertical',
+                ),
+                // _item(
+                //   context: context,
+                //   content: 'Horizontal Indicator',
+                //   routeWidget: const HorizontalIndicatorScreen(),
+                // ),
+              ]),
             ],
           ),
         ),
       );
     });
+  }
+
+  GestureDetector _item({
+    required BuildContext context,
+    required String content,
+    required String namedRouter,
+  }) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).pushNamed(namedRouter);
+      },
+      child: Container(
+        width: (size.width / 2) - (50 / 2),
+        height: 40,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: const Color.fromRGBO(125, 125, 125, 1),
+        ),
+        child: Center(
+          child: Text(
+            content,
+            style: const TextStyle(
+                fontSize: 14, color: Color.fromRGBO(215, 215, 215, 1)),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Padding _category({
+    required String title,
+    required List<Widget> widgets,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            title,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 20),
+          Wrap(
+            spacing: 10,
+            children: widgets,
+          )
+        ],
+      ),
+    );
   }
 }

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_velog_sample/scroll/horizontal_indicator/horizontal_indicator_provider.dart';
+import 'package:flutter_velog_sample/scroll_indicator/horizontal_indicator/horizontal_indicator_provider.dart';
 import 'package:provider/provider.dart';
 
 class HorizontalIndicatorScreen extends StatelessWidget {
