@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/core/app_size.dart';
 import 'package:flutter_velog_sample/main_provider.dart';
+import 'package:flutter_velog_sample/scroll/horizontal_indicator/horizontal_indicator_screen.dart';
 import 'package:flutter_velog_sample/scroll/vertical_indicator/vertical_indicator_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -34,7 +35,7 @@ class MainScreen extends StatelessWidget {
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 20),
-                    Wrap(
+                    Row(
                       children: [
                         GestureDetector(
                           onTap: () {
@@ -43,7 +44,7 @@ class MainScreen extends StatelessWidget {
                                     const VerticalIndicatorScreen()));
                           },
                           child: Container(
-                            width: (size.width / 3) - (20 / 3),
+                            width: (size.width / 2) - (50 / 2),
                             height: 40,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
@@ -53,7 +54,31 @@ class MainScreen extends StatelessWidget {
                               child: Text(
                                 'Vertical Indicator',
                                 style: TextStyle(
-                                    fontSize: 12,
+                                    fontSize: 14,
+                                    color: Color.fromRGBO(215, 215, 215, 1)),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    const HorizontalIndicatorScreen()));
+                          },
+                          child: Container(
+                            width: (size.width / 2) - (50 / 2),
+                            height: 40,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: const Color.fromRGBO(125, 125, 125, 1),
+                            ),
+                            child: const Center(
+                              child: Text(
+                                'Horizontal Indicator',
+                                style: TextStyle(
+                                    fontSize: 14,
                                     color: Color.fromRGBO(215, 215, 215, 1)),
                               ),
                             ),
