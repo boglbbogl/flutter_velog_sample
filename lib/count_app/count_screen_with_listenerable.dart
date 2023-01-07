@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_velog_sample/core/app_bar.dart';
 import 'package:flutter_velog_sample/count_app/count_screen_public_ui.dart';
 
@@ -39,8 +40,10 @@ class CountScreenWithListenarable extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   GestureDetector(
-                    onTap: () =>
-                        _count.value = _count.value + _selectCount.value,
+                    onTap: () {
+                      HapticFeedback.mediumImpact();
+                      _count.value = _count.value + _selectCount.value;
+                    },
                     child: const Icon(
                       Icons.add_circle_outline,
                       size: 40,
@@ -48,8 +51,10 @@ class CountScreenWithListenarable extends StatelessWidget {
                   ),
                   const SizedBox(width: 24),
                   GestureDetector(
-                    onTap: () =>
-                        _count.value = _count.value - _selectCount.value,
+                    onTap: () {
+                      HapticFeedback.mediumImpact();
+                      _count.value = _count.value - _selectCount.value;
+                    },
                     child: const Icon(
                       Icons.remove_circle_outline,
                       size: 40,
@@ -59,7 +64,10 @@ class CountScreenWithListenarable extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               GestureDetector(
-                onTap: () => _count.value = 0,
+                onTap: () {
+                  HapticFeedback.mediumImpact();
+                  _count.value = 0;
+                },
                 child: Container(
                   width: MediaQuery.of(context).size.width / 3,
                   height: 48,
@@ -94,23 +102,38 @@ class CountScreenWithListenarable extends StatelessWidget {
                       return Column(
                         children: [
                           countAppSelectedCountBox(
-                              onTap: (number) => _selectCount.value = number,
+                              onTap: (number) {
+                                HapticFeedback.mediumImpact();
+                                _selectCount.value = number;
+                              },
                               selectNumber: _selectCount.value,
                               number: 1),
                           countAppSelectedCountBox(
-                              onTap: (number) => _selectCount.value = number,
+                              onTap: (number) {
+                                HapticFeedback.mediumImpact();
+                                _selectCount.value = number;
+                              },
                               selectNumber: _selectCount.value,
                               number: 10),
                           countAppSelectedCountBox(
-                              onTap: (number) => _selectCount.value = number,
+                              onTap: (number) {
+                                HapticFeedback.mediumImpact();
+                                _selectCount.value = number;
+                              },
                               selectNumber: _selectCount.value,
                               number: 20),
                           countAppSelectedCountBox(
-                              onTap: (number) => _selectCount.value = number,
+                              onTap: (number) {
+                                HapticFeedback.mediumImpact();
+                                _selectCount.value = number;
+                              },
                               selectNumber: _selectCount.value,
                               number: 50),
                           countAppSelectedCountBox(
-                              onTap: (number) => _selectCount.value = number,
+                              onTap: (number) {
+                                HapticFeedback.mediumImpact();
+                                _selectCount.value = number;
+                              },
                               selectNumber: _selectCount.value,
                               number: 100),
                         ],

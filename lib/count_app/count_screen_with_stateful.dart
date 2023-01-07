@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_velog_sample/core/app_bar.dart';
 import 'package:flutter_velog_sample/count_app/count_screen_public_ui.dart';
 
@@ -32,24 +33,28 @@ class _CountScreenWithStateFulState extends State<CountScreenWithStateFul> {
 
   void _reset() {
     setState(() {
+      HapticFeedback.mediumImpact();
       _count = 0;
     });
   }
 
   void _select(int number) {
     setState(() {
+      HapticFeedback.mediumImpact();
       _selectCount = number;
     });
   }
 
   void _increment() {
     setState(() {
+      HapticFeedback.mediumImpact();
       _count = _count + _selectCount;
     });
   }
 
   void _decrement() {
     setState(() {
+      HapticFeedback.mediumImpact();
       _count = _count - _selectCount;
     });
   }
