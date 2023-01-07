@@ -55,10 +55,9 @@ class MainScreen extends StatelessWidget {
                 ),
                 _item(
                   length: 3,
-                  isCreated: false,
                   context: context,
                   content: 'Provider',
-                  namedRouter: '',
+                  namedRouter: '/count/app/provider',
                 ),
                 _item(
                   length: 3,
