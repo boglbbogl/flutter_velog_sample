@@ -17,16 +17,17 @@ class _CountScreenWithStateFulState extends State<CountScreenWithStateFul> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: appBar(title: 'Count App With State Ful'),
-        body: countScreenPublicUI(
-          context: context,
-          count: _count,
-          selectCount: _selectCount,
-          onIncrement: _increment,
-          onDecrement: _decrement,
-          onReset: _reset,
-          onCount: _select,
-        ));
+      appBar: appBar(title: 'Count App With State Ful'),
+      body: countScreenPublicUI(
+        context: context,
+        count: _count,
+        selectCount: _selectCount,
+        onIncrement: _increment,
+        onDecrement: _decrement,
+        onReset: _reset,
+        onCount: _select,
+      ),
+    );
   }
 
   void _reset() {

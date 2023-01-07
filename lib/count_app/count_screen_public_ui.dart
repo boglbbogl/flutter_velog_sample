@@ -72,15 +72,15 @@ Stack countScreenPublicUI({
             padding: const EdgeInsets.only(left: 20),
             child: Column(
               children: [
-                _selectedCountBox(
+                countAppSelectedCountBox(
                     onTap: onCount, selectNumber: selectCount, number: 1),
-                _selectedCountBox(
+                countAppSelectedCountBox(
                     onTap: onCount, selectNumber: selectCount, number: 10),
-                _selectedCountBox(
+                countAppSelectedCountBox(
                     onTap: onCount, selectNumber: selectCount, number: 20),
-                _selectedCountBox(
+                countAppSelectedCountBox(
                     onTap: onCount, selectNumber: selectCount, number: 50),
-                _selectedCountBox(
+                countAppSelectedCountBox(
                     onTap: onCount, selectNumber: selectCount, number: 100),
               ],
             ),
@@ -91,7 +91,7 @@ Stack countScreenPublicUI({
   );
 }
 
-GestureDetector _selectedCountBox({
+GestureDetector countAppSelectedCountBox({
   required Function(int) onTap,
   required int number,
   required int selectNumber,

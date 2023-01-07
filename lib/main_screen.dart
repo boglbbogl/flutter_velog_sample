@@ -48,10 +48,9 @@ class MainScreen extends StatelessWidget {
                 ),
                 _item(
                   length: 3,
-                  isCreated: false,
                   context: context,
                   content: 'Listenerable',
-                  namedRouter: '',
+                  namedRouter: '/count/app/listenerable',
                 ),
                 _item(
                   length: 3,
