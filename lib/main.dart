@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/core/app_theme.dart';
-import 'package:flutter_velog_sample/infinity_scroll/vertical/vertical_infinity_scroll_screen.dart';
+import 'package:flutter_velog_sample/infinity_scroll/horizontal_infinity_scroll_screen.dart';
+import 'package:flutter_velog_sample/infinity_scroll/pageview_infinity_scroll_screen.dart';
+import 'package:flutter_velog_sample/infinity_scroll/vertical_infinity_scroll_screen.dart';
 import 'package:flutter_velog_sample/initial_app.dart';
 import 'package:flutter_velog_sample/main_provider.dart';
 import 'package:flutter_velog_sample/scroll_indicator/vertical_indicator/vertical_indicator_screen.dart';
@@ -34,6 +36,10 @@ class App extends StatelessWidget {
               const HorizontalIndicatorScreen(),
           '/infinityScroll/vertical': (context) =>
               const VerticalInfinityScrollScreen(),
+          '/infinityScroll/horizontal': (context) =>
+              const HorizontalInfinityScrollScreen(),
+          '/infinityScroll/pageview': (context) =>
+              const PageviewInfinityScrollScreen(),
         },
       ),
     );

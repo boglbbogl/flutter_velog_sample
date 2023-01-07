@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/core/app_size.dart';
 import 'package:flutter_velog_sample/main_provider.dart';
-import 'package:flutter_velog_sample/scroll_indicator/horizontal_indicator/horizontal_indicator_screen.dart';
-import 'package:flutter_velog_sample/scroll_indicator/vertical_indicator/vertical_indicator_screen.dart';
 import 'package:provider/provider.dart';
-
-import 'infinity_scroll/vertical/vertical_infinity_scroll_screen.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -40,15 +36,23 @@ class MainScreen extends StatelessWidget {
               ]),
               _category(title: 'Infinity Scroll', widgets: [
                 _item(
+                  length: 3,
                   context: context,
                   content: 'Vertical',
                   namedRouter: '/infinityScroll/vertical',
                 ),
-                // _item(
-                //   context: context,
-                //   content: 'Horizontal Indicator',
-                //   routeWidget: const HorizontalIndicatorScreen(),
-                // ),
+                _item(
+                  length: 3,
+                  context: context,
+                  content: 'Horizontal',
+                  namedRouter: '/infinityScroll/horizontal',
+                ),
+                _item(
+                  length: 3,
+                  context: context,
+                  content: 'PageView',
+                  namedRouter: '/infinityScroll/pageview',
+                ),
               ]),
             ],
           ),
@@ -61,13 +65,16 @@ class MainScreen extends StatelessWidget {
     required BuildContext context,
     required String content,
     required String namedRouter,
+    int length = 2,
   }) {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).pushNamed(namedRouter);
       },
       child: Container(
-        width: (size.width / 2) - (50 / 2),
+        width: length == 2
+            ? (size.width / 2) - (50 / 2)
+            : (size.width / 3) - (60 / 3),
         height: 40,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),

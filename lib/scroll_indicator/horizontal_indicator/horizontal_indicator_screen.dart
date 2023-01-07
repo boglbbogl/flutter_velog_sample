@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_velog_sample/core/app_bar.dart';
 import 'package:flutter_velog_sample/scroll_indicator/horizontal_indicator/horizontal_indicator_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -12,11 +13,7 @@ class HorizontalIndicatorScreen extends StatelessWidget {
       child: Consumer<HorizontalIndicatorProvider>(
           builder: (context, value, child) {
         return Scaffold(
-          appBar: AppBar(
-            title: const Text(
-              'Horizontal Indicator',
-            ),
-          ),
+          appBar: appBar(title: 'Horizontal Indicator'),
           body: SingleChildScrollView(
             child: Column(
               children: [

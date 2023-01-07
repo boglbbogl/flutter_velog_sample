@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_velog_sample/core/app_bar.dart';
 import 'package:flutter_velog_sample/core/app_size.dart';
 import 'package:flutter_velog_sample/scroll_indicator/vertical_indicator/vertical_indicator_provider.dart';
 import 'package:provider/provider.dart';
@@ -18,11 +19,7 @@ class VerticalIndicatorScreen extends StatelessWidget {
             return false;
           },
           child: Scaffold(
-            appBar: AppBar(
-              title: const Text(
-                'Vertical Indicator',
-              ),
-            ),
+            appBar: appBar(title: 'Vertical Indicator'),
             body: Stack(
               children: [
                 SingleChildScrollView(
