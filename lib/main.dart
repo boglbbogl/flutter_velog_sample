@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/core/app_theme.dart';
+import 'package:flutter_velog_sample/count_app/count_screen_with_stateful.dart';
 import 'package:flutter_velog_sample/infinity_scroll/horizontal_infinity_scroll_screen.dart';
 import 'package:flutter_velog_sample/infinity_scroll/pageview_infinity_scroll_screen.dart';
 import 'package:flutter_velog_sample/infinity_scroll/vertical_infinity_scroll_screen.dart';
@@ -30,6 +31,7 @@ class App extends StatelessWidget {
         theme: AppTheme.darkTheme,
         home: const InitialApp(),
         routes: {
+          '/count/app/stateFul': (context) => const CountScreenWithStateFul(),
           '/scrollIndicator/vertical': (context) =>
               const VerticalIndicatorScreen(),
           '/scrollIndicator/horizontal': (context) =>
