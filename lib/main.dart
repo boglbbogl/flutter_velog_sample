@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/core/app_theme.dart';
 import 'package:flutter_velog_sample/count_app/count_screen_with_listenerable.dart';
 import 'package:flutter_velog_sample/count_app/count_screen_with_stateful.dart';
+import 'package:flutter_velog_sample/count_app/get/count_screen_with_get_reactive.dart';
+import 'package:flutter_velog_sample/count_app/get/count_screen_with_get_simple.dart';
 import 'package:flutter_velog_sample/count_app/provider/count_screen_with_provider.dart';
 import 'package:flutter_velog_sample/infinity_scroll/horizontal_infinity_scroll_screen.dart';
 import 'package:flutter_velog_sample/infinity_scroll/pageview_infinity_scroll_screen.dart';
@@ -37,6 +39,10 @@ class App extends StatelessWidget {
           '/count/app/listenerable': (context) =>
               const CountScreenWithListenarable(),
           '/count/app/provider': (context) => const CountScreenWithProvider(),
+          '/count/app/get/simple': (context) =>
+              const CountScreenWithGetSimple(),
+          '/count/app/get/reactive': (context) =>
+              const CountScreenWithGetReactive(),
           '/scrollIndicator/vertical': (context) =>
               const VerticalIndicatorScreen(),
           '/scrollIndicator/horizontal': (context) =>

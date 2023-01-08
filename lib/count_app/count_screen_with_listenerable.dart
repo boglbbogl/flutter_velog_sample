@@ -12,7 +12,7 @@ class CountScreenWithListenarable extends StatelessWidget {
     ValueNotifier<int> _selectCount = ValueNotifier<int>(1);
 
     return Scaffold(
-      appBar: appBar(title: 'Count App With State Ful'),
+      appBar: appBar(title: 'Count App With Listenerable'),
       body: Stack(
         children: [
           Column(
