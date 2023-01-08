@@ -60,10 +60,15 @@ class MainScreen extends StatelessWidget {
                 ),
                 _item(
                   length: 3,
-                  isCreated: false,
                   context: context,
-                  content: 'Get',
-                  namedRouter: '',
+                  content: 'Get X(simple)',
+                  namedRouter: '/count/app/get/simple',
+                ),
+                _item(
+                  length: 3,
+                  context: context,
+                  content: 'Get X(Reactive)',
+                  namedRouter: '/count/app/get/reactive',
                 ),
                 _item(
                   length: 3,
