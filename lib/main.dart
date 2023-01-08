@@ -43,6 +43,8 @@ class App extends StatelessWidget {
               const CountScreenWithGetSimple(),
           '/count/app/get/reactive': (context) =>
               const CountScreenWithGetReactive(),
+          // '/count/app/bloc': (context) => const CountScreenWithBloc(),
+          // '/count/app/cubit': (context) => const CountScreenWithCubit(),
           '/scrollIndicator/vertical': (context) =>
               const VerticalIndicatorScreen(),
           '/scrollIndicator/horizontal': (context) =>
