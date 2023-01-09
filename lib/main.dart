@@ -3,6 +3,7 @@ import 'package:flutter_velog_sample/core/app_theme.dart';
 import 'package:flutter_velog_sample/count_app/bloc/count_screen_with_bloc.dart';
 import 'package:flutter_velog_sample/count_app/count_screen_with_listenerable.dart';
 import 'package:flutter_velog_sample/count_app/count_screen_with_stateful.dart';
+import 'package:flutter_velog_sample/count_app/cubit/count_screen_with_cubit.dart';
 import 'package:flutter_velog_sample/count_app/get/count_screen_with_get_reactive.dart';
 import 'package:flutter_velog_sample/count_app/get/count_screen_with_get_simple.dart';
 import 'package:flutter_velog_sample/count_app/provider/count_screen_with_provider.dart';
@@ -45,7 +46,7 @@ class App extends StatelessWidget {
           '/count/app/get/reactive': (context) =>
               const CountScreenWithGetReactive(),
           '/count/app/bloc': (context) => const CountScreenWithBloc(),
-          // '/count/app/cubit': (context) => const CountScreenWithCubit(),
+          '/count/app/cubit': (context) => const CountScreenWithCubit(),
           '/scrollIndicator/vertical': (context) =>
               const VerticalIndicatorScreen(),
           '/scrollIndicator/horizontal': (context) =>
