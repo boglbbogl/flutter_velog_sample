@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' as river;
-import 'package:flutter_velog_sample/core/app_theme.dart';
+import 'package:flutter_velog_sample/_core/app_theme.dart';
 import 'package:flutter_velog_sample/count_app/bloc/count_screen_with_bloc.dart';
 import 'package:flutter_velog_sample/count_app/count_screen_with_listenerable.dart';
 import 'package:flutter_velog_sample/count_app/count_screen_with_stateful.dart';
@@ -15,6 +15,7 @@ import 'package:flutter_velog_sample/infinity_scroll/pageview_infinity_scroll_sc
 import 'package:flutter_velog_sample/infinity_scroll/vertical_infinity_scroll_screen.dart';
 import 'package:flutter_velog_sample/initial_app.dart';
 import 'package:flutter_velog_sample/main_provider.dart';
+import 'package:flutter_velog_sample/app/timer/app_screen_with_timer.dart';
 import 'package:flutter_velog_sample/scroll_indicator/vertical_indicator/vertical_indicator_screen.dart';
 import 'package:provider/provider.dart';
 import 'scroll_indicator/horizontal_indicator/horizontal_indicator_screen.dart';
@@ -39,6 +40,7 @@ class App extends StatelessWidget {
         theme: AppTheme.darkTheme,
         home: const InitialApp(),
         routes: {
+          '/app/timer': ((context) => const AppScreenWithTimer()),
           '/count/app/stateFul': (context) => const CountScreenWithStateFul(),
           '/count/app/listenerable': (context) =>
               const CountScreenWithListenarable(),
