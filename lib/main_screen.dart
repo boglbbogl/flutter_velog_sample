@@ -72,10 +72,9 @@ class MainScreen extends StatelessWidget {
                 ),
                 _item(
                   length: 3,
-                  isCreated: false,
                   context: context,
                   content: 'BLoC',
-                  namedRouter: '',
+                  namedRouter: '/count/app/bloc',
                 ),
                 _item(
                   length: 3,
