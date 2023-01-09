@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_velog_sample/core/app_bar.dart';
+import 'package:flutter_velog_sample/_core/app_bar.dart';
 import 'package:flutter_velog_sample/scroll_indicator/horizontal_indicator/horizontal_indicator_provider.dart';
 import 'package:provider/provider.dart';
 

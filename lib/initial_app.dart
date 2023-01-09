@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_velog_sample/core/app_size.dart';
+import 'package:flutter_velog_sample/_core/app_size.dart';
 import 'package:flutter_velog_sample/main_screen.dart';
 
 class InitialApp extends StatelessWidget {

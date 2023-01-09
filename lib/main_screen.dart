@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_velog_sample/core/app_size.dart';
+import 'package:flutter_velog_sample/_core/app_size.dart';
 import 'package:flutter_velog_sample/main_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -23,13 +23,12 @@ class MainScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _category(title: 'Other', widgets: [
+              _category(title: 'App', widgets: [
                 _item(
                   length: 2,
-                  isCreated: false,
                   context: context,
                   content: 'Timer',
-                  namedRouter: '',
+                  namedRouter: '/app/timer',
                 ),
                 _item(
                   length: 2,
@@ -39,7 +38,7 @@ class MainScreen extends StatelessWidget {
                   namedRouter: '',
                 ),
               ]),
-              _category(title: 'Count App', widgets: [
+              _category(title: 'State Management With Count App', widgets: [
                 _item(
                   length: 3,
                   context: context,
@@ -150,6 +149,20 @@ class MainScreen extends StatelessWidget {
                   isCreated: false,
                   context: context,
                   content: 'InApp..(Launcher)',
+                  namedRouter: '',
+                ),
+              ]),
+              _category(title: 'Data Type', widgets: [
+                _item(
+                  isCreated: false,
+                  context: context,
+                  content: 'Freezed',
+                  namedRouter: '',
+                ),
+                _item(
+                  isCreated: false,
+                  context: context,
+                  content: 'Dartz',
                   namedRouter: '',
                 ),
               ]),

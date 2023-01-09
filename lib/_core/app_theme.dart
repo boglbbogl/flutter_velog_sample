@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_velog_sample/core/app_color.dart';
+import 'package:flutter_velog_sample/_core/app_color.dart';
 
 class AppTheme {
   static ThemeData darkTheme = ThemeData(
