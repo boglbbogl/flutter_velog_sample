@@ -88,6 +88,12 @@ class MainScreen extends StatelessWidget {
                   content: 'Riverpod',
                   namedRouter: '/count/app/riverpod',
                 ),
+                _item(
+                  length: 3,
+                  context: context,
+                  content: 'MobX',
+                  namedRouter: '/count/app/mobx',
+                ),
               ]),
               _category(title: 'Scroll Indicator', widgets: [
                 _item(
