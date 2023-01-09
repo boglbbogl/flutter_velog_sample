@@ -78,10 +78,15 @@ class MainScreen extends StatelessWidget {
                 ),
                 _item(
                   length: 3,
-                  isCreated: false,
                   context: context,
                   content: 'Cubit',
-                  namedRouter: '',
+                  namedRouter: '/count/app/cubit',
+                ),
+                _item(
+                  length: 3,
+                  context: context,
+                  content: 'Riverpod',
+                  namedRouter: '/count/app/riverpod',
                 ),
               ]),
               _category(title: 'Scroll Indicator', widgets: [
