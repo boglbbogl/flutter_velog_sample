@@ -21,22 +21,22 @@ class CountScreenWithRiverpod extends ConsumerWidget {
         onIncrement: () {
           HapticFeedback.mediumImpact();
           ref
-              .read(_count.state)
+              .read(_count.notifier)
               .update((state) => state + ref.watch(_selectCount));
         },
         onDecrement: () {
           HapticFeedback.mediumImpact();
           ref
-              .read(_count.state)
+              .read(_count.notifier)
               .update((state) => state - ref.watch(_selectCount));
         },
         onReset: () {
           HapticFeedback.mediumImpact();
-          ref.read(_count.state).update((state) => 0);
+          ref.read(_count.notifier).update((state) => 0);
         },
         onCount: (int number) {
           HapticFeedback.mediumImpact();
-          ref.read(_selectCount.state).update((state) => number);
+          ref.read(_selectCount.notifier).update((state) => number);
         },
       ),
     );

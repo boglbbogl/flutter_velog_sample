@@ -127,6 +127,32 @@ class MainScreen extends StatelessWidget {
                   namedRouter: '/infinityScroll/pageview',
                 ),
               ]),
+              _category(title: 'Webview', widgets: [
+                _item(
+                  isCreated: false,
+                  context: context,
+                  content: 'WebviewFlutter',
+                  namedRouter: '',
+                ),
+                _item(
+                  isCreated: false,
+                  context: context,
+                  content: 'Launcher',
+                  namedRouter: '',
+                ),
+                _item(
+                  isCreated: false,
+                  context: context,
+                  content: 'InAppWebview',
+                  namedRouter: '',
+                ),
+                _item(
+                  isCreated: false,
+                  context: context,
+                  content: 'InApp..(Launcher)',
+                  namedRouter: '',
+                ),
+              ]),
             ],
           ),
         ),
@@ -152,7 +178,9 @@ class MainScreen extends StatelessWidget {
           child: Container(
             width: length == 2
                 ? (size.width / 2) - (50 / 2)
-                : (size.width / 3) - (60 / 3),
+                : length == 3
+                    ? (size.width / 3) - (60 / 3)
+                    : (size.width / 3) - (60 / 3),
             height: 40,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
