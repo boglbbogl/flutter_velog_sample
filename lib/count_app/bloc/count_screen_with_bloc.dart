@@ -15,7 +15,7 @@ class CountScreenWithBloc extends StatelessWidget {
       child: BlocBuilder<CountAppBlocBloc, CountAppBlocState>(
         builder: (context, state) {
           return Scaffold(
-            appBar: appBar(title: 'Count App With Provider'),
+            appBar: appBar(title: 'Count App With BLoC'),
             body: countScreenPublicUI(
               context: context,
               count: state.count,
