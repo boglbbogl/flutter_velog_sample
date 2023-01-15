@@ -26,9 +26,10 @@ class MainScreen extends StatelessWidget {
               _category(title: 'App', widgets: [
                 _item(
                   length: 2,
+                  isCreated: false,
                   context: context,
                   content: 'Timer',
-                  namedRouter: '/app/timer',
+                  namedRouter: '',
                 ),
                 _item(
                   length: 2,
@@ -92,6 +93,28 @@ class MainScreen extends StatelessWidget {
                   context: context,
                   content: 'MobX',
                   namedRouter: '/count/app/mobx',
+                ),
+              ]),
+              _category(title: 'Tab View', widgets: [
+                _item(
+                  length: 3,
+                  context: context,
+                  content: 'Tabbar View',
+                  namedRouter: '/tabview/tabbar',
+                ),
+                _item(
+                  isCreated: false,
+                  length: 3,
+                  context: context,
+                  content: 'Page View',
+                  namedRouter: '/tabview/pageView',
+                ),
+                _item(
+                  isCreated: false,
+                  length: 3,
+                  context: context,
+                  content: 'Custom View',
+                  namedRouter: '/tabview/custom',
                 ),
               ]),
               _category(title: 'Scroll Indicator', widgets: [
@@ -166,6 +189,7 @@ class MainScreen extends StatelessWidget {
                   namedRouter: '',
                 ),
               ]),
+              const SizedBox(height: 40),
             ],
           ),
         ),

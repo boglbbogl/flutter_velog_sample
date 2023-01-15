@@ -15,8 +15,10 @@ import 'package:flutter_velog_sample/infinity_scroll/pageview_infinity_scroll_sc
 import 'package:flutter_velog_sample/infinity_scroll/vertical_infinity_scroll_screen.dart';
 import 'package:flutter_velog_sample/initial_app.dart';
 import 'package:flutter_velog_sample/main_provider.dart';
-import 'package:flutter_velog_sample/app/timer/app_screen_with_timer.dart';
 import 'package:flutter_velog_sample/scroll_indicator/vertical_indicator/vertical_indicator_screen.dart';
+import 'package:flutter_velog_sample/tab_view/tab_view_custom_screen.dart';
+import 'package:flutter_velog_sample/tab_view/tab_view_page_view_screen.dart';
+import 'package:flutter_velog_sample/tab_view/tab_view_tabbar_screen.dart';
 import 'package:provider/provider.dart';
 import 'scroll_indicator/horizontal_indicator/horizontal_indicator_screen.dart';
 
@@ -40,7 +42,6 @@ class App extends StatelessWidget {
         theme: AppTheme.darkTheme,
         home: const InitialApp(),
         routes: {
-          '/app/timer': ((context) => const AppScreenWithTimer()),
           '/count/app/stateFul': (context) => const CountScreenWithStateFul(),
           '/count/app/listenerable': (context) =>
               const CountScreenWithListenarable(),
@@ -54,6 +55,9 @@ class App extends StatelessWidget {
           '/count/app/riverpod': (context) =>
               river.ProviderScope(child: CountScreenWithRiverpod()),
           '/count/app/mobx': (context) => const CountScreenWithMobx(),
+          '/tabview/tabbar': (context) => const TabViewTabbarScreen(),
+          '/tabview/pageView': (context) => const TabViewPageViewScreen(),
+          '/tabview/custom': (context) => const TabViewCustomScreen(),
           '/scrollIndicator/vertical': (context) =>
               const VerticalIndicatorScreen(),
           '/scrollIndicator/horizontal': (context) =>
