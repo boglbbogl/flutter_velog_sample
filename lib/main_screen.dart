@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_size.dart';
 import 'package:flutter_velog_sample/main_provider.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class MainScreen extends StatelessWidget {
@@ -26,17 +27,15 @@ class MainScreen extends StatelessWidget {
               _category(title: 'App', widgets: [
                 _item(
                   length: 2,
-                  isCreated: false,
                   context: context,
                   content: 'Timer',
-                  namedRouter: '',
+                  namedRouter: null,
                 ),
                 _item(
                   length: 2,
-                  isCreated: false,
                   context: context,
                   content: 'Calculator',
-                  namedRouter: '',
+                  namedRouter: null,
                 ),
               ]),
               _category(title: 'State Management With Count App', widgets: [
@@ -95,6 +94,18 @@ class MainScreen extends StatelessWidget {
                   namedRouter: '/count/app/mobx',
                 ),
               ]),
+              _category(title: 'UI', widgets: [
+                _item(
+                  context: context,
+                  content: 'SNS Heart Icon',
+                  namedRouter: null,
+                ),
+                _item(
+                  context: context,
+                  content: 'SNS Heart Motion',
+                  namedRouter: null,
+                ),
+              ]),
               _category(title: 'Tab View', widgets: [
                 _item(
                   length: 3,
@@ -103,18 +114,50 @@ class MainScreen extends StatelessWidget {
                   namedRouter: '/tabview/tabbar',
                 ),
                 _item(
-                  isCreated: false,
                   length: 3,
                   context: context,
                   content: 'Page View',
-                  namedRouter: '/tabview/pageView',
+                  namedRouter: null,
+                  // namedRouter: '/tabview/pageView',
                 ),
                 _item(
-                  isCreated: false,
                   length: 3,
                   context: context,
                   content: 'Custom View',
-                  namedRouter: '/tabview/custom',
+                  namedRouter: null,
+                  // namedRouter: '/tabview/custom',
+                ),
+              ]),
+              _category(title: 'Scroll View', widgets: [
+                _item(
+                  length: 3,
+                  context: context,
+                  content: 'Single Child',
+                  namedRouter: null,
+                ),
+                _item(
+                  length: 3,
+                  context: context,
+                  content: 'Custom Scroll',
+                  namedRouter: null,
+                ),
+                _item(
+                  length: 3,
+                  context: context,
+                  content: 'List View',
+                  namedRouter: null,
+                ),
+                _item(
+                  length: 2,
+                  context: context,
+                  content: 'Gesture To Scroll',
+                  namedRouter: null,
+                ),
+                _item(
+                  length: 2,
+                  context: context,
+                  content: 'View vs Builder',
+                  namedRouter: null,
                 ),
               ]),
               _category(title: 'Scroll Indicator', widgets: [
@@ -151,42 +194,46 @@ class MainScreen extends StatelessWidget {
               ]),
               _category(title: 'Webview', widgets: [
                 _item(
-                  isCreated: false,
                   context: context,
                   content: 'WebviewFlutter',
-                  namedRouter: '',
+                  namedRouter: null,
                 ),
                 _item(
-                  isCreated: false,
                   context: context,
                   content: 'Launcher',
-                  namedRouter: '',
+                  namedRouter: null,
                 ),
                 _item(
-                  isCreated: false,
                   context: context,
                   content: 'InAppWebview',
-                  namedRouter: '',
+                  namedRouter: null,
                 ),
                 _item(
-                  isCreated: false,
                   context: context,
                   content: 'InApp..(Launcher)',
-                  namedRouter: '',
+                  namedRouter: null,
+                ),
+                _item(
+                  context: context,
+                  content: 'Swift UiWebView',
+                  namedRouter: null,
+                ),
+                _item(
+                  context: context,
+                  content: 'Swift WkWebView',
+                  namedRouter: null,
                 ),
               ]),
               _category(title: 'Data Type', widgets: [
                 _item(
-                  isCreated: false,
                   context: context,
                   content: 'Freezed',
-                  namedRouter: '',
+                  namedRouter: null,
                 ),
                 _item(
-                  isCreated: false,
                   context: context,
                   content: 'Dartz',
-                  namedRouter: '',
+                  namedRouter: null,
                 ),
               ]),
               const SizedBox(height: 40),
@@ -200,15 +247,16 @@ class MainScreen extends StatelessWidget {
   IgnorePointer _item({
     required BuildContext context,
     required String content,
-    required String namedRouter,
+    required String? namedRouter,
     int length = 2,
-    bool isCreated = true,
   }) {
     return IgnorePointer(
-      ignoring: !isCreated,
+      ignoring: namedRouter == null,
       child: GestureDetector(
         onTap: () {
-          Navigator.of(context).pushNamed(namedRouter);
+          if (namedRouter != null) {
+            Navigator.of(context).pushNamed(namedRouter);
+          }
         },
         child: Padding(
           padding: const EdgeInsets.only(bottom: 12),
@@ -221,7 +269,7 @@ class MainScreen extends StatelessWidget {
             height: 40,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              color: isCreated
+              color: namedRouter != null
                   ? const Color.fromRGBO(125, 125, 125, 1)
                   : const Color.fromRGBO(61, 61, 61, 1),
             ),
@@ -230,7 +278,7 @@ class MainScreen extends StatelessWidget {
                 content,
                 style: TextStyle(
                     fontSize: 14,
-                    color: isCreated
+                    color: namedRouter != null
                         ? const Color.fromRGBO(215, 215, 215, 1)
                         : const Color.fromRGBO(155, 155, 155, 1)),
               ),

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
 
@@ -20,11 +22,11 @@ class TabViewTabbarScreen extends StatelessWidget {
                           child: Wrap(
                         children: [
                           ...List.generate(
-                              13,
+                              15,
                               (index) => Container(
                                     height: 200,
-                                    width:
-                                        MediaQuery.of(context).size.width / 13,
+                                    width: (MediaQuery.of(context).size.width /
+                                        15.00001),
                                     color: Colors.accents[index % 15],
                                   )),
                         ],
@@ -66,9 +68,9 @@ class TabViewTabbarScreen extends StatelessWidget {
                             child: Center(
                               child: Text(
                                 "List View $index",
-                                style: const TextStyle(
+                                style: TextStyle(
                                     fontSize: 16,
-                                    color: Colors.white,
+                                    color: Colors.accents[index % 15],
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
@@ -84,8 +86,14 @@ class TabViewTabbarScreen extends StatelessWidget {
                           mainAxisSpacing: 12,
                         ),
                         itemBuilder: ((context, index) {
+                          List<int> _number = [
+                            Random().nextInt(255),
+                            Random().nextInt(255),
+                            Random().nextInt(255)
+                          ];
                           return Container(
-                            color: Colors.accents[index % 15],
+                            color: Color.fromRGBO(
+                                _number[0], _number[1], _number[2], 1),
                             child: Center(
                                 child: Text(
                               "Grid View $index",
