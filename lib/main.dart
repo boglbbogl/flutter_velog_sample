@@ -19,6 +19,8 @@ import 'package:flutter_velog_sample/scroll_indicator/vertical_indicator/vertica
 import 'package:flutter_velog_sample/tab_view/tab_view_custom_screen.dart';
 import 'package:flutter_velog_sample/tab_view/tab_view_page_view_screen.dart';
 import 'package:flutter_velog_sample/tab_view/tab_view_tabbar_screen.dart';
+import 'package:flutter_velog_sample/ui/sns_ui_heart_icon_screen.dart';
+import 'package:flutter_velog_sample/ui/sns_ui_heart_motion_screen.dart';
 import 'package:provider/provider.dart';
 import 'scroll_indicator/horizontal_indicator/horizontal_indicator_screen.dart';
 
@@ -55,6 +57,8 @@ class App extends StatelessWidget {
           '/count/app/riverpod': (context) =>
               river.ProviderScope(child: CountScreenWithRiverpod()),
           '/count/app/mobx': (context) => const CountScreenWithMobx(),
+          '/ui/sns/heart/icon': (context) => const SnsUIHeartIconScreen(),
+          '/ui/sns/heart/motion': (context) => const SnsUIHeartMotionScreen(),
           '/tabview/tabbar': (context) => const TabViewTabbarScreen(),
           '/tabview/pageView': (context) => const TabViewPageViewScreen(),
           '/tabview/custom': (context) => const TabViewCustomScreen(),

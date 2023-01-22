@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_size.dart';
 import 'package:flutter_velog_sample/main_provider.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class MainScreen extends StatelessWidget {
@@ -98,12 +97,12 @@ class MainScreen extends StatelessWidget {
                 _item(
                   context: context,
                   content: 'SNS Heart Icon',
-                  namedRouter: null,
+                  namedRouter: '/ui/sns/heart/icon',
                 ),
                 _item(
                   context: context,
                   content: 'SNS Heart Motion',
-                  namedRouter: null,
+                  namedRouter: '/ui/sns/heart/motion',
                 ),
               ]),
               _category(title: 'Tab View', widgets: [
