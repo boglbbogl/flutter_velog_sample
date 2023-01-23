@@ -99,6 +99,8 @@ class App extends StatelessWidget {
               const WebviewWithSwiftUiWebviewScreen(),
           '/webview/swift/wkWebview': (context) =>
               const WebviewWithSwiftWKWebviewScreen(),
+          '/data/type/freezed': (context) =>
+              const WebviewWithSwiftWKWebviewScreen(),
         },
       ),
     );
