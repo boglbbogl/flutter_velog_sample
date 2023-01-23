@@ -223,7 +223,7 @@ class MainScreen extends StatelessWidget {
                 _item(
                   context: context,
                   content: 'Freezed',
-                  namedRouter: 'null',
+                  namedRouter: '/data/type/freezed',
                 ),
                 _item(
                   context: context,
