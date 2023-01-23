@@ -116,15 +116,13 @@ class MainScreen extends StatelessWidget {
                   length: 3,
                   context: context,
                   content: 'Page View',
-                  namedRouter: null,
-                  // namedRouter: '/tabview/pageView',
+                  namedRouter: '/tabview/pageView',
                 ),
                 _item(
                   length: 3,
                   context: context,
                   content: 'Custom View',
-                  namedRouter: null,
-                  // namedRouter: '/tabview/custom',
+                  namedRouter: '/tabview/custom',
                 ),
               ]),
               _category(title: 'Scroll View', widgets: [
