@@ -17,141 +17,118 @@ class TabViewPageViewScreen extends StatelessWidget {
           Consumer<TabViewPageViewProvider>(builder: (context, state, child) {
         return Scaffold(
             appBar: appBar(title: 'Tab View With PageView'),
-            body: NestedScrollView(
-                headerSliverBuilder: ((context, innerBoxIsScrolled) {
-                  return [
-                    SliverOverlapAbsorber(
-                        handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
-                            context),
-                        sliver: SliverToBoxAdapter(
-                            child: Wrap(
-                          children: [
-                            ...List.generate(
-                                15,
-                                (index) => Container(
-                                      height: 200,
-                                      width:
-                                          (MediaQuery.of(context).size.width /
-                                              15.00001),
-                                      color: Colors.accents[index % 15],
-                                    )),
-                          ],
-                        ))),
-                  ];
-                }),
-                body: Column(
-                  children: [
-                    SizedBox(
-                      height: 53,
-                      child: Stack(
+            body: Column(
+              children: [
+                SizedBox(
+                  height: 53,
+                  child: Stack(
+                    children: [
+                      Wrap(
                         children: [
-                          Wrap(
-                            children: [
-                              _tabBar(
-                                index: 0,
-                                currentIndex: state.tabIndex,
-                                onTap: (i) => state.tabChanged(i),
-                                context: context,
-                                title: 'List',
-                              ),
-                              _tabBar(
-                                index: 1,
-                                currentIndex: state.tabIndex,
-                                onTap: (i) => state.tabChanged(i),
-                                context: context,
-                                title: 'Grid',
-                              ),
-                              _tabBar(
-                                index: 2,
-                                currentIndex: state.tabIndex,
-                                onTap: (i) => state.tabChanged(i),
-                                context: context,
-                                title: 'Box',
-                              ),
-                            ],
+                          _tabBar(
+                            index: 0,
+                            currentIndex: state.tabIndex,
+                            onTap: (i) => state.tabChanged(i),
+                            context: context,
+                            title: 'List',
                           ),
-                          AnimatedPositioned(
-                            duration: const Duration(milliseconds: 300),
-                            bottom: 0,
-                            left: state.tabIndicatorPosition,
-                            child: Container(
-                              width: MediaQuery.of(context).size.width / 3,
-                              height: 3,
-                              color: Colors.white,
-                            ),
+                          _tabBar(
+                            index: 1,
+                            currentIndex: state.tabIndex,
+                            onTap: (i) => state.tabChanged(i),
+                            context: context,
+                            title: 'Grid',
+                          ),
+                          _tabBar(
+                            index: 2,
+                            currentIndex: state.tabIndex,
+                            onTap: (i) => state.tabChanged(i),
+                            context: context,
+                            title: 'Box',
                           ),
                         ],
                       ),
-                    ),
-                    Expanded(
-                        child: PageView(
-                      controller: state.pageController,
-                      onPageChanged: (i) => state.tabChanged(i),
-                      children: [
-                        ListView.builder(
-                            key: const PageStorageKey("LIST_VIEW"),
-                            itemCount: 1000,
-                            itemBuilder: (context, index) {
-                              return Container(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 12),
-                                width: MediaQuery.of(context).size.width,
-                                child: Center(
-                                  child: Text(
-                                    "List View $index",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.accents[index % 15],
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              );
-                            }),
-                        GridView.builder(
-                            key: const PageStorageKey("GRID_VIEW"),
-                            itemCount: 1000,
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 3,
-                              crossAxisSpacing: 12,
-                              mainAxisSpacing: 12,
-                            ),
-                            itemBuilder: ((context, index) {
-                              List<int> _number = [
-                                Random().nextInt(255),
-                                Random().nextInt(255),
-                                Random().nextInt(255)
-                              ];
-                              return Container(
-                                color: Color.fromRGBO(
-                                    _number[0], _number[1], _number[2], 1),
-                                child: Center(
-                                    child: Text(
-                                  "Grid View $index",
-                                  style: const TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
-                                )),
-                              );
-                            })),
-                        Container(
-                          width: 10,
-                          color: const Color.fromRGBO(91, 91, 91, 1),
-                          child: const Center(
-                            child: Text(
-                              'Box',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 56,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
+                      AnimatedPositioned(
+                        duration: const Duration(milliseconds: 300),
+                        bottom: 0,
+                        left: state.tabIndicatorPosition,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width / 3,
+                          height: 3,
+                          color: Colors.white,
                         ),
-                      ],
-                    ))
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                    child: PageView(
+                  controller: state.pageController,
+                  onPageChanged: (i) => state.tabChanged(i),
+                  children: [
+                    ListView.builder(
+                        key: const PageStorageKey("LIST_VIEW"),
+                        itemCount: 1000,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            padding: const EdgeInsets.symmetric(vertical: 12),
+                            width: MediaQuery.of(context).size.width,
+                            child: Center(
+                              child: Text(
+                                "List View $index",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.accents[index % 15],
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          );
+                        }),
+                    GridView.builder(
+                        key: const PageStorageKey("GRID_VIEW"),
+                        itemCount: 1000,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          crossAxisSpacing: 12,
+                          mainAxisSpacing: 12,
+                        ),
+                        itemBuilder: ((context, index) {
+                          List<int> _number = [
+                            Random().nextInt(255),
+                            Random().nextInt(255),
+                            Random().nextInt(255)
+                          ];
+                          return Container(
+                            color: Color.fromRGBO(
+                                _number[0], _number[1], _number[2], 1),
+                            child: Center(
+                                child: Text(
+                              "Grid View $index",
+                              style: const TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            )),
+                          );
+                        })),
+                    Container(
+                      width: 10,
+                      color: const Color.fromRGBO(91, 91, 91, 1),
+                      child: const Center(
+                        child: Text(
+                          'Box',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 56,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
                   ],
-                )));
+                ))
+              ],
+            ));
       }),
     );
   }
