@@ -16,6 +16,11 @@ import 'package:flutter_velog_sample/infinity_scroll/vertical_infinity_scroll_sc
 import 'package:flutter_velog_sample/initial_app.dart';
 import 'package:flutter_velog_sample/main_provider.dart';
 import 'package:flutter_velog_sample/scroll_indicator/vertical_indicator/vertical_indicator_screen.dart';
+import 'package:flutter_velog_sample/scroll_view/scroll_view_with_custom_scroll_screen.dart';
+import 'package:flutter_velog_sample/scroll_view/scroll_view_with_gesture_to_scroll_screen.dart';
+import 'package:flutter_velog_sample/scroll_view/scroll_view_with_list_view_screen.dart';
+import 'package:flutter_velog_sample/scroll_view/scroll_view_with_single_child_screen.dart';
+import 'package:flutter_velog_sample/scroll_view/scroll_view_with_view_and_builder_screen.dart';
 import 'package:flutter_velog_sample/tab_view/custom/tab_view_custom_screen.dart';
 import 'package:flutter_velog_sample/tab_view/pageview/tab_view_page_view_screen.dart';
 import 'package:flutter_velog_sample/tab_view/tabbar/tab_view_tabbar_screen.dart';
@@ -62,6 +67,16 @@ class App extends StatelessWidget {
           '/tabview/tabbar': (context) => const TabViewTabbarScreen(),
           '/tabview/pageView': (context) => const TabViewPageViewScreen(),
           '/tabview/custom': (context) => const TabViewCustomScreen(),
+          '/scroll/view/single': (context) =>
+              const ScrollViewWithSingleChildScreen(),
+          '/scroll/view/custom': (context) =>
+              const ScrollViewWithCustomScrollScreen(),
+          '/scroll/view/list/view': (context) =>
+              const ScrollViewWithListViewScreen(),
+          '/scroll/view/gestureToScroll': (context) =>
+              const ScrollViewWithGestureToScrollScreen(),
+          '/scroll/view/viewAndBuilder': (context) =>
+              const ScrollViewWithViewAndBuilderScreen(),
           '/scrollIndicator/vertical': (context) =>
               const VerticalIndicatorScreen(),
           '/scrollIndicator/horizontal': (context) =>
