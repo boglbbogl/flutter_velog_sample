@@ -17,7 +17,7 @@ import 'package:flutter_velog_sample/initial_app.dart';
 import 'package:flutter_velog_sample/main_provider.dart';
 import 'package:flutter_velog_sample/scroll_indicator/vertical_indicator/vertical_indicator_screen.dart';
 import 'package:flutter_velog_sample/tab_view/tab_view_custom_screen.dart';
-import 'package:flutter_velog_sample/tab_view/tab_view_page_view_screen.dart';
+import 'package:flutter_velog_sample/tab_view/pageview/tab_view_page_view_screen.dart';
 import 'package:flutter_velog_sample/tab_view/tabbar/tab_view_tabbar_screen.dart';
 import 'package:flutter_velog_sample/ui/sns_ui_heart_icon_screen.dart';
 import 'package:flutter_velog_sample/ui/sns_ui_heart_motion_screen.dart';
