@@ -1,10 +1,7 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
 import 'package:flutter_velog_sample/scroll_view/scroll_view_gesture_getx.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 
 class ScrollViewWithGestureToScrollScreen extends StatelessWidget {
   const ScrollViewWithGestureToScrollScreen({super.key});
@@ -106,7 +103,7 @@ class ScrollViewWithGestureToScrollScreen extends StatelessWidget {
       child: Center(
           child: Text(
         title,
-        style: TextStyle(
+        style: const TextStyle(
             color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
       )),
     );
