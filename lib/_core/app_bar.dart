@@ -6,6 +6,7 @@ AppBar appBar({
   return AppBar(
     title: Text(
       title,
+      style: const TextStyle(fontSize: 18),
     ),
   );
 }

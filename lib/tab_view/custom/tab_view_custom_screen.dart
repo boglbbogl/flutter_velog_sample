@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
 import 'package:flutter_velog_sample/tab_view/custom/tab_view_custom_getx.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 
 class TabViewCustomScreen extends StatelessWidget {
   const TabViewCustomScreen({super.key});
