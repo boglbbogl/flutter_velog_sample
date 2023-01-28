@@ -28,32 +28,32 @@ class DataTypeFreezedScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: [
-                          _item(
-                              context: context,
-                              title: '번      호',
-                              description: "${index + 1}"),
-                          _item(
-                              context: context,
-                              title: '이      름',
-                              description: state.data[index].name),
-                          _item(
-                              context: context,
-                              title: '나      이',
-                              description: state.data[index].age.toString()),
-                          _item(
-                              context: context,
-                              title: '성      별',
-                              description:
-                                  state.data[index].sex == 0 ? '남자' : '여자'),
-                          _item(
-                              context: context,
-                              title: '결혼유무',
-                              description:
-                                  state.data[index].isMarried ? '기혼' : '미혼'),
-                          _item(
-                              context: context,
-                              title: '주      소',
-                              description: state.data[index].address),
+                          // _item(
+                          //     context: context,
+                          //     title: '번      호',
+                          //     description: "${index + 1}"),
+                          // _item(
+                          //     context: context,
+                          //     title: '이      름',
+                          //     description: state.data[index].name),
+                          // _item(
+                          //     context: context,
+                          //     title: '나      이',
+                          //     description: state.data[index].age.toString()),
+                          // _item(
+                          //     context: context,
+                          //     title: '성      별',
+                          //     description:
+                          //         state.data[index].sex == 0 ? '남자' : '여자'),
+                          // _item(
+                          //     context: context,
+                          //     title: '결혼유무',
+                          //     description:
+                          //         state.data[index].isMarried ? '기혼' : '미혼'),
+                          // _item(
+                          //     context: context,
+                          //     title: '주      소',
+                          //     description: state.data[index].address),
                         ],
                       ),
                     ),
