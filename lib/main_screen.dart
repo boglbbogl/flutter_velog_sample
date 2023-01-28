@@ -34,7 +34,7 @@ class MainScreen extends StatelessWidget {
                   length: 2,
                   context: context,
                   content: 'Calculator',
-                  namedRouter: null,
+                  namedRouter: 'app/caculator',
                 ),
               ]),
               _category(title: 'State Management With Count App', widgets: [
