@@ -4,19 +4,41 @@ import WebKit
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
+
+    var appLifeCycle: FlutterBasicMessageChannel!
+
+
   override func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
+    GeneratedPluginRegistrant.register(with: self)
 
     let uiWebview = UiWebViewFactory()
     let wkWebview = WkWebViewFactory()
     self.registrar(forPlugin: "WebviewUiPlugin")?.register(uiWebview, withId:"plugins/swift/uiWebview")
     self.registrar(forPlugin: "WebviewWkPlugin")?.register(wkWebview, withId:"plugins/swift/wkWebview")
 
-    GeneratedPluginRegistrant.register(with: self)
+    appLifeCycle = FlutterBasicMessageChannel(
+            name: "appLifeCycle",
+            binaryMessenger: (window?.rootViewController as! FlutterViewController).binaryMessenger,
+            codec: FlutterStringCodec.sharedInstance())
+
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
+
+    override func applicationWillTerminate(_ application: UIApplication) {
+        appLifeCycle.sendMessage("willTerminate")
+        // sleep(2);
+    }
+
+    override func applicationWillEnterForeground(_ application: UIApplication) {
+        appLifeCycle.sendMessage("willEnterForeground")
+    }
+
+    override func applicationDidEnterBackground(_ application: UIApplication) {
+        appLifeCycle.sendMessage("didEnterBackground")
+    }
 }
 
 

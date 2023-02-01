@@ -16,6 +16,7 @@ import 'package:flutter_velog_sample/infinity_scroll/pageview_infinity_scroll_sc
 import 'package:flutter_velog_sample/infinity_scroll/vertical_infinity_scroll_screen.dart';
 import 'package:flutter_velog_sample/initial_app.dart';
 import 'package:flutter_velog_sample/life_cycle/life_cycle_screen_with_getx.dart';
+import 'package:flutter_velog_sample/life_cycle/life_cycle_screen_with_native.dart';
 import 'package:flutter_velog_sample/life_cycle/life_cycle_screen_with_statful.dart';
 import 'package:flutter_velog_sample/main_provider.dart';
 import 'package:flutter_velog_sample/scroll_indicator/vertical_indicator/vertical_indicator_screen.dart';
@@ -106,6 +107,7 @@ class App extends StatelessWidget {
           '/lifeCycle/getx': (context) => const LifeCycleScreenWithGetx(),
           '/lifeCycle/stateful': (context) =>
               const LifeCycleScreenWithStateful(),
+          '/lifeCycle/native': (context) => const LifeCycleScreenWithNative(),
         },
       ),
     );

@@ -31,12 +31,12 @@ ListView lifeCycleUIListView({
                     ),
                   )),
               const SizedBox(width: 12),
-              Text(
-                e.split("/")[1],
-                style: const TextStyle(
-                  color: Color.fromRGBO(195, 195, 195, 1),
-                ),
-              ),
+              // Text(
+              //   e.split("/")[1],
+              //   style: const TextStyle(
+              //     color: Color.fromRGBO(195, 195, 195, 1),
+              //   ),
+              // ),
             ],
           ),
         ),

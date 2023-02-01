@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_velog_sample/_core/app_size.dart';
 
 class MainScreen extends StatelessWidget {
@@ -7,7 +8,6 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
-    print('START !!');
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -218,14 +218,22 @@ class MainScreen extends StatelessWidget {
             ]),
             _category(title: 'Life Cycle', widgets: [
               _item(
+                length: 3,
                 context: context,
                 content: 'Get X',
                 namedRouter: '/lifeCycle/getx',
               ),
               _item(
+                length: 3,
                 context: context,
                 content: 'State ful',
                 namedRouter: '/lifeCycle/stateful',
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: 'Native',
+                namedRouter: '/lifeCycle/native',
               ),
             ]),
             _category(title: 'Data Type', widgets: [
