@@ -29,7 +29,7 @@ import WebKit
 
     override func applicationWillTerminate(_ application: UIApplication) {
         appLifeCycle.sendMessage("willTerminate")
-        // sleep(2);
+        sleep(2);
     }
 
     override func applicationWillEnterForeground(_ application: UIApplication) {

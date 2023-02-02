@@ -15,6 +15,7 @@ import 'package:flutter_velog_sample/infinity_scroll/horizontal_infinity_scroll_
 import 'package:flutter_velog_sample/infinity_scroll/pageview_infinity_scroll_screen.dart';
 import 'package:flutter_velog_sample/infinity_scroll/vertical_infinity_scroll_screen.dart';
 import 'package:flutter_velog_sample/initial_app.dart';
+import 'package:flutter_velog_sample/life_cycle/life_cycle_native_provider.dart';
 import 'package:flutter_velog_sample/life_cycle/life_cycle_screen_with_getx.dart';
 import 'package:flutter_velog_sample/life_cycle/life_cycle_screen_with_native.dart';
 import 'package:flutter_velog_sample/life_cycle/life_cycle_screen_with_statful.dart';
@@ -52,6 +53,8 @@ class App extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => MainProvider()),
+        ChangeNotifierProvider(
+            create: ((context) => LifeCycleNativeProvider())),
       ],
       child: MaterialApp(
         theme: AppTheme.darkTheme,

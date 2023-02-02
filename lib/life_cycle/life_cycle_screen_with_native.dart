@@ -12,21 +12,17 @@ class LifeCycleScreenWithNative extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<LifeCycleNativeProvider>().started();
     const BasicMessageChannel<String> appLifeCycleState =
         BasicMessageChannel<String>('appLifeCycle', StringCodec());
-    return ChangeNotifierProvider<LifeCycleNativeProvider>(
-      create: (_) => LifeCycleNativeProvider()..started(),
-      child:
-          Consumer<LifeCycleNativeProvider>(builder: (context, state, child) {
-        appLifeCycleState.setMessageHandler(state.appLifeCycleChecked);
-
-        return Scaffold(
-          appBar: appBar(title: "Life Cycle With Native"),
-          floatingActionButton:
-              lifeCycleUIFab(() async => state.resetLocalStorage()),
-          body: lifeCycleUIListView(data: state.lifeCycle, context: context),
-        );
-      }),
-    );
+    return Consumer<LifeCycleNativeProvider>(builder: (context, state, child) {
+      appLifeCycleState.setMessageHandler(state.appLifeCycleChecked);
+      return Scaffold(
+        appBar: appBar(title: "Life Cycle With Native"),
+        floatingActionButton:
+            lifeCycleUIFab(() async => state.resetLocalStorage()),
+        body: lifeCycleUIListView(data: state.lifeCycle, context: context),
+      );
+    });
   }
 }
