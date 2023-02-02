@@ -28,16 +28,16 @@ import WebKit
   }
 
     override func applicationWillTerminate(_ application: UIApplication) {
-        appLifeCycle.sendMessage("willTerminate")
+        appLifeCycle.sendMessage("lifeCycleStateWithDetached")
         sleep(2);
     }
 
     override func applicationWillEnterForeground(_ application: UIApplication) {
-        appLifeCycle.sendMessage("willEnterForeground")
+        appLifeCycle.sendMessage("lifeCycleStateWithResumed")
     }
 
     override func applicationDidEnterBackground(_ application: UIApplication) {
-        appLifeCycle.sendMessage("didEnterBackground")
+        appLifeCycle.sendMessage("lifeCycleStateWithInactive")
     }
 }
 

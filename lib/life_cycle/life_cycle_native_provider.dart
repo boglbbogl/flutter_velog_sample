@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class LifeCycleNativeProvider extends ChangeNotifier {
   List<String> lifeCycle = [];
@@ -31,18 +32,34 @@ class LifeCycleNativeProvider extends ChangeNotifier {
     _pref.setStringList(_lifeCycleKey, _list);
   }
 
+  Future<void> _detachedStateToApi() async {
+    final uri = Uri.parse("https://jsonplaceholder.typicode.com/users");
+    final response = await http.get(uri);
+    if (response.statusCode == 200) {
+      print(response.body);
+      print(response.statusCode);
+    }
+  }
+
   Future<String> appLifeCycleChecked(String? message) async {
     if (message != null) {
       switch (message) {
-        case "willEnterForeground":
-          _setLocalStorage("resumed");
+        case "lifeCycleStateWithDetached":
+          _detachedStateToApi();
+          _setLocalStorage("Detached");
+          break;
+        case "lifeCycleStateWithResumed":
+          _setLocalStorage("Resumed");
           _getLocalStorage();
           break;
-        case "didEnterBackground":
-          _setLocalStorage("inactive");
+        case "lifeCycleStateWithInactive":
+          _setLocalStorage("Inactive");
           break;
-        case "willTerminate":
-          _setLocalStorage("detached");
+        case "lifeCycleStateWithStop":
+          _setLocalStorage("Stop");
+          break;
+        case "lifeCycleStateWithRestart":
+          _setLocalStorage("Restart");
           break;
         default:
       }

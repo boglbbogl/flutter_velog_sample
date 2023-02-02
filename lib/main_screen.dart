@@ -18,18 +18,6 @@ class MainScreen extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          actions: [
-            GestureDetector(
-              onTap: () => state.showLifeCycleBottomSheet(context),
-              child: const Padding(
-                padding: EdgeInsets.only(right: 20),
-                child: Icon(
-                  Icons.arrow_drop_down_circle_outlined,
-                  color: Color.fromRGBO(115, 115, 115, 1),
-                ),
-              ),
-            )
-          ],
         ),
         body: SingleChildScrollView(
           child: Column(

@@ -21,13 +21,17 @@ ListView lifeCycleUIListView({
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: e.split("/")[0] == "inactive"
+                      color: e.split("/")[0] == "Inactive"
                           ? Colors.amber
-                          : e.split("/")[0] == "detached"
-                              ? Colors.deepOrange
-                              : e.split("/")[0] == "paused"
-                                  ? Colors.blue
-                                  : Colors.green,
+                          : e.split("/")[0] == "Stop"
+                              ? Colors.amber.shade200
+                              : e.split("/")[0] == "Detached"
+                                  ? Colors.deepOrange
+                                  : e.split("/")[0] == "Restart"
+                                      ? Colors.blue.shade200
+                                      : e.split("/")[0] == "Resumed"
+                                          ? Colors.blue
+                                          : Colors.green,
                     ),
                   )),
               const SizedBox(width: 12),
