@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Example</title>
+    </head>
+    <body>
+        <h1>
+            Test Example !!!
+        </h1>
+        <script>
+
+            window.addEventListener("flutterInAppWebViewPlatformReady", function(event){
+                window.flutter_inappwebview.callHandler('startInAppWebview',  "Start !!");             
+
+                window.flutter_inappwebview.callHandler('loadStop').then((function(result){
+                    window.flutter_inappwebview.callHandler("loadStopReturn", result);
+                }));    
+
+                window.addEventListener("message", (event) => { 
+                    console.log(event.data); 
+                }, false);
+                window.postMessage("Message");
+
+                window.addEventListener("myCustomEvent", (event) => { 
+                     console.log(JSON.stringify(event.detail)); 
+                }, false);
+                // const customEvent = new CustomEvent("myCustomEvent", { 
+                //      detail: {foo: 1, bar: false} 
+                // }); 
+                // window.dispatchEvent(customEvent);
+
+
+            });
+        </script>
+    </body>
+</html>

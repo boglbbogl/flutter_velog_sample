@@ -217,6 +217,12 @@ class MainScreen extends StatelessWidget {
                   content: 'Swift WkWebView',
                   namedRouter: '/webview/swift/wkWebview',
                 ),
+                _item(
+                  length: 1,
+                  context: context,
+                  content: 'InAppWebView Channel',
+                  namedRouter: '/webview/inapp/channel',
+                ),
               ]),
               _category(title: 'Life Cycle', widgets: [
                 _item(
@@ -273,11 +279,13 @@ class MainScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(bottom: 12),
           child: Container(
-            width: length == 2
-                ? (size.width / 2) - (50 / 2)
-                : length == 3
-                    ? (size.width / 3) - (60 / 3)
-                    : size.width,
+            width: length == 1
+                ? size.width
+                : length == 2
+                    ? (size.width / 2) - (50 / 2)
+                    : length == 3
+                        ? (size.width / 3) - (60 / 3)
+                        : size.width,
             height: 40,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
