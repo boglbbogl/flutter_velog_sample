@@ -25,15 +25,20 @@ class MainScreen extends StatelessWidget {
             children: [
               _category(title: 'App', widgets: [
                 _item(
-                  length: 2,
+                  length: 3,
                   context: context,
                   content: 'Timer',
                 ),
                 _item(
-                  length: 2,
+                  length: 3,
                   context: context,
                   content: 'Calculator',
                   namedRouter: 'app/caculator',
+                ),
+                _item(
+                  length: 3,
+                  context: context,
+                  content: 'To do',
                 ),
               ]),
               _category(title: 'State Management With Count App', widgets: [

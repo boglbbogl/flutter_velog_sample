@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' as river;
 import 'package:flutter_velog_sample/_core/app_theme.dart';
-import 'package:flutter_velog_sample/app/app_calculator_screen.dart';
+import 'package:flutter_velog_sample/app/calculator/app_calculator_screen.dart';
 import 'package:flutter_velog_sample/count_app/bloc/count_screen_with_bloc.dart';
 import 'package:flutter_velog_sample/count_app/count_screen_with_listenerable.dart';
 import 'package:flutter_velog_sample/count_app/count_screen_with_stateful.dart';
