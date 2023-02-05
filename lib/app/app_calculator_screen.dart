@@ -29,7 +29,24 @@ class AppCaculatorScreen extends StatelessWidget {
                               (index) => Container(
                                     width: (size.width / 4) - 10 - (30 / 4),
                                     height: (size.width / 4) - 10 - (30 / 4),
-                                    color: Colors.amber,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      color: Color.fromRGBO(115, 115, 115, 1),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color:
+                                                Color.fromRGBO(71, 71, 71, 1),
+                                            spreadRadius: 2,
+                                            blurRadius: 15,
+                                            offset: Offset(4, 4)),
+                                        BoxShadow(
+                                            color:
+                                                Color.fromRGBO(51, 51, 51, 1),
+                                            spreadRadius: 2,
+                                            blurRadius: 15,
+                                            offset: Offset(-4, -4)),
+                                      ],
+                                    ),
                                   ))
                         ],
                       ),
