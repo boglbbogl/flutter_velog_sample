@@ -249,14 +249,21 @@ class MainScreen extends StatelessWidget {
                   namedRouter: '/lifeCycle/native',
                 ),
               ]),
-              _category(title: 'Data Type', widgets: [
+              _category(title: 'Library', widgets: [
                 _item(
+                  length: 3,
                   context: context,
                   content: 'Freezed',
                 ),
                 _item(
+                  length: 3,
                   context: context,
                   content: 'Dartz',
+                ),
+                _item(
+                  length: 3,
+                  context: context,
+                  content: 'Equatable',
                 ),
               ]),
               const SizedBox(height: 40),
