@@ -43,23 +43,69 @@ class _WebviewWithInappChannelScreenState
                   }));
             }),
           ),
-          GestureDetector(
-            onTap: () async {
-              _controller.evaluateJavascript(source: """ 
-                const customEvent = new CustomEvent("myCustomEvent", { 
-                   detail: {foo: 1, bar: false} 
-                 }); 
-                window.dispatchEvent(customEvent); 
-                """);
-            },
-            child: Container(
-              width: 100,
+          Positioned(
+            bottom: 0,
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
               height: 100,
-              color: Colors.red,
+              child: Wrap(
+                children: [
+                  _buttonForm(
+                      color: Colors.red,
+                      onTap: () {
+                        _controller.evaluateJavascript(source: """ 
+                const button1 = new CustomEvent("Button1", { 
+                   detail: {button : "test"}
+                 }); 
+                window.dispatchEvent(button1); 
+                """);
+                      }),
+                  _buttonForm(
+                      color: Colors.green,
+                      onTap: () {
+                        Map<String, dynamic> _person =
+                            PersonTest("Tyger", 100).toMap();
+                        _controller.evaluateJavascript(source: """ 
+                const button2 = new CustomEvent("Button2", { 
+                   detail: {button : "test"}
+                 }); 
+                window.dispatchEvent(button2); 
+                """);
+                      }),
+                  _buttonForm(color: Colors.amber, onTap: () {}),
+                ],
+              ),
             ),
-          )
+          ),
         ],
       ),
     );
+  }
+
+  GestureDetector _buttonForm({
+    required Color color,
+    required Function() onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 100,
+        width: MediaQuery.of(context).size.width / 3,
+        color: color,
+      ),
+    );
+  }
+}
+
+class PersonTest {
+  final String name;
+  final int age;
+  const PersonTest(this.name, this.age);
+
+  Map<String, dynamic> toMap() {
+    return {
+      "name": name,
+      "age": age,
+    };
   }
 }

@@ -1,35 +1,25 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Example</title>
+        <title>Javascript Channel Test</title>
     </head>
     <body>
         <h1>
-            Test Example !!!
+            InAppWebView Javascript Channel !!!
         </h1>
         <script>
-
             window.addEventListener("flutterInAppWebViewPlatformReady", function(event){
                 window.flutter_inappwebview.callHandler('startInAppWebview',  "Start !!");             
 
                 window.flutter_inappwebview.callHandler('loadStop').then((function(result){
                     window.flutter_inappwebview.callHandler("loadStopReturn", result);
                 }));    
-
-                window.addEventListener("message", (event) => { 
-                    console.log(event.data); 
-                }, false);
-                window.postMessage("Message");
-
-                window.addEventListener("myCustomEvent", (event) => { 
+                window.addEventListener("Button1", (event) => { 
                      console.log(JSON.stringify(event.detail)); 
                 }, false);
-                // const customEvent = new CustomEvent("myCustomEvent", { 
-                //      detail: {foo: 1, bar: false} 
-                // }); 
-                // window.dispatchEvent(customEvent);
-
-
+                window.addEventListener("Button2", (event) => { 
+                     console.log(JSON.stringify(event.detail)); 
+                }, false);
             });
         </script>
     </body>
