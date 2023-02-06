@@ -264,6 +264,7 @@ class MainScreen extends StatelessWidget {
                   length: 3,
                   context: context,
                   content: 'Equatable',
+                  namedRouter: '/library/equatable',
                 ),
               ]),
               const SizedBox(height: 40),
