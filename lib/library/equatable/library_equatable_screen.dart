@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -8,43 +9,67 @@ class LibraryEquatableScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Car _car1 = Car("G80", "Sedan", 6000);
-    Car _car2 = Car("G80", "Sedan", 8000);
     return Scaffold(
       appBar: appBar(title: "Equatable Library"),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          GestureDetector(
-              onTap: () {
-                print(_car1.title == _car2.title);
-                print(_car1.type == _car2.type);
-                print(_car1.price == _car2.price);
-                print(_car1 == _car2);
-              },
-              child: Container(
-                width: 100,
-                height: 100,
-                color: Colors.amber,
-              )),
+          _stateUI(context: context, title: "Get X"),
+          _stateUI(context: context, title: "Provider"),
+          _stateUI(context: context, title: "Bloc"),
         ],
       ),
     );
   }
-}
 
-class Car extends Object {
-  final String title;
-  final String type;
-  final int price;
-  const Car(this.title, this.type, this.price);
-
-  @override
-  bool operator ==(Object other) {
-    return other is Car && title == other.title;
+  Padding _stateUI({
+    required BuildContext context,
+    required String title,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 48, left: 20, right: 20),
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 32),
+            ),
+            Row(
+              children: [
+                _button(title: "+1", onTap: () {}),
+                const SizedBox(width: 12),
+                _button(title: "Reset", onTap: () {}),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
-  @override
-  int get hashCode {
-    return title.hashCode;
+  GestureDetector _button({
+    required String title,
+    required Function() onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 60,
+        height: 60,
+        decoration: BoxDecoration(
+          color: const Color.fromRGBO(115, 115, 115, 1),
+          borderRadius: BorderRadius.circular(60),
+        ),
+        child: Center(
+          child: Text(
+            title,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+          ),
+        ),
+      ),
+    );
   }
 }
