@@ -193,6 +193,13 @@ class MainScreen extends StatelessWidget {
                   namedRouter: '/infinityScroll/pageview',
                 ),
               ]),
+              _category(title: 'Sliver', widgets: [
+                _item(
+                  length: 3,
+                  context: context,
+                  content: ' ',
+                ),
+              ]),
               _category(title: 'Webview', widgets: [
                 _item(
                   length: 3,
