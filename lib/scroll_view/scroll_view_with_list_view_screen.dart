@@ -7,7 +7,7 @@ class ScrollViewWithListViewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(title: 'Scroll View With CustomScroll'),
+      appBar: appBar(title: 'Scroll View With ListView'),
       body: ListView(
         children: [
           ...List.generate(
