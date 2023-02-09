@@ -1,7 +1,4 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
 import 'package:flutter_velog_sample/library/equatable/bloc/library_equatable_bloc.dart';
@@ -24,64 +21,49 @@ class LibraryEquatableScreen extends StatelessWidget {
           builder: (context, value, child) {
         return Scaffold(
           appBar: appBar(title: "Equatable Library"),
-          body: Stack(
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                child: Column(
-                  children: [
-                    Text('State Change Count'),
-                    Column(
-                      children: [],
-                    )
-                  ],
-                ),
+              GetBuilder<LibraryEquatableGetx>(
+                  init: LibraryEquatableGetx(),
+                  builder: (state) {
+                    print("Get X ${state.count}");
+                    return _stateUI(
+                        context: context,
+                        title: "Get X",
+                        count: state.count,
+                        onIncrement: () => state.increment(),
+                        onReturn: () => state.stateReturn());
+                  }),
+              ChangeNotifierProvider(
+                create: (_) => LibraryEquatableProvider(),
+                child: Consumer<LibraryEquatableProvider>(
+                    builder: (context, state, child) {
+                  print("Provider ${state.count}");
+                  return _stateUI(
+                      context: context,
+                      title: "Provider",
+                      count: state.count,
+                      onIncrement: () => state.increment(),
+                      onReturn: () => state.stateReturn());
+                }),
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GetBuilder<LibraryEquatableGetx>(
-                      init: LibraryEquatableGetx(),
-                      builder: (state) {
-                        print("get ${state}");
-                        return _stateUI(
-                            context: context,
-                            title: "Get X",
-                            count: state.count,
-                            onIncrement: () => state.increment(),
-                            onReturn: () => state.stateReturn());
-                      }),
-                  ChangeNotifierProvider(
-                    create: (_) => LibraryEquatableProvider(),
-                    child: Consumer<LibraryEquatableProvider>(
-                        builder: (context, state, child) {
-                      print("provider ${state}");
-                      return _stateUI(
-                          context: context,
-                          title: "Provider",
-                          count: state.count,
-                          onIncrement: () => state.increment(),
-                          onReturn: () => state.stateReturn());
-                    }),
-                  ),
-                  BlocProvider(
-                    create: (_) => LibraryEquatableBloc(),
-                    child: BlocBuilder<LibraryEquatableBloc,
-                        LibraryEquatableState>(builder: (context, state) {
-                      return _stateUI(
-                          context: context,
-                          title: "Bloc",
-                          count: state.count,
-                          onIncrement: () => context
-                              .read<LibraryEquatableBloc>()
-                              .add(IncrementEquatableEvent()),
-                          onReturn: () => context
-                              .read<LibraryEquatableBloc>()
-                              .add(ReturnEquatableEvent()));
-                    }),
-                  ),
-                ],
+              BlocProvider(
+                create: (_) => LibraryEquatableBloc(),
+                child: BlocBuilder<LibraryEquatableBloc, LibraryEquatableState>(
+                    builder: (context, state) {
+                  print("Bloc ${state.count}");
+                  return _stateUI(
+                      context: context,
+                      title: "Bloc",
+                      count: state.count,
+                      onIncrement: () => context
+                          .read<LibraryEquatableBloc>()
+                          .add(IncrementEquatableEvent()),
+                      onReturn: () => context
+                          .read<LibraryEquatableBloc>()
+                          .add(ReturnEquatableEvent()));
+                }),
               ),
             ],
           ),
