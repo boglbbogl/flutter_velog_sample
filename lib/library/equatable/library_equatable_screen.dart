@@ -7,6 +7,7 @@ import 'package:flutter_velog_sample/library/equatable/bloc/library_equatable_st
 import 'package:flutter_velog_sample/library/equatable/get/library_equatable_getx.dart';
 import 'package:flutter_velog_sample/library/equatable/provider/library_equatable_provider.dart';
 import 'package:flutter_velog_sample/library/equatable/provider/library_equatable_state_provider.dart';
+import 'package:flutter_velog_sample/main.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:provider/provider.dart';
 
@@ -27,7 +28,7 @@ class LibraryEquatableScreen extends StatelessWidget {
               GetBuilder<LibraryEquatableGetx>(
                   init: LibraryEquatableGetx(),
                   builder: (state) {
-                    print("Get X ${state.count}");
+                    logger.d("Get X ${state.count}");
                     return _stateUI(
                         context: context,
                         title: "Get X",
@@ -39,7 +40,7 @@ class LibraryEquatableScreen extends StatelessWidget {
                 create: (_) => LibraryEquatableProvider(),
                 child: Consumer<LibraryEquatableProvider>(
                     builder: (context, state, child) {
-                  print("Provider ${state.count}");
+                  logger.d("Provider ${state.count}");
                   return _stateUI(
                       context: context,
                       title: "Provider",
@@ -52,7 +53,7 @@ class LibraryEquatableScreen extends StatelessWidget {
                 create: (_) => LibraryEquatableBloc(),
                 child: BlocBuilder<LibraryEquatableBloc, LibraryEquatableState>(
                     builder: (context, state) {
-                  print("Bloc ${state.count}");
+                  logger.d("Bloc ${state.count}");
                   return _stateUI(
                       context: context,
                       title: "Bloc",

@@ -37,8 +37,11 @@ import 'package:flutter_velog_sample/webview/webview_with_inapp_screen.dart';
 import 'package:flutter_velog_sample/webview/webview_with_launcher_screen.dart';
 import 'package:flutter_velog_sample/webview/webview_with_swift_ui_webview_screen.dart';
 import 'package:flutter_velog_sample/webview/webview_with_swift_wkwebview_screen.dart';
+import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'scroll_indicator/horizontal_indicator/horizontal_indicator_screen.dart';
+
+Logger logger = Logger();
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

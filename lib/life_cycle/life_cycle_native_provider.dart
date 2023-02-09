@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_velog_sample/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
@@ -36,8 +37,8 @@ class LifeCycleNativeProvider extends ChangeNotifier {
     final uri = Uri.parse("https://jsonplaceholder.typicode.com/users");
     final response = await http.get(uri);
     if (response.statusCode == 200) {
-      print(response.body);
-      print(response.statusCode);
+      logger.d(response.body);
+      logger.d(response.statusCode);
     }
   }
 

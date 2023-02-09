@@ -24,11 +24,11 @@ class _WebviewWithInappChannelScreenState
               _controller.addJavaScriptHandler(
                   handlerName: "startInAppWebview",
                   callback: ((arguments) {
-                    print("StartInAppWebview :$arguments");
+                    // print("StartInAppWebview :$arguments");
                   }));
             }),
             onConsoleMessage: (controller, consoleMessage) {
-              print("ConsolMessage :: ${consoleMessage.message}");
+              // print("ConsolMessage :: ${consoleMessage.message}");
             },
             onLoadStop: ((controller, url) async {
               _controller.addJavaScriptHandler(
@@ -39,7 +39,7 @@ class _WebviewWithInappChannelScreenState
               _controller.addJavaScriptHandler(
                   handlerName: "loadStopReturn",
                   callback: ((arguments) {
-                    print("loadStopReturn :$arguments");
+                    // print("loadStopReturn :$arguments");
                   }));
             }),
           ),
@@ -63,8 +63,8 @@ class _WebviewWithInappChannelScreenState
                   _buttonForm(
                       color: Colors.green,
                       onTap: () {
-                        Map<String, dynamic> _person =
-                            PersonTest("Tyger", 100).toMap();
+                        // Map<String, dynamic> _person =
+                        //     const PersonTest("Tyger", 100).toMap();
                         _controller.evaluateJavascript(source: """ 
                 const button2 = new CustomEvent("Button2", { 
                    detail: {button : "test"}

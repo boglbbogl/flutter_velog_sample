@@ -270,6 +270,11 @@ class MainScreen extends StatelessWidget {
                 _item(
                   length: 3,
                   context: context,
+                  content: "Logger",
+                ),
+                _item(
+                  length: 1,
+                  context: context,
                   content: 'Equatable',
                   namedRouter: '/library/equatable',
                 ),
