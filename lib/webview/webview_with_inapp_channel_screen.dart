@@ -63,8 +63,6 @@ class _WebviewWithInappChannelScreenState
                   _buttonForm(
                       color: Colors.green,
                       onTap: () {
-                        // Map<String, dynamic> _person =
-                        //     const PersonTest("Tyger", 100).toMap();
                         _controller.evaluateJavascript(source: """ 
                 const button2 = new CustomEvent("Button2", { 
                    detail: {button : "test"}
