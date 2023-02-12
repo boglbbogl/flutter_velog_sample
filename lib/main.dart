@@ -15,6 +15,7 @@ import 'package:flutter_velog_sample/infinity_scroll/horizontal_infinity_scroll_
 import 'package:flutter_velog_sample/infinity_scroll/pageview_infinity_scroll_screen.dart';
 import 'package:flutter_velog_sample/infinity_scroll/vertical_infinity_scroll_screen.dart';
 import 'package:flutter_velog_sample/initial_app.dart';
+import 'package:flutter_velog_sample/library/daum_postcode/library_daum_postcode_screen.dart';
 import 'package:flutter_velog_sample/library/equatable/library_equatable_screen.dart';
 import 'package:flutter_velog_sample/life_cycle/life_cycle_native_provider.dart';
 import 'package:flutter_velog_sample/life_cycle/life_cycle_screen_with_getx.dart';
@@ -119,6 +120,8 @@ class App extends StatelessWidget {
               const LifeCycleScreenWithStateful(),
           '/lifeCycle/native': (context) => const LifeCycleScreenWithNative(),
           '/library/equatable': (context) => const LibraryEquatableScreen(),
+          '/library/daumPostcode': (context) =>
+              const LibraryDaumPostcodeScreen(),
         },
       ),
     );

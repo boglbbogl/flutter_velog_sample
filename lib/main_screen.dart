@@ -285,6 +285,7 @@ class MainScreen extends StatelessWidget {
                 _item(
                   context: context,
                   content: 'DaumPostCode',
+                  namedRouter: '/library/daumPostcode',
                 ),
               ]),
               const SizedBox(height: 40),

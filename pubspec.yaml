@@ -29,6 +29,7 @@ environment:
 dependencies:
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
+  daum_postcode_search: ^0.0.2
   equatable: ^2.0.5
   flutter:
     sdk: flutter
