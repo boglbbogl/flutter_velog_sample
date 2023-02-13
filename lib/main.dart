@@ -41,6 +41,7 @@ import 'package:flutter_velog_sample/webview/webview_with_swift_wkwebview_screen
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'scroll_indicator/horizontal_indicator/horizontal_indicator_screen.dart';
+import 'webview/daum_post/webview_with_daum_post_screen.dart';
 
 Logger logger = Logger();
 
@@ -113,15 +114,16 @@ class App extends StatelessWidget {
               const WebviewWithSwiftUiWebviewScreen(),
           '/webview/swift/wkWebview': (context) =>
               const WebviewWithSwiftWKWebviewScreen(),
-          '/webview/inapp/channel': ((context) =>
-              const WebviewWithInappChannelScreen()),
+          '/webview/inapp/channel': (context) =>
+              const WebviewWithInappChannelScreen(),
+          '/webview/daumPost': (context) => const WebviewWithDaumPostScreen(),
           '/lifeCycle/getx': (context) => const LifeCycleScreenWithGetx(),
           '/lifeCycle/stateful': (context) =>
               const LifeCycleScreenWithStateful(),
           '/lifeCycle/native': (context) => const LifeCycleScreenWithNative(),
           '/library/equatable': (context) => const LibraryEquatableScreen(),
           '/library/daumPostcode': (context) =>
-              const LibraryDaumPostcodeScreen(),
+              const LibararyDaumPostcodeScreen(),
         },
       ),
     );

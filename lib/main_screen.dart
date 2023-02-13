@@ -239,6 +239,7 @@ class MainScreen extends StatelessWidget {
                   length: 2,
                   context: context,
                   content: 'DaumPost WebView',
+                  namedRouter: '/webview/daumPost',
                 ),
               ]),
               _category(title: 'Life Cycle', widgets: [

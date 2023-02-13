@@ -1,25 +1,24 @@
-import 'package:daum_postcode_search/daum_postcode_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
-import 'package:flutter_velog_sample/library/daum_postcode/library_daum_postcode_webview.dart';
+import 'package:flutter_velog_sample/webview/daum_post/daum_post_model.dart';
+import 'package:flutter_velog_sample/webview/daum_post/webview_with_daum_post_webview.dart';
 
-class LibararyDaumPostcodeScreen extends StatefulWidget {
-  const LibararyDaumPostcodeScreen({super.key});
+class WebviewWithDaumPostScreen extends StatefulWidget {
+  const WebviewWithDaumPostScreen({super.key});
 
   @override
-  State<LibararyDaumPostcodeScreen> createState() =>
-      _LibararyDaumPostcodeScreenState();
+  State<WebviewWithDaumPostScreen> createState() =>
+      _WebviewWithDaumPostScreenState();
 }
 
-class _LibararyDaumPostcodeScreenState
-    extends State<LibararyDaumPostcodeScreen> {
-  DataModel? _dataModel;
+class _WebviewWithDaumPostScreenState extends State<WebviewWithDaumPostScreen> {
+  DaumPostModel? _dataModel;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(title: "Daum Postcode Library"),
+      appBar: appBar(title: "Webview With Daum Post"),
       body: Column(
         children: [
           const SizedBox(height: 12),
@@ -62,7 +61,7 @@ class _LibararyDaumPostcodeScreenState
                 HapticFeedback.mediumImpact();
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) {
-                  return const LibraryDaumPostcodeScreen();
+                  return const WebviewWithDaumPostWebview();
                 })).then((value) {
                   if (value != null) {
                     setState(() {
