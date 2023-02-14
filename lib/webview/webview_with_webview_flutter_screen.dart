@@ -12,9 +12,10 @@ class WebviewWithWebviewFlutterScreen extends StatefulWidget {
 
 class _WebviewWithWebviewFlutterScreenState
     extends State<WebviewWithWebviewFlutterScreen> {
+  WebViewController? _webViewController;
   @override
   void initState() {
-    WebViewController()
+    _webViewController = WebViewController()
       ..loadRequest(Uri.parse('https://youtube.com'))
       ..setJavaScriptMode(JavaScriptMode.unrestricted);
     super.initState();
@@ -23,7 +24,8 @@ class _WebviewWithWebviewFlutterScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(title: 'WebView With In App WebView'),
+      appBar: appBar(title: 'WebView With WebView Flutter'),
+      body: WebViewWidget(controller: _webViewController!),
     );
   }
 }

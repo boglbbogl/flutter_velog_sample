@@ -38,6 +38,7 @@ import 'package:flutter_velog_sample/webview/webview_with_inapp_screen.dart';
 import 'package:flutter_velog_sample/webview/webview_with_launcher_screen.dart';
 import 'package:flutter_velog_sample/webview/webview_with_swift_ui_webview_screen.dart';
 import 'package:flutter_velog_sample/webview/webview_with_swift_wkwebview_screen.dart';
+import 'package:flutter_velog_sample/webview/webview_with_webview_flutter_screen.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'scroll_indicator/horizontal_indicator/horizontal_indicator_screen.dart';
@@ -106,9 +107,9 @@ class App extends StatelessWidget {
               const HorizontalInfinityScrollScreen(),
           '/infinityScroll/pageview': (context) =>
               const PageviewInfinityScrollScreen(),
-          '/webview/inapp': (context) => const WebviewWithInappScreen(),
           '/webview/webviewFlutter': (context) =>
-              const WebviewWithInappScreen(),
+              const WebviewWithWebviewFlutterScreen(),
+          '/webview/inapp': (context) => const WebviewWithInappScreen(),
           '/webview/launcher': (context) => const WebviewWithLauncherScreen(),
           '/webview/swift/uiWebview': (context) =>
               const WebviewWithSwiftUiWebviewScreen(),
