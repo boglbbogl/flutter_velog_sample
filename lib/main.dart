@@ -11,6 +11,8 @@ import 'package:flutter_velog_sample/count_app/get/count_screen_with_get_simple.
 import 'package:flutter_velog_sample/count_app/mobx/count_screen_with_mobx.dart';
 import 'package:flutter_velog_sample/count_app/provider/count_screen_with_provider.dart';
 import 'package:flutter_velog_sample/count_app/count_screen_with_riverpod.dart';
+import 'package:flutter_velog_sample/http/dio/http_with_dio_screen.dart';
+import 'package:flutter_velog_sample/http/http/http_with_http_screen.dart';
 import 'package:flutter_velog_sample/infinity_scroll/horizontal_infinity_scroll_screen.dart';
 import 'package:flutter_velog_sample/infinity_scroll/pageview_infinity_scroll_screen.dart';
 import 'package:flutter_velog_sample/infinity_scroll/vertical_infinity_scroll_screen.dart';
@@ -106,6 +108,8 @@ class App extends StatelessWidget {
               const HorizontalInfinityScrollScreen(),
           '/infinityScroll/pageview': (context) =>
               const PageviewInfinityScrollScreen(),
+          '/http/http': (context) => const HttpWithHttpScreen(),
+          '/http/dio': (context) => const HttpWithDioScreen(),
           '/webview/webviewFlutter': (context) =>
               const WebviewWithWebviewFlutterScreen(),
           '/webview/inapp': (context) => const WebviewWithInappScreen(),
