@@ -232,12 +232,6 @@ class MainScreen extends StatelessWidget {
                 _item(
                   length: 2,
                   context: context,
-                  content: 'InAppWebView Channel',
-                  namedRouter: '/webview/inapp/channel',
-                ),
-                _item(
-                  length: 2,
-                  context: context,
                   content: 'DaumPost WebView',
                   namedRouter: '/webview/daumPost',
                 ),
