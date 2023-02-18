@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
 import 'package:flutter_velog_sample/life_cycle/life_cycle_ui_component.dart';
@@ -27,7 +29,7 @@ class _LifeCycleScreenWithStatefulState
   void dispose() {
     super.dispose();
     WidgetsBinding.instance.removeObserver(this);
-    _setLocalStorage("detached", isDispose: true);
+    _setLocalStorage("Detached", isDispose: true);
   }
 
   @override
@@ -35,16 +37,16 @@ class _LifeCycleScreenWithStatefulState
     super.didChangeAppLifecycleState(state);
     switch (state) {
       case AppLifecycleState.detached:
-        _setLocalStorage("detached");
+        _setLocalStorage("Detached");
         break;
       case AppLifecycleState.paused:
-        _setLocalStorage("paused");
+        _setLocalStorage("Paused");
         break;
       case AppLifecycleState.inactive:
-        _setLocalStorage("inactive");
+        _setLocalStorage("Inactive");
         break;
       case AppLifecycleState.resumed:
-        _setLocalStorage("resumed");
+        _setLocalStorage("Resumed");
         _getLocalStorage();
         break;
       default:

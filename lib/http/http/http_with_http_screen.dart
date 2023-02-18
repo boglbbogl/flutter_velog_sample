@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
 import 'package:flutter_velog_sample/http/http/http_provider.dart';
-import 'package:flutter_velog_sample/main.dart';
 import 'package:provider/provider.dart';
 
 class HttpWithHttpScreen extends StatelessWidget {

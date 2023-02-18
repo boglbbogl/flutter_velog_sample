@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -41,7 +42,7 @@ class LifeCycleGetx extends GetxController with WidgetsBindingObserver {
   @override
   void onClose() {
     super.onClose();
-    _setLocalStorage("detached");
+    _setLocalStorage("Detached");
     WidgetsBinding.instance.removeObserver(this);
   }
 
@@ -49,16 +50,16 @@ class LifeCycleGetx extends GetxController with WidgetsBindingObserver {
   void didChangeAppLifecycleState(AppLifecycleState state) async {
     switch (state) {
       case AppLifecycleState.detached:
-        _setLocalStorage("detached");
+        _setLocalStorage("Detached");
         break;
       case AppLifecycleState.paused:
-        _setLocalStorage("paused");
+        _setLocalStorage("Paused");
         break;
       case AppLifecycleState.inactive:
-        _setLocalStorage("inactive");
+        _setLocalStorage("Inactive");
         break;
       case AppLifecycleState.resumed:
-        _setLocalStorage("resumed");
+        _setLocalStorage("Resumed");
         _getLocalStorage();
         break;
       default:
