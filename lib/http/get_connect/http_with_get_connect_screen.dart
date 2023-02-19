@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
-import 'package:flutter_velog_sample/http/dio/http_with_dio_getx.dart';
+import 'package:flutter_velog_sample/http/get_connect/http_with_get_connect_getx.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-class HttpWithDioScreen extends StatelessWidget {
-  const HttpWithDioScreen({super.key});
+class HttpWithGetConnectScreen extends StatelessWidget {
+  const HttpWithGetConnectScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HttpWithDioGetx>(
-        init: HttpWithDioGetx()..started(),
+    return GetBuilder<HttpWithGetConnectGetx>(
+        init: HttpWithGetConnectGetx()..started(),
         builder: (controller) {
           return Scaffold(
-            appBar: appBar(title: "Dio"),
+            appBar: appBar(title: "Get Connect"),
             body: ListView.builder(
                 controller: controller.scrollController,
                 itemCount: controller.photos.length,

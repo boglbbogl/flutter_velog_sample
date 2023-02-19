@@ -31,11 +31,7 @@ class MainActivity: FlutterActivity() {
           super.onCreate(savedInstanceState, persistentState)
       }
 
-      override fun onResume() {
-          super.onResume()
-          appLifeCycle.send("lifeCycleStateWithResumed")
-      }
-
+c
       override fun onPause() {
           super.onPause()
           appLifeCycle.send("lifeCycleStateWithInactive")
@@ -52,11 +48,7 @@ class MainActivity: FlutterActivity() {
       }
 
       override fun onDestroy() {           
-        Log.d("AppLifeCycle", "1")
           appLifeCycle.send("lifeCycleStateWithDetached")
-        Log.d("AppLifeCycle", "2")
-          Log.d("AppLifeCycle", "3")
-
           super.onDestroy()
       }
 }

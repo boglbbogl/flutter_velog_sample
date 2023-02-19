@@ -193,24 +193,27 @@ class MainScreen extends StatelessWidget {
                   namedRouter: '/infinityScroll/pageview',
                 ),
               ]),
-              _category(title: 'Sliver', widgets: [
-                _item(
-                  // length: 3,
-                  context: context,
-                  content: ' ',
-                ),
-              ]),
+              _category(title: 'Sliver', widgets: []),
               _category(title: "HTTP", widgets: [
                 _item(
+                  length: 3,
                   context: context,
                   content: "Http",
                   namedRouter: "/http/http",
                 ),
                 _item(
-                  context: context,
-                  content: "Dio",
-                ),
+                    length: 3,
+                    context: context,
+                    content: "Dio",
+                    namedRouter: "/http/dio"),
+                _item(
+                    length: 3,
+                    context: context,
+                    content: "Get Connect",
+                    namedRouter: "/http/getConnect"),
               ]),
+              _category(title: "Kakao API", widgets: []),
+              _category(title: "Naver API", widgets: []),
               _category(title: 'Webview', widgets: [
                 _item(
                   context: context,
@@ -280,14 +283,22 @@ class MainScreen extends StatelessWidget {
                   content: "Logger",
                 ),
                 _item(
+                  length: 3,
                   context: context,
                   content: 'Equatable',
                   namedRouter: '/library/equatable',
                 ),
                 _item(
+                  length: 3,
                   context: context,
                   content: 'DaumPostCode',
                   namedRouter: '/library/daumPostcode',
+                ),
+                _item(
+                  length: 3,
+                  context: context,
+                  content: "Dio",
+                  namedRouter: '/library/dio',
                 ),
               ]),
               const SizedBox(height: 40),

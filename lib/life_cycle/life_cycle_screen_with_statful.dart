@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
 import 'package:flutter_velog_sample/life_cycle/life_cycle_ui_component.dart';
