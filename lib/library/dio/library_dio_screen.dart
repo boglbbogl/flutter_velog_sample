@@ -22,7 +22,6 @@ class _LibraryDioScreenState extends State<LibraryDioScreen> {
             onTap: () async {
               Dio _dio = DioServices().to();
               await _dio.get("https://picsum.photos/v2/list");
-              await _dio.post("https://picsum.photos/v2/list", data: {});
             },
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 24),
