@@ -8,14 +8,13 @@ package com.tyger.flutter_velog_sample
  import io.flutter.plugin.common.StringCodec
  import io.flutter.plugin.common.BasicMessageChannel
  import io.flutter.plugins.GeneratedPluginRegistrant
- import java.util.concurrent.TimeUnit
 
 class MainActivity: FlutterActivity() {
 
-      private lateinit var appLifeCycle: BasicMessageChannel<String>
+    private lateinit var appLifeCycle: BasicMessageChannel<String>
 
-      override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
-         GeneratedPluginRegistrant.registerWith(flutterEngine)
+    override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
+        GeneratedPluginRegistrant.registerWith(flutterEngine)
 
           appLifeCycle = BasicMessageChannel(
               flutterEngine.dartExecutor.binaryMessenger,
@@ -27,12 +26,7 @@ class MainActivity: FlutterActivity() {
           }
      }
 
-      override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-          super.onCreate(savedInstanceState, persistentState)
-      }
-
-c
-      override fun onPause() {
+    override fun onPause() {
           super.onPause()
           appLifeCycle.send("lifeCycleStateWithInactive")
       }
