@@ -301,6 +301,18 @@ class MainScreen extends StatelessWidget {
                   namedRouter: '/library/dio',
                 ),
               ]),
+              _category(title: "Dart", widgets: [
+                _item(
+                  context: context,
+                  content: "Singleton Pattenr",
+                  namedRouter: "/dart/pattern/singleton",
+                ),
+                _item(
+                  context: context,
+                  content: "Factory Pattenr",
+                  namedRouter: "/dart/pattern/factory",
+                ),
+              ]),
               const SizedBox(height: 40),
             ],
           ),
