@@ -10,7 +10,7 @@ class LibraryDaumPostcodeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.darkTheme.backgroundColor,
+      backgroundColor: AppTheme.darkTheme.colorScheme.background,
       appBar: appBar(title: "다음 주소 검색"),
       body: DaumPostcodeSearch(
         webPageTitle: "다음 주소 검색",

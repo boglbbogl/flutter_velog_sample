@@ -11,6 +11,8 @@ import 'package:flutter_velog_sample/count_app/get/count_screen_with_get_simple.
 import 'package:flutter_velog_sample/count_app/mobx/count_screen_with_mobx.dart';
 import 'package:flutter_velog_sample/count_app/provider/count_screen_with_provider.dart';
 import 'package:flutter_velog_sample/count_app/count_screen_with_riverpod.dart';
+import 'package:flutter_velog_sample/dart_lang/dart_pattern_screen_with_factory.dart';
+import 'package:flutter_velog_sample/dart_lang/dart_pattern_screen_with_singleton.dart';
 import 'package:flutter_velog_sample/http/dio/http_with_dio_screen.dart';
 import 'package:flutter_velog_sample/http/get_connect/http_with_get_connect_screen.dart';
 import 'package:flutter_velog_sample/http/http/http_with_http_screen.dart';
@@ -71,65 +73,69 @@ class App extends StatelessWidget {
         theme: AppTheme.darkTheme,
         home: const InitialApp(),
         routes: {
-          'app/caculator': ((context) => const AppCaculatorScreen()),
-          '/count/app/stateFul': (context) => const CountScreenWithStateFul(),
-          '/count/app/listenerable': (context) =>
+          "app/caculator": ((context) => const AppCaculatorScreen()),
+          "/count/app/stateFul": (context) => const CountScreenWithStateFul(),
+          "/count/app/listenerable": (context) =>
               const CountScreenWithListenarable(),
-          '/count/app/provider': (context) => const CountScreenWithProvider(),
-          '/count/app/get/simple': (context) =>
+          "/count/app/provider": (context) => const CountScreenWithProvider(),
+          "/count/app/get/simple": (context) =>
               const CountScreenWithGetSimple(),
-          '/count/app/get/reactive': (context) =>
+          "/count/app/get/reactive": (context) =>
               const CountScreenWithGetReactive(),
-          '/count/app/bloc': (context) => const CountScreenWithBloc(),
-          '/count/app/cubit': (context) => const CountScreenWithCubit(),
-          '/count/app/riverpod': (context) =>
+          "/count/app/bloc": (context) => const CountScreenWithBloc(),
+          "/count/app/cubit": (context) => const CountScreenWithCubit(),
+          "/count/app/riverpod": (context) =>
               river.ProviderScope(child: CountScreenWithRiverpod()),
-          '/count/app/mobx': (context) => const CountScreenWithMobx(),
-          '/ui/sns/heart/icon': (context) => const SnsUIHeartIconScreen(),
-          '/ui/sns/heart/motion': (context) => const SnsUIHeartMotionScreen(),
-          '/tabview/tabbar': (context) => const TabViewTabbarScreen(),
-          '/tabview/pageView': (context) => const TabViewPageViewScreen(),
-          '/tabview/custom': (context) => const TabViewCustomScreen(),
-          '/scroll/view/single': (context) =>
+          "/count/app/mobx": (context) => const CountScreenWithMobx(),
+          "/ui/sns/heart/icon": (context) => const SnsUIHeartIconScreen(),
+          "/ui/sns/heart/motion": (context) => const SnsUIHeartMotionScreen(),
+          "/tabview/tabbar": (context) => const TabViewTabbarScreen(),
+          "/tabview/pageView": (context) => const TabViewPageViewScreen(),
+          "/tabview/custom": (context) => const TabViewCustomScreen(),
+          "/scroll/view/single": (context) =>
               const ScrollViewWithSingleChildScreen(),
-          '/scroll/view/custom': (context) =>
+          "/scroll/view/custom": (context) =>
               const ScrollViewWithCustomScrollScreen(),
-          '/scroll/view/list/view': (context) =>
+          "/scroll/view/list/view": (context) =>
               const ScrollViewWithListViewScreen(),
-          '/scroll/view/gestureToScroll': (context) =>
+          "/scroll/view/gestureToScroll": (context) =>
               const ScrollViewWithGestureToScrollScreen(),
-          '/scroll/view/viewAndBuilder': (context) =>
+          "/scroll/view/viewAndBuilder": (context) =>
               const ScrollViewWithViewAndBuilderScreen(),
-          '/scrollIndicator/vertical': (context) =>
+          "/scrollIndicator/vertical": (context) =>
               const VerticalIndicatorScreen(),
-          '/scrollIndicator/horizontal': (context) =>
+          "/scrollIndicator/horizontal": (context) =>
               const HorizontalIndicatorScreen(),
-          '/infinityScroll/vertical': (context) =>
+          "/infinityScroll/vertical": (context) =>
               const VerticalInfinityScrollScreen(),
-          '/infinityScroll/horizontal': (context) =>
+          "/infinityScroll/horizontal": (context) =>
               const HorizontalInfinityScrollScreen(),
-          '/infinityScroll/pageview': (context) =>
+          "/infinityScroll/pageview": (context) =>
               const PageviewInfinityScrollScreen(),
-          '/http/http': (context) => const HttpWithHttpScreen(),
-          '/http/dio': (context) => const HttpWithDioScreen(),
-          '/http/getConnect': (context) => const HttpWithGetConnectScreen(),
+          "/http/http": (context) => const HttpWithHttpScreen(),
+          "/http/dio": (context) => const HttpWithDioScreen(),
+          "/http/getConnect": (context) => const HttpWithGetConnectScreen(),
           '/webview/webviewFlutter': (context) =>
               const WebviewWithWebviewFlutterScreen(),
-          '/webview/inapp': (context) => const WebviewWithInappScreen(),
-          '/webview/launcher': (context) => const WebviewWithLauncherScreen(),
-          '/webview/swift/uiWebview': (context) =>
+          "/webview/inapp": (context) => const WebviewWithInappScreen(),
+          "/webview/launcher": (context) => const WebviewWithLauncherScreen(),
+          "/webview/swift/uiWebview": (context) =>
               const WebviewWithSwiftUiWebviewScreen(),
-          '/webview/swift/wkWebview': (context) =>
+          "/webview/swift/wkWebview": (context) =>
               const WebviewWithSwiftWKWebviewScreen(),
-          '/webview/daumPost': (context) => const WebviewWithDaumPostScreen(),
-          '/lifeCycle/getx': (context) => const LifeCycleScreenWithGetx(),
-          '/lifeCycle/stateful': (context) =>
+          "/webview/daumPost": (context) => const WebviewWithDaumPostScreen(),
+          "/lifeCycle/getx": (context) => const LifeCycleScreenWithGetx(),
+          "/lifeCycle/stateful": (context) =>
               const LifeCycleScreenWithStateful(),
-          '/lifeCycle/native': (context) => const LifeCycleScreenWithNative(),
-          '/library/equatable': (context) => const LibraryEquatableScreen(),
-          '/library/daumPostcode': (context) =>
+          "/lifeCycle/native": (context) => const LifeCycleScreenWithNative(),
+          "/library/equatable": (context) => const LibraryEquatableScreen(),
+          "/library/daumPostcode": (context) =>
               const LibararyDaumPostcodeScreen(),
-          '/library/dio': ((context) => const LibraryDioScreen()),
+          "/library/dio": ((context) => const LibraryDioScreen()),
+          "/dart/pattern/singleton": (context) =>
+              const DartPatternScreenWithSingleton(),
+          "/dart/pattern/factory": (context) =>
+              const DartPatternScreenWithFactory(),
         },
       ),
     );

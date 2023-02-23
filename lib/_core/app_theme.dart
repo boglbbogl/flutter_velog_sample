@@ -9,7 +9,7 @@ class AppTheme {
     primarySwatch: materialBlackColor,
     iconTheme: const IconThemeData(color: Colors.white),
     textTheme: const TextTheme(
-        bodyText2: TextStyle(color: Colors.white, fontSize: 13)),
+        bodyMedium: TextStyle(color: Colors.white, fontSize: 13)),
     dividerTheme:
         const DividerThemeData(color: Color.fromRGBO(115, 115, 115, 1)),
     appBarTheme: const AppBarTheme(
