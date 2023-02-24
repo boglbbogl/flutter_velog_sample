@@ -24,9 +24,6 @@ class _DartPatternScreenWithSingletonState
   @override
   void initState() {
     setState(() {
-      logger.e(singleton1.hashCode);
-      logger.e(singleton2.hashCode);
-      logger.e(singleton3.hashCode);
       general2.title = "General 2";
       singleton2.title = "Singleton 2";
       general3.title = "General 3";
