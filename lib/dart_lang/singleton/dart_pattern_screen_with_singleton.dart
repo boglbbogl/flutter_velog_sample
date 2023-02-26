@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
 import 'package:flutter_velog_sample/dart_lang/singleton/dart_pattern_second_screen_with_singleton.dart';
 import 'package:flutter_velog_sample/dart_lang/singleton/singleton_example_model.dart';
-import 'package:flutter_velog_sample/main.dart';
 
 class DartPatternScreenWithSingleton extends StatefulWidget {
   const DartPatternScreenWithSingleton({super.key});
