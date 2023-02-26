@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "328834457993",
+    "project_id": "flutter-velog-sample",
+    "storage_bucket": "flutter-velog-sample.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:328834457993:android:f0cc7e1f29cb08cce5c158",
+        "android_client_info": {
+          "package_name": "com.tyger.flutter_velog_sample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "328834457993-752md844o8m0fahsc2dce4jbolf1grnv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdEaM2n88U3jUopkIGAr-qLbnPV2XIkok"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "328834457993-752md844o8m0fahsc2dce4jbolf1grnv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' as river;
 import 'package:flutter_velog_sample/_core/app_theme.dart';
@@ -13,6 +14,7 @@ import 'package:flutter_velog_sample/count_app/provider/count_screen_with_provid
 import 'package:flutter_velog_sample/count_app/count_screen_with_riverpod.dart';
 import 'package:flutter_velog_sample/dart_lang/factory/dart_pattern_screen_with_factory.dart';
 import 'package:flutter_velog_sample/dart_lang/singleton/dart_pattern_screen_with_singleton.dart';
+import 'package:flutter_velog_sample/firebase_options.dart';
 import 'package:flutter_velog_sample/http/dio/http_with_dio_screen.dart';
 import 'package:flutter_velog_sample/http/get_connect/http_with_get_connect_screen.dart';
 import 'package:flutter_velog_sample/http/http/http_with_http_screen.dart';
@@ -51,9 +53,12 @@ import 'webview/daum_post/webview_with_daum_post_screen.dart';
 
 Logger logger = Logger();
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Provider.debugCheckInvalidValueType = null;
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const App());
 }
 
