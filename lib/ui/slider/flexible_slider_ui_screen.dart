@@ -1,8 +1,5 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
-import 'package:flutter_velog_sample/main.dart';
 
 class FlexibleSliderUIScreen extends StatefulWidget {
   final int itemCount;
