@@ -14,8 +14,7 @@ class FlexibleSliderUIScreen extends StatelessWidget {
     ];
     return Scaffold(
       appBar: appBar(title: "Flexible Slider"),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: ListView(
         children: [
           _textForm(0.9, 3),
           FlexibleCustomSlider(
@@ -25,13 +24,28 @@ class FlexibleSliderUIScreen extends StatelessWidget {
             height: 200,
             items: [
               ...List.generate(
-                  3,
-                  (index) => Container(
-                        child: Image.asset(
-                          _assets[index],
-                          fit: BoxFit.fitWidth,
-                        ),
-                      )),
+                3,
+                (index) => Image.asset(
+                  _assets[index],
+                  fit: BoxFit.fitWidth,
+                ),
+              ),
+            ],
+          ),
+          _textForm(0.9, 3),
+          FlexibleCustomSlider(
+            itemCount: 3,
+            viewportFraction: 0.8,
+            onPageChanged: (i) {},
+            height: 180,
+            items: [
+              ...List.generate(
+                3,
+                (index) => Image.asset(
+                  _assets[index],
+                  fit: BoxFit.fitWidth,
+                ),
+              ),
             ],
           ),
         ],
@@ -41,7 +55,7 @@ class FlexibleSliderUIScreen extends StatelessWidget {
 
   Padding _textForm(double fraction, int count) {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        padding: const EdgeInsets.only(left: 12, right: 12, top: 20, bottom: 8),
         child: RichText(
             text: TextSpan(
                 style: const TextStyle(
