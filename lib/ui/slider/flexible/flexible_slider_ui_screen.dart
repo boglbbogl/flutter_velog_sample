@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
-import 'package:flutter_velog_sample/ui/slider/flexible_custom_slider.dart';
+import 'package:flutter_velog_sample/ui/slider/flexible/flexible_custom_slider.dart';
 
 class FlexibleSliderUIScreen extends StatelessWidget {
   const FlexibleSliderUIScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<String> _assets = [
-      "assets/images/koenigsegg_01.jpeg",
-      "assets/images/koenigsegg_02.jpeg",
-      "assets/images/koenigsegg_03.jpeg",
-    ];
+    List<String> _assets = List.generate(
+        8, (index) => "assets/images/koenigsegg_0${index + 1}.jpeg");
     return Scaffold(
       appBar: appBar(title: "Flexible Slider"),
       body: ListView(
@@ -32,15 +29,14 @@ class FlexibleSliderUIScreen extends StatelessWidget {
               ),
             ],
           ),
-          _textForm(0.9, 3),
+          _textForm(0.8, 5),
           FlexibleCustomSlider(
-            itemCount: 3,
+            itemCount: 5,
             viewportFraction: 0.8,
-            onPageChanged: (i) {},
             height: 180,
             items: [
               ...List.generate(
-                3,
+                5,
                 (index) => Image.asset(
                   _assets[index],
                   fit: BoxFit.fitWidth,
@@ -48,6 +44,36 @@ class FlexibleSliderUIScreen extends StatelessWidget {
               ),
             ],
           ),
+          _textForm(0.6, 7),
+          FlexibleCustomSlider(
+            itemCount: 7,
+            viewportFraction: 0.6,
+            height: 130,
+            items: [
+              ...List.generate(
+                7,
+                (index) => Image.asset(
+                  _assets[index],
+                  fit: BoxFit.fitWidth,
+                ),
+              ),
+            ],
+          ),
+          _textForm(1, 8),
+          FlexibleCustomSlider(
+            itemCount: 8,
+            height: 240,
+            items: [
+              ...List.generate(
+                8,
+                (index) => Image.asset(
+                  _assets[index],
+                  fit: BoxFit.fitWidth,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 40),
         ],
       ),
     );
@@ -55,7 +81,7 @@ class FlexibleSliderUIScreen extends StatelessWidget {
 
   Padding _textForm(double fraction, int count) {
     return Padding(
-        padding: const EdgeInsets.only(left: 12, right: 12, top: 20, bottom: 8),
+        padding: const EdgeInsets.only(left: 12, right: 12, top: 24, bottom: 8),
         child: RichText(
             text: TextSpan(
                 style: const TextStyle(

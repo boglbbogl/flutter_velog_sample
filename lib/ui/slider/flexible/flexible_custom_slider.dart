@@ -50,9 +50,9 @@ class _FlexibleCustomSliderState extends State<FlexibleCustomSlider> {
             double _dy = controller.position.pixels;
             if (_dy > _currentPosition) {
               double _currentMaxWidth = _width * (_currentIndex + 1);
-              double _currentHalfWidth = _width * _currentIndex;
-              double _diffMaxWidth = (_currentMaxWidth - _currentHalfWidth) / 3;
-              double _point = _currentHalfWidth + _diffMaxWidth;
+              double _halfWidth = _width * _currentIndex;
+              double _diffMaxWidth = (_currentMaxWidth - _halfWidth) / 3;
+              double _point = _halfWidth + _diffMaxWidth;
               _currentIndex = _dy > _point ? _currentIndex + 1 : _currentIndex;
               _currentIndex = _currentIndex == widget.itemCount
                   ? _currentIndex - 1
@@ -67,7 +67,9 @@ class _FlexibleCustomSliderState extends State<FlexibleCustomSlider> {
             controller.animateTo(_width * _currentIndex,
                 duration: const Duration(milliseconds: 150),
                 curve: Curves.easeIn);
-            widget.onPageChanged!(_currentIndex);
+            if (widget.onPageChanged != null) {
+              widget.onPageChanged!(_currentIndex);
+            }
           },
           child: SizedBox(
             width: widget.width ?? MediaQuery.of(context).size.width,

@@ -116,6 +116,12 @@ class MainScreen extends StatelessWidget {
                   namedRouter: "/ui/flexible/slider",
                   isPost: true,
                 ),
+                _item(
+                  context: context,
+                  content: "Over Image Slider",
+                  namedRouter: "/ui/over/image/slider",
+                  isPost: true,
+                )
               ]),
               _category(title: 'Tab View', widgets: [
                 _item(
