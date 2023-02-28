@@ -121,7 +121,13 @@ class MainScreen extends StatelessWidget {
                   content: "Over Image Slider",
                   namedRouter: "/ui/over/image/slider",
                   isPost: true,
-                )
+                ),
+                _item(
+                  context: context,
+                  content: "Overlap Slider",
+                  namedRouter: "/ui/overlap/slider",
+                  isPost: true,
+                ),
               ]),
               _category(title: 'Tab View', widgets: [
                 _item(

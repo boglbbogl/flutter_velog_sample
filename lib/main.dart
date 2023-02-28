@@ -43,6 +43,7 @@ import 'package:flutter_velog_sample/ui/heart_motion/sns_ui_heart_icon_screen.da
 import 'package:flutter_velog_sample/ui/heart_motion/sns_ui_heart_motion_screen.dart';
 import 'package:flutter_velog_sample/ui/slider/flexible/flexible_slider_ui_screen.dart';
 import 'package:flutter_velog_sample/ui/slider/over_image/over_image_ui_screen.dart';
+import 'package:flutter_velog_sample/ui/slider/overlap/overlap_slider_ui_screen.dart';
 import 'package:flutter_velog_sample/webview/webview_with_inapp_screen.dart';
 import 'package:flutter_velog_sample/webview/webview_with_launcher_screen.dart';
 import 'package:flutter_velog_sample/webview/webview_with_swift_ui_webview_screen.dart';
@@ -98,6 +99,7 @@ class App extends StatelessWidget {
           "/ui/sns/heart/motion": (context) => const SnsUIHeartMotionScreen(),
           "/ui/flexible/slider": (context) => const FlexibleSliderUIScreen(),
           "/ui/over/image/slider": (context) => const OverImageUIScreen(),
+          "/ui/overlap/slider": (context) => const OverlapSliderUIScreen(),
           "/tabview/tabbar": (context) => const TabViewTabbarScreen(),
           "/tabview/pageView": (context) => const TabViewPageViewScreen(),
           "/tabview/custom": (context) => const TabViewCustomScreen(),

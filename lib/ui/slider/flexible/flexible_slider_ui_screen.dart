@@ -8,7 +8,7 @@ class FlexibleSliderUIScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> _assets = List.generate(
-        8, (index) => "assets/images/koenigsegg_0${index + 1}.jpeg");
+        8, (index) => "assets/images/koenigsegg/koenigsegg_0${index + 1}.jpeg");
     return Scaffold(
       appBar: appBar(title: "Flexible Slider"),
       body: ListView(

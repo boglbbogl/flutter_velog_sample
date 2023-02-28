@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 
 class OverImageCustomSlider extends StatefulWidget {
   final int itemCount;
+  final List<Widget> items;
   const OverImageCustomSlider({
     super.key,
     required this.itemCount,
+    required this.items,
   });
 
   @override
@@ -15,7 +17,6 @@ class OverImageCustomSlider extends StatefulWidget {
 class _OverImageCustomSliderState extends State<OverImageCustomSlider> {
   double _position = 0.0;
   int _currentIndex = 0;
-  double _endDx = 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -75,18 +76,15 @@ class _OverImageCustomSliderState extends State<OverImageCustomSlider> {
                             Colors.black, BlendMode.saturation),
                         fit: BoxFit.cover,
                         filterQuality: FilterQuality.high,
-                        image: AssetImage("assets/images/panorama_city.jpeg"))),
+                        image: AssetImage(
+                            "assets/images/city/panorama_city.jpeg"))),
                 child: Row(
                   children: [
                     ...List.generate(
                         widget.itemCount,
-                        (index) => Container(
+                        (index) => SizedBox(
                               width: _width,
-                              height: MediaQuery.of(context).size.height -
-                                  MediaQueryData.fromWindow(window)
-                                      .padding
-                                      .top -
-                                  kToolbarHeight,
+                              child: widget.items[index],
                             ))
                   ],
                 ),

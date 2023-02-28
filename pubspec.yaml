@@ -69,6 +69,9 @@ flutter:
   assets:
     - assets/html/daum_postcode.html
     - assets/images/
+    - assets/images/city/
+    - assets/images/koenigsegg/
+    - assets/images/porsche/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
