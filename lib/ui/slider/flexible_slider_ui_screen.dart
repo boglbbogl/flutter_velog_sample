@@ -1,80 +1,69 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
+import 'package:flutter_velog_sample/ui/slider/flexible_custom_slider.dart';
 
-class FlexibleSliderUIScreen extends StatefulWidget {
-  final int itemCount;
-  const FlexibleSliderUIScreen({
-    super.key,
-    this.itemCount = 3,
-  });
-
-  @override
-  State<FlexibleSliderUIScreen> createState() => _FlexibleSliderUIScreenState();
-}
-
-class _FlexibleSliderUIScreenState extends State<FlexibleSliderUIScreen> {
-  late List<double> _positions = List.generate(widget.itemCount,
-      (index) => index * MediaQuery.of(context).size.width * 0.8);
-  int currentIndex = -0;
-
-  @override
-  void initState() {
-    //
-    super.initState();
-  }
+class FlexibleSliderUIScreen extends StatelessWidget {
+  const FlexibleSliderUIScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width * 0.8;
-    double height = MediaQuery.of(context).size.width;
-
+    List<String> _assets = [
+      "assets/images/koenigsegg_01.jpeg",
+      "assets/images/koenigsegg_02.jpeg",
+      "assets/images/koenigsegg_03.jpeg",
+    ];
     return Scaffold(
       appBar: appBar(title: "Flexible Slider"),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            width: height,
-            height: height,
-            child: Stack(
-                children: _children(
-              height: height,
-              width: width,
-              itemCount: widget.itemCount,
-            )),
-          )
+          _textForm(0.9, 3),
+          FlexibleCustomSlider(
+            itemCount: 3,
+            viewportFraction: 0.9,
+            onPageChanged: (i) {},
+            height: 200,
+            items: [
+              ...List.generate(
+                  3,
+                  (index) => Container(
+                        child: Image.asset(
+                          _assets[index],
+                          fit: BoxFit.fitWidth,
+                        ),
+                      )),
+            ],
+          ),
         ],
       ),
     );
   }
 
-  List<Positioned> _children({
-    required double height,
-    required double width,
-    required int itemCount,
-  }) {
-    return [
-      ...List.generate(
-          itemCount,
-          (index) => Positioned(
-                left: _positions[index],
-                child: GestureDetector(
-                  onPanEnd: (DragEndDetails details) {
-                    setState(() {});
-                  },
-                  onPanUpdate: (DragUpdateDetails details) {
-                    setState(() {
-                      for (int i = 0; i < itemCount; i++) {
-                        _positions[i] = _positions[i] + details.delta.dx;
-                      }
-                    });
-                  },
-                  child: Container(
-                    height: height,
-                    width: itemCount - 1 == index ? height : width,
-                    color: Colors.accents[index],
-                  ),
-                ),
-              ))
-    ];
+  Padding _textForm(double fraction, int count) {
+    return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        child: RichText(
+            text: TextSpan(
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Color.fromRGBO(215, 215, 215, 1)),
+                text: "Viewport Fraction  :  ",
+                children: [
+              TextSpan(
+                  text: "$fraction",
+                  style: const TextStyle(
+                    color: Colors.yellow,
+                  )),
+              const TextSpan(
+                text: "    |    ",
+              ),
+              const TextSpan(text: "Count  :  "),
+              TextSpan(
+                  text: "$count",
+                  style: const TextStyle(
+                    color: Colors.orange,
+                  )),
+            ])));
   }
 }
