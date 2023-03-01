@@ -18,9 +18,86 @@ class MainProvider extends ChangeNotifier {
     Navigator.of(context).pop();
   }
 
+  Future<void> createEmailAndPassword(BuildContext context) async {
+    try {
+      UserCredential _credential =
+          await _firebaseAuth.createUserWithEmailAndPassword(
+              email: "abcd@abc.kr", password: "1112323");
+      if (_credential.user != null) {
+        user = _credential.user;
+      } else {
+        showSnackbar(context, "Server Error");
+      }
+    } on FirebaseAuthException catch (error) {
+      String? _errorCode;
+      switch (error.code) {
+        case "email-already-in-use":
+          _errorCode = error.code;
+          break;
+        case "invalid-email":
+          _errorCode = error.code;
+          break;
+        case "weak-password":
+          _errorCode = error.code;
+          break;
+        case "operation-not-allowed":
+          _errorCode = error.code;
+          break;
+        default:
+          _errorCode = null;
+      }
+      if (_errorCode != null) {
+        showSnackbar(context, _errorCode);
+      }
+    }
+  }
+
+  void showSnackbar(BuildContext context, String error) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      backgroundColor: Colors.amber,
+      content: Text(
+        error,
+        style: const TextStyle(
+            color: Colors.red, fontWeight: FontWeight.bold, fontSize: 20),
+      ),
+    ));
+  }
+
   Future<void> signInWithEMail(BuildContext context) async {
     HapticFeedback.mediumImpact();
     Navigator.of(context).pop();
+    try {
+      UserCredential _credential =
+          await _firebaseAuth.signInWithEmailAndPassword(
+              email: "abcd@abc.kr", password: "1112323");
+      if (_credential.user != null) {
+        user = _credential.user;
+      } else {
+        showSnackbar(context, "Server Error");
+      }
+    } on FirebaseAuthException catch (error) {
+      String? _errorCode;
+      switch (error.code) {
+        case "invalid-email":
+          _errorCode = error.code;
+          break;
+        case "user-disabled":
+          _errorCode = error.code;
+          break;
+        case "user-not-found":
+          _errorCode = error.code;
+          break;
+        case "wrong-password":
+          _errorCode = error.code;
+          break;
+        default:
+          _errorCode = null;
+      }
+      if (_errorCode != null) {
+        showSnackbar(context, _errorCode);
+      }
+    }
+    // createEmailAndPassword(context);
   }
 
   Future<void> signInWithAnonymous(BuildContext context) async {

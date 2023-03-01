@@ -8,7 +8,7 @@ Future<dynamic> authenticationSheet(BuildContext context) {
   MainProvider _state = context.read<MainProvider>()..getCurrentUser();
   return showModalBottomSheet(
       context: context,
-      builder: (context) {
+      builder: (secondContext) {
         return Container(
           color: const Color.fromRGBO(71, 71, 71, 1),
           child: SafeArea(

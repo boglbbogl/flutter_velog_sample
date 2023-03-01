@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
-import 'package:flutter_velog_sample/main.dart';
 import 'package:flutter_velog_sample/ui/slider/overlap/overlap_custom_slider.dart';
 
 class OverlapSliderUIScreen extends StatelessWidget {
