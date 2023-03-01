@@ -1,83 +1,103 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_velog_sample/main.dart';
+import 'package:flutter_velog_sample/_core/app_size.dart';
 
 class OverlapCustomSlider extends StatefulWidget {
-  const OverlapCustomSlider({super.key});
+  final List<String> items;
+  final double? height;
+  const OverlapCustomSlider({
+    super.key,
+    required this.items,
+    this.height,
+  });
 
   @override
   State<OverlapCustomSlider> createState() => _OverlapCustomSliderState();
 }
 
 class _OverlapCustomSliderState extends State<OverlapCustomSlider> {
-  final List<String> _assets = List.generate(
-      6, (index) => "assets/images/porsche/porsche_911_0${index + 1}.png");
-  List<double> _position = List.generate(6, (i) => i == 5 ? 0.0 : 300);
+  final List<String> _stackData = [];
+  List<String> _nextData = [];
+  late double _height;
+
+  @override
+  void initState() {
+    List<String> _settingData = widget.items;
+    _stackData.add(_settingData.first);
+    _nextData
+      ..addAll(_settingData)
+      ..remove(_nextData.first);
+    _nextData = _nextData.reversed.toList();
+    super.initState();
+  }
+
+  late double _position = size.width;
   @override
   Widget build(BuildContext context) {
-    // _width = List.generate(6, (index) => MediaQuery.of(context).size.width);
+    _height = widget.height ?? MediaQuery.of(context).size.width / 2;
     return SizedBox(
-      height: MediaQuery.of(context).size.width,
+      height: _height,
       child: Stack(
         children: [
           ...List.generate(
-              6,
+              _stackData.length,
               (index) => Positioned(
-                    left: _position[index],
+                    left: 0,
                     child: GestureDetector(
+                      onHorizontalDragEnd: (details) {
+                        setState(() {
+                          if (size.width / 2 < _position) {
+                            _position = size.width;
+                          } else {
+                            _position = 0.0;
+                            _stackData.add(_nextData.last);
+                            _nextData.remove(_nextData.last);
+                            if (_nextData.isEmpty) {
+                              _nextData.addAll(_stackData);
+                              _stackData
+                                ..clear()
+                                ..add(_nextData.last);
+                              _nextData.remove(_nextData.last);
+                              _nextData = _nextData.reversed.toList();
+                            }
+
+                            _position = size.width;
+                          }
+                        });
+                      },
                       onHorizontalDragUpdate: (details) {
                         setState(() {
-                          _position[index - 1] =
-                              _position[index - 1] + details.delta.dx;
-                          logger.e(index);
+                          if (_nextData.isNotEmpty) {
+                            _position = _position + details.delta.dx;
+                          }
                         });
                       },
                       child: Container(
-                        color: Colors.accents[index],
                         width: MediaQuery.of(context).size.width,
+                        height: _height,
+                        color: Colors.white,
                         child: Image.asset(
-                          _assets[index],
+                          _stackData[index],
                           fit: BoxFit.cover,
                         ),
                       ),
                     ),
                   )),
-          // Positioned(
-          //   child: Container(
-          //     color: Colors.red,
-          //     width: 400,
-          //     height: 200,
-          //     child: Stack(
-          //       children: [
-          //         Image.asset(
-          //           "assets/images/porsche/porsche_911_01.png",
-          //           // width: 400,
-          //           height: 500,
-          //           fit: BoxFit.fill,
-          //         ),
-          //       ],
-          //     ),
-          //   ),
-          // ),
-          // Positioned(
-          //   left: 200,
-          //   child: Container(
-          //     color: Colors.amber,
-          //     width: 300,
-          //     height: 200,
-          //     child: Stack(
-          //       children: [
-          //         Image.asset(
-          //           "assets/images/porsche/porsche_911_02.png",
-          //           // width: 400,
-          //           height: 500,
-          //           fit: BoxFit.fill,
-          //         ),
-          //       ],
-          //     ),
-          //   ),
-          // ),
+          ...List.generate(
+              _nextData.length,
+              (index) => Positioned(
+                    left: _position,
+                    child: GestureDetector(
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: _height,
+                        color: Colors.white,
+                        child: Image.asset(
+                          _nextData[index],
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ))
         ],
       ),
     );
