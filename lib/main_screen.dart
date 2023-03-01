@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_size.dart';
+import 'package:flutter_velog_sample/auth/authenication_sheet.dart';
 import 'package:flutter_velog_sample/main_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -18,6 +19,34 @@ class MainScreen extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
+          actions: [
+            Row(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    authenticationSheet(context);
+                  },
+                  child: Container(
+                    width: 38,
+                    height: 38,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(100)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(3.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: const Color.fromRGBO(71, 71, 71, 1),
+                            borderRadius: BorderRadius.circular(100)),
+                        child: const Icon(Icons.account_circle, size: 32),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 12),
+              ],
+            ),
+          ],
         ),
         body: SingleChildScrollView(
           child: Column(
