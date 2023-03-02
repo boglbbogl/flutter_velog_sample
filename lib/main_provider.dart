@@ -11,7 +11,46 @@ class MainProvider extends ChangeNotifier {
   void getCurrentUser() {
     User? _user = _firebaseAuth.currentUser;
     user = _user;
-    logger.e(_user);
+    logger.e(user);
+  }
+
+  Future<void> signInWithSmsCode(BuildContext context, String code) async {
+    HapticFeedback.mediumImpact();
+    Navigator.of(context).pop();
+    if (_verificationId != null) {
+      PhoneAuthCredential _phoneCredential = PhoneAuthProvider.credential(
+          verificationId: _verificationId!, smsCode: code);
+      UserCredential _user =
+          await _firebaseAuth.signInWithCredential(_phoneCredential);
+      if (_user.user != null) {
+        user = _user.user;
+      }
+    }
+  }
+
+  String? _verificationId;
+
+  Future<void> signInWithPhoneNumber(
+      BuildContext context, String number) async {
+    HapticFeedback.mediumImpact();
+    await _firebaseAuth.verifyPhoneNumber(
+      phoneNumber: "+82 $number",
+      verificationCompleted: (PhoneAuthCredential credential) {
+        logger.e("credential :: $credential");
+      },
+      verificationFailed: (FirebaseAuthException exception) {
+        logger.e("exception :: $exception");
+        showSnackbar(context, "${exception.message}");
+      },
+      codeSent: (String verificationId, int? resendToken) {
+        _verificationId = verificationId;
+        logger.e("verificationId :: $verificationId");
+        logger.e("resendToken :: $resendToken");
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {
+        logger.e("verificationId :: $verificationId");
+      },
+    );
   }
 
   Future<void> signInWithGoogle(BuildContext context) async {
@@ -30,16 +69,19 @@ class MainProvider extends ChangeNotifier {
           await _firebaseAuth.signInWithCredential(_googleCredential);
       if (_credential.user != null) {
         user = _credential.user;
-        logger.e(user);
       }
     }
   }
 
-  Future<void> createEmailAndPassword(BuildContext context) async {
+  Future<void> createEmailAndPassword(
+    BuildContext context, {
+    required String email,
+    required String password,
+  }) async {
+    HapticFeedback.mediumImpact();
     try {
-      UserCredential _credential =
-          await _firebaseAuth.createUserWithEmailAndPassword(
-              email: "abcd@abc.kr", password: "1112323");
+      UserCredential _credential = await _firebaseAuth
+          .createUserWithEmailAndPassword(email: email, password: password);
       if (_credential.user != null) {
         user = _credential.user;
       } else {
@@ -67,6 +109,7 @@ class MainProvider extends ChangeNotifier {
         showSnackbar(context, _errorCode);
       }
     }
+    Navigator.of(context).pop();
   }
 
   void showSnackbar(BuildContext context, String error) {
@@ -80,13 +123,15 @@ class MainProvider extends ChangeNotifier {
     ));
   }
 
-  Future<void> signInWithEMail(BuildContext context) async {
+  Future<void> signInWithEMail(
+    BuildContext context, {
+    required String email,
+    required String password,
+  }) async {
     HapticFeedback.mediumImpact();
-    Navigator.of(context).pop();
     try {
-      UserCredential _credential =
-          await _firebaseAuth.signInWithEmailAndPassword(
-              email: "abcd@abc.kr", password: "1112323");
+      UserCredential _credential = await _firebaseAuth
+          .signInWithEmailAndPassword(email: email, password: password);
       if (_credential.user != null) {
         user = _credential.user;
       } else {
@@ -114,7 +159,7 @@ class MainProvider extends ChangeNotifier {
         showSnackbar(context, _errorCode);
       }
     }
-    // createEmailAndPassword(context);
+    Navigator.of(context).pop();
   }
 
   Future<void> signInWithAnonymous(BuildContext context) async {
@@ -122,7 +167,7 @@ class MainProvider extends ChangeNotifier {
     Navigator.of(context).pop();
     UserCredential _credential = await _firebaseAuth.signInAnonymously();
     if (_credential.user != null) {
-      logger.e(_credential.user!.uid);
+      user = _credential.user;
     }
   }
 

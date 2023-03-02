@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_size.dart';
+import 'package:flutter_velog_sample/auth/auth_email_sheet.dart';
+import 'package:flutter_velog_sample/auth/auth_phone_sheet.dart';
 import 'package:flutter_velog_sample/main_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -78,12 +80,22 @@ Future<dynamic> authenticationSheet(BuildContext context) {
                             "SignIn With Anonymous",
                             () => _state.signInWithAnonymous(context),
                             _state.user),
-                        _signForm("SignIn With E-Mail",
-                            () => _state.signInWithEMail(context), _state.user),
+                        _signForm("SignIn With E-Mail", () {
+                          Navigator.of(context).pop();
+                          authEmailSheet(context);
+                        }, _state.user),
+                        _signForm("SignUp With E-Mail", () {
+                          Navigator.of(context).pop();
+                          authEmailSheet(context, isSignUp: true);
+                        }, _state.user, isSignUp: true),
                         _signForm(
                             "SignIn With Google",
                             () => _state.signInWithGoogle(context),
                             _state.user),
+                        _signForm("SignIn With Phone", () {
+                          Navigator.of(context).pop();
+                          authPhoneSheet(context);
+                        }, _state.user),
                         const SizedBox(height: 24),
                       ],
                     )
@@ -100,7 +112,8 @@ Padding _userForm(String title, String content) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 1),
     child: DefaultTextStyle(
-      style: const TextStyle(color: Colors.white, fontSize: 12),
+      style: const TextStyle(
+          color: Colors.orange, fontSize: 12, fontWeight: FontWeight.bold),
       child: Row(
         children: [
           Text("$title : "),
@@ -111,18 +124,23 @@ Padding _userForm(String title, String content) {
   );
 }
 
-GestureDetector _signForm(String content, Function() onTap, User? user) {
+GestureDetector _signForm(
+  String content,
+  Function() onTap,
+  User? user, {
+  bool isSignUp = false,
+}) {
   return GestureDetector(
     onTap: user == null ? onTap : () {},
     child: Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       child: Text(
         content,
         style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 16,
+            fontSize: 14,
             color: user == null
-                ? Colors.white
+                ? (isSignUp ? Colors.tealAccent : Colors.white)
                 : const Color.fromRGBO(175, 175, 175, 1)),
       ),
     ),
