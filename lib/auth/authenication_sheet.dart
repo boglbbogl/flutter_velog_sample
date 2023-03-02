@@ -59,6 +59,11 @@ Future<dynamic> authenticationSheet(BuildContext context) {
                           _userForm("UID", _state.user!.uid),
                           _userForm("E-Mail", _state.user!.email ?? "null"),
                           _userForm("Anonymous", "${_state.user!.isAnonymous}"),
+                          _userForm(
+                              "Provider",
+                              _state.user!.providerData.isNotEmpty
+                                  ? _state.user!.providerData.first.providerId
+                                  : "null"),
                           _userForm("Creation Time",
                               "${_state.user!.metadata.creationTime}"),
                           _userForm("Last SignIn Time",
@@ -79,6 +84,7 @@ Future<dynamic> authenticationSheet(BuildContext context) {
                             "SignIn With Google",
                             () => _state.signInWithGoogle(context),
                             _state.user),
+                        const SizedBox(height: 24),
                       ],
                     )
                   ],

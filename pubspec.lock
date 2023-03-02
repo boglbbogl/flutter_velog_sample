@@ -408,6 +408,54 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  google_identity_services_web:
+    dependency: transitive
+    description:
+      name: google_identity_services_web
+      sha256: "5d9af2f1fa192f2629a266d038ee9307b0abe729a4f1b454dd21b414f5e7d381"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
+  google_sign_in:
+    dependency: "direct main"
+    description:
+      name: google_sign_in
+      sha256: "71c5311a19a2406498028a54fcac81351827297fa8cf5abbf51b7e0fa1bc64f5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.0.1"
+  google_sign_in_android:
+    dependency: transitive
+    description:
+      name: google_sign_in_android
+      sha256: f27bd56527c567594167bd0a46f7ceb93122ed064d2eee612413d6af0bb2e2e5
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.1.7"
+  google_sign_in_ios:
+    dependency: transitive
+    description:
+      name: google_sign_in_ios
+      sha256: eca3433737cfe8b231127d43a3e6527e07d5f8e4a0c00ce593aaaf7bc92bb135
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.5.2"
+  google_sign_in_platform_interface:
+    dependency: transitive
+    description:
+      name: google_sign_in_platform_interface
+      sha256: fece762f0d2dd762ebde43ad70662a209ff6ee034111976549c392f7763d9264
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.1"
+  google_sign_in_web:
+    dependency: transitive
+    description:
+      name: google_sign_in_web
+      sha256: "824b42c0a0b01c062bf3b1d555432d84c8b1dd0c5bbf0773514e574f02be9f95"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.11.0+1"
   graphs:
     dependency: transitive
     description:
@@ -656,6 +704,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.1"
+  quiver:
+    dependency: transitive
+    description:
+      name: quiver
+      sha256: b1c1ac5ce6688d77f65f3375a9abb9319b3cb32486bdc7a1e0fdf004d7ba4e47
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.2.1"
   riverpod:
     dependency: transitive
     description:

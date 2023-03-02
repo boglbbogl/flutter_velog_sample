@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "328834457993-752md844o8m0fahsc2dce4jbolf1grnv.apps.googleusercontent.com",
+          "client_id": "328834457993-jbd6v37p3lfghpqte8d9ct738gs6f1ct.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tyger.flutter_velog_sample",
+            "certificate_hash": "e45bf9f24d0a29de39108d896a8417812eda2257"
+          }
+        },
+        {
+          "client_id": "328834457993-v7oou464ec023g4f8vkgd293s1n62jhf.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -29,6 +37,13 @@
             {
               "client_id": "328834457993-752md844o8m0fahsc2dce4jbolf1grnv.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "328834457993-7e2rdf8e3gbnh938oak7i7okdbr76cq3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.tyger.velogsample"
+              }
             }
           ]
         }
