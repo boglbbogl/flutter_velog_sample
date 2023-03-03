@@ -9,13 +9,14 @@ import 'package:provider/provider.dart';
 Future<dynamic> authenticationSheet(BuildContext context) {
   MainProvider _state = context.read<MainProvider>()..getCurrentUser();
   return showModalBottomSheet(
+      isScrollControlled: true,
       context: context,
       builder: (secondContext) {
         return Container(
           color: const Color.fromRGBO(71, 71, 71, 1),
           child: SafeArea(
             child: Container(
-              height: size.height * 0.45,
+              height: size.height * 0.65,
               width: size.width,
               color: const Color.fromRGBO(71, 71, 71, 1),
               child: Padding(
@@ -96,6 +97,14 @@ Future<dynamic> authenticationSheet(BuildContext context) {
                           Navigator.of(context).pop();
                           authPhoneSheet(context);
                         }, _state.user),
+                        _signForm("Email Address Update", () {
+                          Navigator.of(context).pop();
+                          _state.emailAddressUpdate();
+                        }, null),
+                        _signForm("Password Update", () {
+                          Navigator.of(context).pop();
+                          _state.passwordUpdate();
+                        }, null),
                         const SizedBox(height: 24),
                       ],
                     )

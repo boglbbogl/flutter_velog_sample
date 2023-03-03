@@ -14,6 +14,25 @@ class MainProvider extends ChangeNotifier {
     logger.e(user);
   }
 
+  Future<void> emailVerification() async {
+    User? _user = _firebaseAuth.currentUser;
+    if (_user != null) {
+      await _user.sendEmailVerification();
+    }
+  }
+
+  Future<void> passwordUpdate() async {
+    if (user != null) {
+      await user!.updatePassword("123123123");
+    }
+  }
+
+  Future<void> emailAddressUpdate() async {
+    if (user != null) {
+      await user!.updateEmail("velogtyger@test.com");
+    }
+  }
+
   Future<void> signInWithSmsCode(BuildContext context, String code) async {
     HapticFeedback.mediumImpact();
     Navigator.of(context).pop();
@@ -35,21 +54,14 @@ class MainProvider extends ChangeNotifier {
     HapticFeedback.mediumImpact();
     await _firebaseAuth.verifyPhoneNumber(
       phoneNumber: "+82 $number",
-      verificationCompleted: (PhoneAuthCredential credential) {
-        logger.e("credential :: $credential");
-      },
+      verificationCompleted: (PhoneAuthCredential credential) {},
       verificationFailed: (FirebaseAuthException exception) {
-        logger.e("exception :: $exception");
         showSnackbar(context, "${exception.message}");
       },
       codeSent: (String verificationId, int? resendToken) {
         _verificationId = verificationId;
-        logger.e("verificationId :: $verificationId");
-        logger.e("resendToken :: $resendToken");
       },
-      codeAutoRetrievalTimeout: (String verificationId) {
-        logger.e("verificationId :: $verificationId");
-      },
+      codeAutoRetrievalTimeout: (String verificationId) {},
     );
   }
 
