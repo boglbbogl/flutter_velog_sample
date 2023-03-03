@@ -27,8 +27,8 @@ class MainScreen extends StatelessWidget {
                     authenticationSheet(context);
                   },
                   child: Container(
-                    width: 38,
-                    height: 38,
+                    width: 32,
+                    height: 32,
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(100)),
@@ -38,7 +38,10 @@ class MainScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                             color: const Color.fromRGBO(71, 71, 71, 1),
                             borderRadius: BorderRadius.circular(100)),
-                        child: const Icon(Icons.account_circle, size: 32),
+                        child: const Icon(
+                          Icons.account_circle_rounded,
+                          size: 24,
+                        ),
                       ),
                     ),
                   ),
@@ -143,7 +146,6 @@ class MainScreen extends StatelessWidget {
                   context: context,
                   content: "Flexible Slider",
                   namedRouter: "/ui/flexible/slider",
-                  isPost: true,
                 ),
                 _item(
                   context: context,
