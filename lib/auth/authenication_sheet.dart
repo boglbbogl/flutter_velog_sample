@@ -105,6 +105,10 @@ Future<dynamic> authenticationSheet(BuildContext context) {
                           Navigator.of(context).pop();
                           _state.passwordUpdate();
                         }, null),
+                        _signForm("Reset Password", () {
+                          Navigator.of(context).pop();
+                          _state.passwordUpdate();
+                        }, null),
                         const SizedBox(height: 24),
                       ],
                     )

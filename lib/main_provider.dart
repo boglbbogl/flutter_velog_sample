@@ -14,6 +14,10 @@ class MainProvider extends ChangeNotifier {
     logger.e(user);
   }
 
+  Future<void> passwordResetEmail(String email) async {
+    await _firebaseAuth.sendPasswordResetEmail(email: email);
+  }
+
   Future<void> emailVerification() async {
     User? _user = _firebaseAuth.currentUser;
     if (_user != null) {
