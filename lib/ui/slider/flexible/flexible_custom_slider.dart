@@ -66,7 +66,7 @@ class _FlexibleCustomSliderState extends State<FlexibleCustomSlider> {
             }
             controller.animateTo(_width * _currentIndex,
                 duration: const Duration(milliseconds: 150),
-                curve: Curves.easeIn);
+                curve: Curves.decelerate);
             if (widget.onPageChanged != null) {
               widget.onPageChanged!(_currentIndex);
             }

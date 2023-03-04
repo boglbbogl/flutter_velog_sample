@@ -75,6 +75,47 @@ class MainScreen extends StatelessWidget {
                   content: 'Date Picker',
                 ),
               ]),
+              _category(title: "Firebase", widgets: [
+                _item(
+                  context: context,
+                  content: "Authentication",
+                  namedRouter: "firebase/authentication",
+                  isPost: true,
+                ),
+                _item(
+                  context: context,
+                  content: "Dynamic Links",
+                  isPost: false,
+                ),
+                _item(
+                  length: 3,
+                  context: context,
+                  content: "Firestore",
+                  isPost: false,
+                ),
+                _item(
+                  length: 3,
+                  context: context,
+                  content: "Realtime",
+                  isPost: false,
+                ),
+                _item(
+                  length: 3,
+                  context: context,
+                  content: "Storage",
+                  isPost: false,
+                ),
+                _item(
+                  context: context,
+                  content: "GA(Google Analytics)",
+                  isPost: false,
+                ),
+                _item(
+                  context: context,
+                  content: "Crashlytics",
+                  isPost: false,
+                ),
+              ]),
               _category(title: 'State Management With Count App', widgets: [
                 _item(
                   length: 3,

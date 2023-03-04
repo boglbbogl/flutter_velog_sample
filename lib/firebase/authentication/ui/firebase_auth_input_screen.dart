@@ -1,0 +1,237 @@
+import 'dart:ui';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_velog_sample/_core/app_bar.dart';
+import 'package:flutter_velog_sample/firebase/authentication/bloc/authentication_type.dart';
+import 'package:flutter_velog_sample/firebase/authentication/bloc/firebase_auth_bloc.dart';
+import 'package:flutter_velog_sample/firebase/authentication/bloc/firebase_auth_event.dart';
+import 'package:flutter_velog_sample/firebase/authentication/bloc/firebase_auth_state.dart';
+
+class FirebaseAuthInPutScreen extends StatelessWidget {
+  final AuthenticationType type;
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController smsController = TextEditingController();
+
+  FirebaseAuthInPutScreen({
+    super.key,
+    required this.type,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<FirebaseAuthBloc, FirebaseAuthState>(
+      listener: (context, state) {
+        if (state is AuthErrorState) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              backgroundColor: Colors.deepOrange,
+              content: Text(
+                state.errorMessage,
+                style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              )));
+        } else if (state is AuthStatePhoneState) {
+          showModalBottomSheet(
+              context: context,
+              builder: (context) {
+                return Container(
+                  color: const Color.fromRGBO(71, 71, 71, 1),
+                  child: SafeArea(
+                    child: Container(
+                        width: MediaQueryData.fromWindow(window).size.width,
+                        height: MediaQueryData.fromWindow(window).size.height *
+                            0.45,
+                        color: const Color.fromRGBO(71, 71, 71, 1),
+                        child: Stack(
+                          children: [
+                            Positioned(
+                                right: 20,
+                                top: 24,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    HapticFeedback.mediumImpact();
+                                    context.read<FirebaseAuthBloc>().add(
+                                        AuthPhoneSignInSmsCode(
+                                            context,
+                                            smsController.text,
+                                            state.verifycationId));
+                                  },
+                                  child: const Text(
+                                    "Done",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.blue,
+                                        fontSize: 22),
+                                  ),
+                                )),
+                            SizedBox(
+                              width:
+                                  MediaQueryData.fromWindow(window).size.width,
+                              child: Column(
+                                children: [
+                                  const Padding(
+                                    padding:
+                                        EdgeInsets.only(top: 24, bottom: 48),
+                                    child: Text(
+                                      "SMS CODE",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                        fontSize: 24,
+                                      ),
+                                    ),
+                                  ),
+                                  _textFormField(
+                                      controller: smsController,
+                                      hintText: "SMS Code",
+                                      textInputType: TextInputType.number),
+                                ],
+                              ),
+                            ),
+                          ],
+                        )),
+                  ),
+                );
+              });
+        }
+      },
+      child: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          appBar: appBar(title: "Firebase Auth Input"),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              children: [
+                const SizedBox(height: 40),
+                if (type.isEmail) ...[
+                  _textFormField(
+                      controller: emailController, hintText: "email"),
+                ],
+                if (type.isPassword) ...[
+                  _textFormField(
+                      controller: passwordController, hintText: "password"),
+                ],
+                if (!type.isEmail && !type.isPassword) ...[
+                  _textFormField(
+                      controller: phoneController,
+                      hintText: "phone number",
+                      textInputType: TextInputType.number),
+                ],
+                const SizedBox(height: 40),
+                GestureDetector(
+                  onTap: () {
+                    FocusScope.of(context).unfocus();
+                    switch (type) {
+                      case AuthenticationType.signUp:
+                        context.read<FirebaseAuthBloc>().add(
+                            AuthSignUpWithEmailAndPassword(context,
+                                emailController.text, passwordController.text));
+                        break;
+                      case AuthenticationType.emailSignIn:
+                        context.read<FirebaseAuthBloc>().add(
+                            AuthSignInWithEmailAndPassword(context,
+                                emailController.text, passwordController.text));
+                        break;
+                      case AuthenticationType.emailVerify:
+                        break;
+                      case AuthenticationType.resetPassword:
+                        break;
+                      case AuthenticationType.phoneSignIn:
+                        context.read<FirebaseAuthBloc>().add(
+                            AuthSignInWithPhoneNumber(phoneController.text));
+                        break;
+                      default:
+                    }
+                  },
+                  child: Container(
+                    width: MediaQueryData.fromWindow(window).size.width - 40,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Colors.amber,
+                    ),
+                    child: Center(
+                      child: Text(
+                        _buttonTitle(type),
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 22,
+                            color: Colors.black),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  String _buttonTitle(AuthenticationType type) {
+    String _title = "Type Error";
+    switch (type) {
+      case AuthenticationType.signUp:
+        _title = "SignUp";
+        break;
+      case AuthenticationType.emailSignIn:
+        _title = "Email Sign In";
+        break;
+      case AuthenticationType.emailVerify:
+        _title = "Email Verification";
+        break;
+      case AuthenticationType.resetPassword:
+        _title = "Reset Password";
+        break;
+      case AuthenticationType.phoneSignIn:
+        _title = "Phone Sign In";
+        break;
+      default:
+    }
+    return _title;
+  }
+
+  Padding _textFormField({
+    required TextEditingController controller,
+    required String hintText,
+    TextInputType? textInputType,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Container(
+        width: MediaQueryData.fromWindow(window).size.width - 40,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: const Color.fromRGBO(31, 31, 31, 1),
+        ),
+        height: 50,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: TextFormField(
+            cursorColor: Colors.red,
+            controller: controller,
+            style: const TextStyle(
+                fontWeight: FontWeight.bold, fontSize: 18, color: Colors.amber),
+            keyboardType: textInputType,
+            decoration: InputDecoration(
+              hintText: hintText,
+              hintStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: Colors.green),
+              focusedBorder: InputBorder.none,
+              enabledBorder: InputBorder.none,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
