@@ -27,6 +27,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  cloud_firestore: ^4.4.3
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   daum_postcode_search: ^0.0.2

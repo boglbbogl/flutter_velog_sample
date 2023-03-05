@@ -56,7 +56,8 @@ class MainScreen extends StatelessWidget {
                 length: 3,
                 context: context,
                 content: "Firestore",
-                isPost: false,
+                namedRouter: "firebase/firestore",
+                isPost: true,
               ),
               _item(
                 length: 3,
@@ -160,7 +161,6 @@ class MainScreen extends StatelessWidget {
                 context: context,
                 content: "Over Image Slider",
                 namedRouter: "/ui/over/image/slider",
-                isPost: true,
               ),
               _item(
                 context: context,
