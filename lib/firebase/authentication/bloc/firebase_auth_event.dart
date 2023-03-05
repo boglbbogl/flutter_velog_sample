@@ -55,3 +55,21 @@ class AuthSignUpWithEmailAndPassword extends FirebaseAuthEvent {
   @override
   List<Object?> get props => [context, email, password];
 }
+
+class AuthChangedEmailUpdate extends FirebaseAuthEvent {
+  final BuildContext context;
+  final String email;
+
+  AuthChangedEmailUpdate(this.context, this.email);
+  @override
+  List<Object?> get props => [context, email];
+}
+
+class AuthChangedPasswordUpdate extends FirebaseAuthEvent {
+  final BuildContext context;
+  final String password;
+
+  AuthChangedPasswordUpdate(this.context, this.password);
+  @override
+  List<Object?> get props => [context, password];
+}

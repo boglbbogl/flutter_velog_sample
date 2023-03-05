@@ -75,92 +75,85 @@ class App extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
+    return MultiProvider(
       providers: [
-        BlocProvider<FirebaseAuthBloc>(
-            create: (context) =>
-                FirebaseAuthBloc()..add(AuthCheckedCurrentUser())),
+        ChangeNotifierProvider(create: (context) => MainProvider()),
+        ChangeNotifierProvider(
+            create: ((context) => LifeCycleNativeProvider())),
       ],
-      child: MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (context) => MainProvider()),
-          ChangeNotifierProvider(
-              create: ((context) => LifeCycleNativeProvider())),
-        ],
-        child: MaterialApp(
-          theme: AppTheme.darkTheme,
-          home: const InitialApp(),
-          routes: {
-            "app/caculator": ((context) => const AppCaculatorScreen()),
-            "firebase/authentication": (context) =>
-                const FirebaseAuthenticationScreen(),
-            "/count/app/stateFul": (context) => const CountScreenWithStateFul(),
-            "/count/app/listenerable": (context) =>
-                const CountScreenWithListenarable(),
-            "/count/app/provider": (context) => const CountScreenWithProvider(),
-            "/count/app/get/simple": (context) =>
-                const CountScreenWithGetSimple(),
-            "/count/app/get/reactive": (context) =>
-                const CountScreenWithGetReactive(),
-            "/count/app/bloc": (context) => const CountScreenWithBloc(),
-            "/count/app/cubit": (context) => const CountScreenWithCubit(),
-            "/count/app/riverpod": (context) =>
-                river.ProviderScope(child: CountScreenWithRiverpod()),
-            "/count/app/mobx": (context) => const CountScreenWithMobx(),
-            "/ui/sns/heart/icon": (context) => const SnsUIHeartIconScreen(),
-            "/ui/sns/heart/motion": (context) => const SnsUIHeartMotionScreen(),
-            "/ui/flexible/slider": (context) => const FlexibleSliderUIScreen(),
-            "/ui/over/image/slider": (context) => const OverImageUIScreen(),
-            "/ui/overlap/slider": (context) => const OverlapSliderUIScreen(),
-            "/tabview/tabbar": (context) => const TabViewTabbarScreen(),
-            "/tabview/pageView": (context) => const TabViewPageViewScreen(),
-            "/tabview/custom": (context) => const TabViewCustomScreen(),
-            "/scroll/view/single": (context) =>
-                const ScrollViewWithSingleChildScreen(),
-            "/scroll/view/custom": (context) =>
-                const ScrollViewWithCustomScrollScreen(),
-            "/scroll/view/list/view": (context) =>
-                const ScrollViewWithListViewScreen(),
-            "/scroll/view/gestureToScroll": (context) =>
-                const ScrollViewWithGestureToScrollScreen(),
-            "/scroll/view/viewAndBuilder": (context) =>
-                const ScrollViewWithViewAndBuilderScreen(),
-            "/scrollIndicator/vertical": (context) =>
-                const VerticalIndicatorScreen(),
-            "/scrollIndicator/horizontal": (context) =>
-                const HorizontalIndicatorScreen(),
-            "/infinityScroll/vertical": (context) =>
-                const VerticalInfinityScrollScreen(),
-            "/infinityScroll/horizontal": (context) =>
-                const HorizontalInfinityScrollScreen(),
-            "/infinityScroll/pageview": (context) =>
-                const PageviewInfinityScrollScreen(),
-            "/http/http": (context) => const HttpWithHttpScreen(),
-            "/http/dio": (context) => const HttpWithDioScreen(),
-            "/http/getConnect": (context) => const HttpWithGetConnectScreen(),
-            '/webview/webviewFlutter': (context) =>
-                const WebviewWithWebviewFlutterScreen(),
-            "/webview/inapp": (context) => const WebviewWithInappScreen(),
-            "/webview/launcher": (context) => const WebviewWithLauncherScreen(),
-            "/webview/swift/uiWebview": (context) =>
-                const WebviewWithSwiftUiWebviewScreen(),
-            "/webview/swift/wkWebview": (context) =>
-                const WebviewWithSwiftWKWebviewScreen(),
-            "/webview/daumPost": (context) => const WebviewWithDaumPostScreen(),
-            "/lifeCycle/getx": (context) => const LifeCycleScreenWithGetx(),
-            "/lifeCycle/stateful": (context) =>
-                const LifeCycleScreenWithStateful(),
-            "/lifeCycle/native": (context) => const LifeCycleScreenWithNative(),
-            "/library/equatable": (context) => const LibraryEquatableScreen(),
-            "/library/daumPostcode": (context) =>
-                const LibararyDaumPostcodeScreen(),
-            "/library/dio": ((context) => const LibraryDioScreen()),
-            "/dart/pattern/singleton": (context) =>
-                const DartPatternScreenWithSingleton(),
-            "/dart/pattern/factory": (context) =>
-                const DartPatternScreenWithFactory(),
-          },
-        ),
+      child: MaterialApp(
+        theme: AppTheme.darkTheme,
+        home: const InitialApp(),
+        routes: {
+          "app/caculator": ((context) => const AppCaculatorScreen()),
+          "firebase/authentication": (context) =>
+              const FirebaseAuthenticationScreen(),
+          "/count/app/stateFul": (context) => const CountScreenWithStateFul(),
+          "/count/app/listenerable": (context) =>
+              const CountScreenWithListenarable(),
+          "/count/app/provider": (context) => const CountScreenWithProvider(),
+          "/count/app/get/simple": (context) =>
+              const CountScreenWithGetSimple(),
+          "/count/app/get/reactive": (context) =>
+              const CountScreenWithGetReactive(),
+          "/count/app/bloc": (context) => const CountScreenWithBloc(),
+          "/count/app/cubit": (context) => const CountScreenWithCubit(),
+          "/count/app/riverpod": (context) =>
+              river.ProviderScope(child: CountScreenWithRiverpod()),
+          "/count/app/mobx": (context) => const CountScreenWithMobx(),
+          "/ui/sns/heart/icon": (context) => const SnsUIHeartIconScreen(),
+          "/ui/sns/heart/motion": (context) => const SnsUIHeartMotionScreen(),
+          "/ui/flexible/slider": (context) => const FlexibleSliderUIScreen(),
+          "/ui/over/image/slider": (context) => const OverImageUIScreen(),
+          "/ui/overlap/slider": (context) => const OverlapSliderUIScreen(),
+          "/tabview/tabbar": (context) => const TabViewTabbarScreen(),
+          "/tabview/pageView": (context) => const TabViewPageViewScreen(),
+          "/tabview/custom": (context) => const TabViewCustomScreen(),
+          "/scroll/view/single": (context) =>
+              const ScrollViewWithSingleChildScreen(),
+          "/scroll/view/custom": (context) =>
+              const ScrollViewWithCustomScrollScreen(),
+          "/scroll/view/list/view": (context) =>
+              const ScrollViewWithListViewScreen(),
+          "/scroll/view/gestureToScroll": (context) =>
+              const ScrollViewWithGestureToScrollScreen(),
+          "/scroll/view/viewAndBuilder": (context) =>
+              const ScrollViewWithViewAndBuilderScreen(),
+          "/scrollIndicator/vertical": (context) =>
+              const VerticalIndicatorScreen(),
+          "/scrollIndicator/horizontal": (context) =>
+              const HorizontalIndicatorScreen(),
+          "/infinityScroll/vertical": (context) =>
+              const VerticalInfinityScrollScreen(),
+          "/infinityScroll/horizontal": (context) =>
+              const HorizontalInfinityScrollScreen(),
+          "/infinityScroll/pageview": (context) =>
+              const PageviewInfinityScrollScreen(),
+          "/http/http": (context) => const HttpWithHttpScreen(),
+          "/http/dio": (context) => const HttpWithDioScreen(),
+          "/http/getConnect": (context) => const HttpWithGetConnectScreen(),
+          '/webview/webviewFlutter': (context) =>
+              const WebviewWithWebviewFlutterScreen(),
+          "/webview/inapp": (context) => const WebviewWithInappScreen(),
+          "/webview/launcher": (context) => const WebviewWithLauncherScreen(),
+          "/webview/swift/uiWebview": (context) =>
+              const WebviewWithSwiftUiWebviewScreen(),
+          "/webview/swift/wkWebview": (context) =>
+              const WebviewWithSwiftWKWebviewScreen(),
+          "/webview/daumPost": (context) => const WebviewWithDaumPostScreen(),
+          "/lifeCycle/getx": (context) => const LifeCycleScreenWithGetx(),
+          "/lifeCycle/stateful": (context) =>
+              const LifeCycleScreenWithStateful(),
+          "/lifeCycle/native": (context) => const LifeCycleScreenWithNative(),
+          "/library/equatable": (context) => const LibraryEquatableScreen(),
+          "/library/daumPostcode": (context) =>
+              const LibararyDaumPostcodeScreen(),
+          "/library/dio": ((context) => const LibraryDioScreen()),
+          "/dart/pattern/singleton": (context) =>
+              const DartPatternScreenWithSingleton(),
+          "/dart/pattern/factory": (context) =>
+              const DartPatternScreenWithFactory(),
+        },
       ),
     );
   }

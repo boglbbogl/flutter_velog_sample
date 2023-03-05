@@ -138,6 +138,16 @@ class FirebaseAuthInPutScreen extends StatelessWidget {
                             AuthSignInWithEmailAndPassword(context,
                                 emailController.text, passwordController.text));
                         break;
+                      case AuthenticationType.updateEmail:
+                        context.read<FirebaseAuthBloc>().add(
+                            AuthChangedEmailUpdate(
+                                context, emailController.text));
+                        break;
+                      case AuthenticationType.updatePassword:
+                        context.read<FirebaseAuthBloc>().add(
+                            AuthChangedPasswordUpdate(
+                                context, passwordController.text));
+                        break;
                       case AuthenticationType.emailVerify:
                         break;
                       case AuthenticationType.resetPassword:
@@ -192,6 +202,12 @@ class FirebaseAuthInPutScreen extends StatelessWidget {
         break;
       case AuthenticationType.phoneSignIn:
         _title = "Phone Sign In";
+        break;
+      case AuthenticationType.updateEmail:
+        _title = "Email Update";
+        break;
+      case AuthenticationType.updatePassword:
+        _title = "Password Update";
         break;
       default:
     }

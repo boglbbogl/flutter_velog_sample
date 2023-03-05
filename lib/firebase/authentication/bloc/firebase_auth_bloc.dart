@@ -1,9 +1,9 @@
 import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_velog_sample/firebase/authentication/bloc/authentication_type.dart';
 import 'package:flutter_velog_sample/firebase/authentication/bloc/firebase_auth_event.dart';
 import 'package:flutter_velog_sample/firebase/authentication/bloc/firebase_auth_state.dart';
 import 'package:flutter_velog_sample/main.dart';
@@ -20,6 +20,9 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
     on<AuthPhoneSignInSmsCode>(_phoneSignInSmsCode);
     on<AuthSignInWithEmailAndPassword>(_signInWithEmailAndPassword);
     on<AuthSignUpWithEmailAndPassword>(_signUpWithEmailAndPassword);
+    on<AuthChangedEmailUpdate>(_changedEmailUpdate);
+    on<AuthChangedPasswordUpdate>(_changedPasswordUpdate);
+    add(AuthCheckedCurrentUser());
   }
 
   Future<void> _signOut(
@@ -40,7 +43,15 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
   ) async {
     User? _user = _firebaseAuth.currentUser;
     if (_user != null) {
-      emit(AuthStateAuthenticated(user: _user));
+      SignInProviderState _provider = SignInProviderState.empty;
+      if (_user.providerData.isNotEmpty) {
+        if (_user.providerData[0].providerId == "google.com") {
+          _provider = SignInProviderState.google;
+        } else if (_user.providerData[0].providerId == "password") {
+          _provider = SignInProviderState.email;
+        }
+      }
+      emit(AuthStateAuthenticated(user: _user, providerState: _provider));
     } else {
       emit(const AuthStateUnAuthenticated());
     }
@@ -65,8 +76,12 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
           await _firebaseAuth.signInWithCredential(_googleCredential);
       if (_credential.user != null) {
         emit(AuthStateAuthenticated(
-            user: _credential.user, isLoading: false, isSocialSignIn: true));
+            user: _credential.user,
+            isLoading: false,
+            providerState: SignInProviderState.google));
       }
+    } else {
+      emit(const AuthStateUnAuthenticated());
     }
   }
 
@@ -78,7 +93,10 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
     HapticFeedback.mediumImpact();
     UserCredential _credential = await _firebaseAuth.signInAnonymously();
     if (_credential.user != null) {
-      emit(AuthStateAuthenticated(user: _credential.user, isLoading: false));
+      emit(AuthStateAuthenticated(
+          user: _credential.user,
+          isLoading: false,
+          providerState: SignInProviderState.empty));
     }
   }
 
@@ -113,7 +131,10 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
       UserCredential _credential =
           await _firebaseAuth.signInWithCredential(_phoneCredential);
       if (_credential.user != null) {
-        emit(AuthStateAuthenticated(user: _credential.user, isLoading: false));
+        emit(AuthStateAuthenticated(
+            user: _credential.user,
+            isLoading: false,
+            providerState: SignInProviderState.empty));
         Navigator.of(event.context)
           ..pop()
           ..pop();
@@ -134,7 +155,9 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
             await _firebaseAuth.signInWithEmailAndPassword(
                 email: event.email, password: event.password);
         if (_credential.user != null) {
-          emit(AuthStateAuthenticated(user: _credential.user));
+          emit(AuthStateAuthenticated(
+              user: _credential.user,
+              providerState: SignInProviderState.email));
           Navigator.of(event.context).pop();
         }
       } on FirebaseException catch (error) {
@@ -177,7 +200,9 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
             await _firebaseAuth.createUserWithEmailAndPassword(
                 email: event.email, password: event.password);
         if (_credential.user != null) {
-          emit(AuthStateAuthenticated(user: _credential.user));
+          emit(AuthStateAuthenticated(
+              user: _credential.user,
+              providerState: SignInProviderState.email));
           Navigator.of(event.context).pop();
         }
       } on FirebaseAuthException catch (error) {
@@ -206,6 +231,76 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
           : event.password.isEmpty
               ? "Password Empty"
               : "Server Error"));
+    }
+  }
+
+  Future<void> _changedPasswordUpdate(
+    AuthChangedPasswordUpdate event,
+    Emitter<FirebaseAuthState> emit,
+  ) async {
+    if (state.user != null) {
+      try {
+        await state.user!.updatePassword(event.password).then((_) {
+          User? _updateUser = _firebaseAuth.currentUser;
+          if (_updateUser != null) {
+            emit(AuthStateAuthenticated(
+                user: _updateUser, providerState: SignInProviderState.email));
+          } else {
+            emit(const AuthStateUnAuthenticated());
+          }
+          Navigator.of(event.context).pop();
+        });
+      } on FirebaseException catch (error) {
+        String? _errorCode;
+        switch (error.code) {
+          case "invalid-verification-code":
+            _errorCode = error.code;
+            break;
+          case "invalid-verification-id":
+            _errorCode = error.code;
+            break;
+          default:
+            _errorCode = null;
+        }
+        emit(AuthErrorState(_errorCode ?? "Server Error"));
+      }
+    }
+  }
+
+  Future<void> _changedEmailUpdate(
+    AuthChangedEmailUpdate event,
+    Emitter<FirebaseAuthState> emit,
+  ) async {
+    if (state.user != null) {
+      try {
+        await state.user!.updateEmail(event.email).then((_) {
+          User? _updateUser = _firebaseAuth.currentUser;
+          if (_updateUser != null) {
+            emit(AuthStateAuthenticated(
+                user: _updateUser, providerState: SignInProviderState.email));
+          } else {
+            emit(const AuthStateUnAuthenticated());
+          }
+          Navigator.of(event.context).pop();
+        });
+      } on FirebaseException catch (error) {
+        String? _errorCode;
+        switch (error.code) {
+          case "invalid-email":
+            _errorCode = error.code;
+            break;
+          case "email-already-in-use":
+            _errorCode = error.code;
+            break;
+          case "requires-recent-login":
+            _errorCode = error.code;
+            break;
+
+          default:
+            _errorCode = null;
+        }
+        emit(AuthErrorState(_errorCode ?? "Server Error"));
+      }
     }
   }
 

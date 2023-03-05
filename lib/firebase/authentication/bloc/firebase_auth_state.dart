@@ -1,26 +1,30 @@
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_velog_sample/firebase/authentication/bloc/authentication_type.dart';
 
 abstract class FirebaseAuthState extends Equatable {
   final User? user;
   final bool isLoading;
-  final bool isSocialSignIn;
-  const FirebaseAuthState(
-      {this.user, this.isLoading = false, this.isSocialSignIn = false});
+  final SignInProviderState providerState;
+  const FirebaseAuthState({
+    this.user,
+    this.isLoading = false,
+    this.providerState = SignInProviderState.empty,
+  });
 }
 
 class AuthInitState extends FirebaseAuthState {
-  const AuthInitState({super.user, super.isLoading});
+  const AuthInitState({super.user, super.isLoading, super.providerState});
   @override
-  List<Object?> get props => [user, isLoading];
+  List<Object?> get props => [user, isLoading, providerState];
 }
 
 class AuthStateAuthenticated extends FirebaseAuthState {
   const AuthStateAuthenticated(
-      {super.user, super.isLoading, super.isSocialSignIn});
+      {super.user, super.isLoading, super.providerState});
 
   @override
-  List<Object?> get props => [user, isLoading, isSocialSignIn];
+  List<Object?> get props => [user, isLoading, providerState];
 }
 
 class AuthStateUnAuthenticated extends FirebaseAuthState {
