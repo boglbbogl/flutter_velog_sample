@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' as river;
 import 'package:flutter_velog_sample/_core/app_theme.dart';
 import 'package:flutter_velog_sample/app/calculator/app_calculator_screen.dart';
@@ -15,8 +14,6 @@ import 'package:flutter_velog_sample/count_app/provider/count_screen_with_provid
 import 'package:flutter_velog_sample/count_app/count_screen_with_riverpod.dart';
 import 'package:flutter_velog_sample/dart_lang/factory/dart_pattern_screen_with_factory.dart';
 import 'package:flutter_velog_sample/dart_lang/singleton/dart_pattern_screen_with_singleton.dart';
-import 'package:flutter_velog_sample/firebase/authentication/bloc/firebase_auth_bloc.dart';
-import 'package:flutter_velog_sample/firebase/authentication/bloc/firebase_auth_event.dart';
 import 'package:flutter_velog_sample/firebase/authentication/ui/firebase_authentication_screen.dart';
 import 'package:flutter_velog_sample/firebase_options.dart';
 import 'package:flutter_velog_sample/http/dio/http_with_dio_screen.dart';
@@ -33,7 +30,6 @@ import 'package:flutter_velog_sample/life_cycle/life_cycle_native_provider.dart'
 import 'package:flutter_velog_sample/life_cycle/life_cycle_screen_with_getx.dart';
 import 'package:flutter_velog_sample/life_cycle/life_cycle_screen_with_native.dart';
 import 'package:flutter_velog_sample/life_cycle/life_cycle_screen_with_statful.dart';
-import 'package:flutter_velog_sample/main_provider.dart';
 import 'package:flutter_velog_sample/scroll_indicator/vertical_indicator/vertical_indicator_screen.dart';
 import 'package:flutter_velog_sample/scroll_view/scroll_view_with_custom_scroll_screen.dart';
 import 'package:flutter_velog_sample/scroll_view/scroll_view_with_gesture_to_scroll_screen.dart';
@@ -77,7 +73,6 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => MainProvider()),
         ChangeNotifierProvider(
             create: ((context) => LifeCycleNativeProvider())),
       ],

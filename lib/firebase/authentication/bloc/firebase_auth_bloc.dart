@@ -22,6 +22,8 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
     on<AuthSignUpWithEmailAndPassword>(_signUpWithEmailAndPassword);
     on<AuthChangedEmailUpdate>(_changedEmailUpdate);
     on<AuthChangedPasswordUpdate>(_changedPasswordUpdate);
+    on<AuthVerifySendEmail>(_verifySendEmail);
+    on<AuthResetPasswordSendEmail>(_resetPasswordSendEmail);
     add(AuthCheckedCurrentUser());
   }
 
@@ -48,7 +50,9 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
         if (_user.providerData[0].providerId == "google.com") {
           _provider = SignInProviderState.google;
         } else if (_user.providerData[0].providerId == "password") {
-          _provider = SignInProviderState.email;
+          _provider = _user.emailVerified
+              ? SignInProviderState.emailVerify
+              : SignInProviderState.emailUnVerify;
         }
       }
       emit(AuthStateAuthenticated(user: _user, providerState: _provider));
@@ -140,6 +144,7 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
           ..pop();
       }
     } on FirebaseException catch (error) {
+      logger.e(error.code);
       emit(AuthErrorState(error.message ?? "Server Error"));
     }
   }
@@ -156,8 +161,11 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
                 email: event.email, password: event.password);
         if (_credential.user != null) {
           emit(AuthStateAuthenticated(
-              user: _credential.user,
-              providerState: SignInProviderState.email));
+            user: _credential.user,
+            providerState: _credential.user!.emailVerified
+                ? SignInProviderState.emailVerify
+                : SignInProviderState.emailUnVerify,
+          ));
           Navigator.of(event.context).pop();
         }
       } on FirebaseException catch (error) {
@@ -201,8 +209,9 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
                 email: event.email, password: event.password);
         if (_credential.user != null) {
           emit(AuthStateAuthenticated(
-              user: _credential.user,
-              providerState: SignInProviderState.email));
+            user: _credential.user,
+            providerState: SignInProviderState.emailUnVerify,
+          ));
           Navigator.of(event.context).pop();
         }
       } on FirebaseAuthException catch (error) {
@@ -234,6 +243,28 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
     }
   }
 
+  Future<void> _verifySendEmail(
+    AuthVerifySendEmail event,
+    Emitter<FirebaseAuthState> emit,
+  ) async {
+    HapticFeedback.mediumImpact();
+    if (state.user != null) {
+      await state.user!.sendEmailVerification().then((_) {
+        emit(const AuthStateUnAuthenticated());
+      });
+    }
+  }
+
+  Future<void> _resetPasswordSendEmail(
+    AuthResetPasswordSendEmail event,
+    Emitter<FirebaseAuthState> emit,
+  ) async {
+    if (state.user != null) {
+      HapticFeedback.mediumImpact();
+      await _firebaseAuth.sendPasswordResetEmail(email: state.user!.email!);
+    }
+  }
+
   Future<void> _changedPasswordUpdate(
     AuthChangedPasswordUpdate event,
     Emitter<FirebaseAuthState> emit,
@@ -244,7 +275,10 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
           User? _updateUser = _firebaseAuth.currentUser;
           if (_updateUser != null) {
             emit(AuthStateAuthenticated(
-                user: _updateUser, providerState: SignInProviderState.email));
+                user: _updateUser,
+                providerState: _updateUser.emailVerified
+                    ? SignInProviderState.emailVerify
+                    : SignInProviderState.emailUnVerify));
           } else {
             emit(const AuthStateUnAuthenticated());
           }
@@ -277,7 +311,10 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
           User? _updateUser = _firebaseAuth.currentUser;
           if (_updateUser != null) {
             emit(AuthStateAuthenticated(
-                user: _updateUser, providerState: SignInProviderState.email));
+                user: _updateUser,
+                providerState: _updateUser.emailVerified
+                    ? SignInProviderState.emailVerify
+                    : SignInProviderState.emailUnVerify));
           } else {
             emit(const AuthStateUnAuthenticated());
           }

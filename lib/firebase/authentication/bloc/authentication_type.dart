@@ -3,7 +3,6 @@ enum AuthenticationType {
   emailSignIn(true, true),
   updateEmail(true, false),
   updatePassword(false, true),
-  emailVerify(true, false),
   resetPassword(false, true),
   phoneSignIn(false, false);
 
@@ -13,7 +12,8 @@ enum AuthenticationType {
 }
 
 enum SignInProviderState {
-  email,
+  emailVerify,
+  emailUnVerify,
   google,
   empty;
 }

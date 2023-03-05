@@ -9,7 +9,6 @@ import 'package:flutter_velog_sample/firebase/authentication/bloc/firebase_auth_
 import 'package:flutter_velog_sample/firebase/authentication/bloc/firebase_auth_event.dart';
 import 'package:flutter_velog_sample/firebase/authentication/ui/firebase_auth_input_screen.dart';
 import 'package:flutter_velog_sample/firebase/authentication/bloc/firebase_auth_state.dart';
-import 'package:flutter_velog_sample/main.dart';
 
 class FirebaseAuthenticationScreen extends StatelessWidget {
   const FirebaseAuthenticationScreen({super.key});
@@ -105,29 +104,28 @@ class FirebaseAuthenticationScreen extends StatelessWidget {
                       ]),
                       _title("Update"),
                       _button(context: context, event: [], content: [
-                        "App Email",
-                        "App Password"
+                        "Email",
+                        "Password"
                       ], isBlocked: [
-                        state.providerState != SignInProviderState.email,
-                        state.providerState != SignInProviderState.email,
+                        state.providerState != SignInProviderState.emailVerify,
+                        state.providerState != SignInProviderState.emailVerify,
                       ], onTap: [
                         () =>
                             _pageRoute(context, AuthenticationType.updateEmail),
                         () => _pageRoute(
                             context, AuthenticationType.updatePassword),
                       ]),
-                      _button(context: context, event: [], content: [
-                        "Verify Email",
-                        "Verify Password"
-                      ], isBlocked: [
-                        state.providerState != SignInProviderState.email,
-                        state.providerState != SignInProviderState.email,
-                      ]),
                       _title("Verification"),
-                      _button(context: context, event: [], content: [
-                        "Email"
+                      _button(context: context, event: [
+                        AuthVerifySendEmail(),
+                        AuthResetPasswordSendEmail(),
+                      ], content: [
+                        "Email",
+                        "Reset Password"
                       ], isBlocked: [
-                        state.providerState != SignInProviderState.email,
+                        state.providerState !=
+                            SignInProviderState.emailUnVerify,
+                        state.providerState != SignInProviderState.emailVerify,
                       ]),
                       _title("Sign Up"),
                       _button(context: context, event: [], content: [
@@ -178,7 +176,7 @@ class FirebaseAuthenticationScreen extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(
-              width: MediaQueryData.fromWindow(window).size.width * 0.23,
+              width: MediaQueryData.fromWindow(window).size.width * 0.3,
               child: Text(
                 title,
                 style:

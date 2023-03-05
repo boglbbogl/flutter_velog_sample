@@ -35,68 +35,7 @@ class FirebaseAuthInPutScreen extends StatelessWidget {
                     color: Colors.white),
               )));
         } else if (state is AuthStatePhoneState) {
-          showModalBottomSheet(
-              context: context,
-              builder: (context) {
-                return Container(
-                  color: const Color.fromRGBO(71, 71, 71, 1),
-                  child: SafeArea(
-                    child: Container(
-                        width: MediaQueryData.fromWindow(window).size.width,
-                        height: MediaQueryData.fromWindow(window).size.height *
-                            0.45,
-                        color: const Color.fromRGBO(71, 71, 71, 1),
-                        child: Stack(
-                          children: [
-                            Positioned(
-                                right: 20,
-                                top: 24,
-                                child: GestureDetector(
-                                  onTap: () {
-                                    HapticFeedback.mediumImpact();
-                                    context.read<FirebaseAuthBloc>().add(
-                                        AuthPhoneSignInSmsCode(
-                                            context,
-                                            smsController.text,
-                                            state.verifycationId));
-                                  },
-                                  child: const Text(
-                                    "Done",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.blue,
-                                        fontSize: 22),
-                                  ),
-                                )),
-                            SizedBox(
-                              width:
-                                  MediaQueryData.fromWindow(window).size.width,
-                              child: Column(
-                                children: [
-                                  const Padding(
-                                    padding:
-                                        EdgeInsets.only(top: 24, bottom: 48),
-                                    child: Text(
-                                      "SMS CODE",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                        fontSize: 24,
-                                      ),
-                                    ),
-                                  ),
-                                  _textFormField(
-                                      controller: smsController,
-                                      hintText: "SMS Code",
-                                      textInputType: TextInputType.number),
-                                ],
-                              ),
-                            ),
-                          ],
-                        )),
-                  ),
-                );
-              });
+          _smsBottomSheet(context, state);
         }
       },
       child: GestureDetector(
@@ -148,8 +87,7 @@ class FirebaseAuthInPutScreen extends StatelessWidget {
                             AuthChangedPasswordUpdate(
                                 context, passwordController.text));
                         break;
-                      case AuthenticationType.emailVerify:
-                        break;
+
                       case AuthenticationType.resetPassword:
                         break;
                       case AuthenticationType.phoneSignIn:
@@ -185,6 +123,69 @@ class FirebaseAuthInPutScreen extends StatelessWidget {
     );
   }
 
+  Future<dynamic> _smsBottomSheet(
+      BuildContext context, AuthStatePhoneState state) {
+    return showModalBottomSheet(
+        context: context,
+        builder: (ctx) {
+          return Container(
+            color: const Color.fromRGBO(71, 71, 71, 1),
+            child: SafeArea(
+              child: Container(
+                  width: MediaQueryData.fromWindow(window).size.width,
+                  height: MediaQueryData.fromWindow(window).size.height * 0.45,
+                  color: const Color.fromRGBO(71, 71, 71, 1),
+                  child: Stack(
+                    children: [
+                      Positioned(
+                          right: 20,
+                          top: 24,
+                          child: GestureDetector(
+                            onTap: () {
+                              FocusScope.of(context).unfocus();
+                              context.read<FirebaseAuthBloc>().add(
+                                  AuthPhoneSignInSmsCode(
+                                      context,
+                                      smsController.text,
+                                      state.verifycationId));
+                            },
+                            child: const Text(
+                              "Done",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blue,
+                                  fontSize: 22),
+                            ),
+                          )),
+                      SizedBox(
+                        width: MediaQueryData.fromWindow(window).size.width,
+                        child: Column(
+                          children: [
+                            const Padding(
+                              padding: EdgeInsets.only(top: 24, bottom: 48),
+                              child: Text(
+                                "SMS CODE",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  fontSize: 24,
+                                ),
+                              ),
+                            ),
+                            _textFormField(
+                                controller: smsController,
+                                hintText: "SMS Code",
+                                textInputType: TextInputType.number),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )),
+            ),
+          );
+        });
+  }
+
   String _buttonTitle(AuthenticationType type) {
     String _title = "Type Error";
     switch (type) {
@@ -193,9 +194,6 @@ class FirebaseAuthInPutScreen extends StatelessWidget {
         break;
       case AuthenticationType.emailSignIn:
         _title = "Email Sign In";
-        break;
-      case AuthenticationType.emailVerify:
-        _title = "Email Verification";
         break;
       case AuthenticationType.resetPassword:
         _title = "Reset Password";

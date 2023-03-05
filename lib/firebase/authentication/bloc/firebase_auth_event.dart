@@ -56,6 +56,10 @@ class AuthSignUpWithEmailAndPassword extends FirebaseAuthEvent {
   List<Object?> get props => [context, email, password];
 }
 
+class AuthVerifySendEmail extends FirebaseAuthEvent {}
+
+class AuthResetPasswordSendEmail extends FirebaseAuthEvent {}
+
 class AuthChangedEmailUpdate extends FirebaseAuthEvent {
   final BuildContext context;
   final String email;

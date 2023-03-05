@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_size.dart';
-import 'package:flutter_velog_sample/auth/authenication_sheet.dart';
-import 'package:flutter_velog_sample/main_provider.dart';
-import 'package:provider/provider.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -10,407 +7,377 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
-    return Consumer<MainProvider>(builder: (context, state, child) {
-      return Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'Tyger App',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Tyger App',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
           ),
-          actions: [
-            Row(
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    authenticationSheet(context);
-                  },
-                  child: Container(
-                    width: 32,
-                    height: 32,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(100)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(3.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: const Color.fromRGBO(71, 71, 71, 1),
-                            borderRadius: BorderRadius.circular(100)),
-                        child: const Icon(
-                          Icons.account_circle_rounded,
-                          size: 24,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 12),
-              ],
-            ),
-          ],
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _category(title: 'App', widgets: [
-                _item(
-                  context: context,
-                  content: 'Timer',
-                ),
-                _item(
-                  context: context,
-                  content: 'Calculator',
-                  namedRouter: 'app/caculator',
-                  isPost: true,
-                ),
-                _item(
-                  context: context,
-                  content: 'To do',
-                ),
-                _item(
-                  context: context,
-                  content: 'Date Picker',
-                ),
-              ]),
-              _category(title: "Firebase", widgets: [
-                _item(
-                  context: context,
-                  content: "Authentication",
-                  namedRouter: "firebase/authentication",
-                  isPost: true,
-                ),
-                _item(
-                  context: context,
-                  content: "Dynamic Links",
-                  isPost: false,
-                ),
-                _item(
-                  length: 3,
-                  context: context,
-                  content: "Firestore",
-                  isPost: false,
-                ),
-                _item(
-                  length: 3,
-                  context: context,
-                  content: "Realtime",
-                  isPost: false,
-                ),
-                _item(
-                  length: 3,
-                  context: context,
-                  content: "Storage",
-                  isPost: false,
-                ),
-                _item(
-                  context: context,
-                  content: "GA(Google Analytics)",
-                  isPost: false,
-                ),
-                _item(
-                  context: context,
-                  content: "Crashlytics",
-                  isPost: false,
-                ),
-              ]),
-              _category(title: 'State Management With Count App', widgets: [
-                _item(
-                  length: 3,
-                  context: context,
-                  content: 'State Ful',
-                  namedRouter: '/count/app/stateFul',
-                ),
-                _item(
-                  length: 3,
-                  context: context,
-                  content: 'Listenerable',
-                  namedRouter: '/count/app/listenerable',
-                ),
-                _item(
-                  length: 3,
-                  context: context,
-                  content: 'Provider',
-                  namedRouter: '/count/app/provider',
-                ),
-                _item(
-                  length: 3,
-                  context: context,
-                  content: 'Get X(simple)',
-                  namedRouter: '/count/app/get/simple',
-                ),
-                _item(
-                  length: 3,
-                  context: context,
-                  content: 'Get X(Reactive)',
-                  namedRouter: '/count/app/get/reactive',
-                ),
-                _item(
-                  length: 3,
-                  context: context,
-                  content: 'BLoC',
-                  namedRouter: '/count/app/bloc',
-                ),
-                _item(
-                  length: 3,
-                  context: context,
-                  content: 'Cubit',
-                  namedRouter: '/count/app/cubit',
-                ),
-                _item(
-                  length: 3,
-                  context: context,
-                  content: 'Riverpod',
-                  namedRouter: '/count/app/riverpod',
-                ),
-                _item(
-                  length: 3,
-                  context: context,
-                  content: 'MobX',
-                  namedRouter: '/count/app/mobx',
-                ),
-              ]),
-              _category(title: 'UI', widgets: [
-                _item(
-                  context: context,
-                  content: 'SNS Heart Icon',
-                  namedRouter: '/ui/sns/heart/icon',
-                ),
-                _item(
-                  context: context,
-                  content: 'SNS Heart Motion',
-                  namedRouter: '/ui/sns/heart/motion',
-                ),
-                _item(
-                  context: context,
-                  content: "Flexible Slider",
-                  namedRouter: "/ui/flexible/slider",
-                ),
-                _item(
-                  context: context,
-                  content: "Over Image Slider",
-                  namedRouter: "/ui/over/image/slider",
-                  isPost: true,
-                ),
-                _item(
-                  context: context,
-                  content: "Overlap Slider",
-                  namedRouter: "/ui/overlap/slider",
-                  isPost: true,
-                ),
-              ]),
-              _category(title: 'Tab View', widgets: [
-                _item(
-                  length: 3,
-                  context: context,
-                  content: 'Tabbar View',
-                  namedRouter: '/tabview/tabbar',
-                ),
-                _item(
-                  length: 3,
-                  context: context,
-                  content: 'Page View',
-                  namedRouter: '/tabview/pageView',
-                ),
-                _item(
-                  length: 3,
-                  context: context,
-                  content: 'Custom View',
-                  namedRouter: '/tabview/custom',
-                ),
-              ]),
-              _category(title: 'Scroll View', widgets: [
-                _item(
-                  length: 3,
-                  context: context,
-                  content: 'Single Child',
-                  namedRouter: '/scroll/view/single',
-                ),
-                _item(
-                  length: 3,
-                  context: context,
-                  content: 'Custom Scroll',
-                  namedRouter: '/scroll/view/custom',
-                ),
-                _item(
-                  length: 3,
-                  context: context,
-                  content: 'List View',
-                  namedRouter: '/scroll/view/list/view',
-                ),
-                _item(
-                  length: 2,
-                  context: context,
-                  content: 'Gesture To Scroll',
-                  namedRouter: '/scroll/view/gestureToScroll',
-                ),
-                _item(
-                  length: 2,
-                  context: context,
-                  content: 'View vs Builder',
-                  namedRouter: '/scroll/view/viewAndBuilder',
-                ),
-              ]),
-              _category(title: 'Scroll Indicator', widgets: [
-                _item(
-                  context: context,
-                  content: 'Vertical',
-                  namedRouter: '/scrollIndicator/vertical',
-                ),
-                _item(
-                  context: context,
-                  content: 'Horizontal',
-                  namedRouter: '/scrollIndicator/horizontal',
-                ),
-              ]),
-              _category(title: 'Infinity Scroll', widgets: [
-                _item(
-                  length: 3,
-                  context: context,
-                  content: 'Vertical',
-                  namedRouter: '/infinityScroll/vertical',
-                ),
-                _item(
-                  length: 3,
-                  context: context,
-                  content: 'Horizontal',
-                  namedRouter: '/infinityScroll/horizontal',
-                ),
-                _item(
-                  length: 3,
-                  context: context,
-                  content: 'PageView',
-                  namedRouter: '/infinityScroll/pageview',
-                ),
-              ]),
-              _category(title: 'Sliver', widgets: []),
-              _category(title: "HTTP", widgets: [
-                _item(
-                  length: 3,
-                  context: context,
-                  content: "Http",
-                  namedRouter: "/http/http",
-                ),
-                _item(
-                    length: 3,
-                    context: context,
-                    content: "Dio",
-                    namedRouter: "/http/dio"),
-                _item(
-                    length: 3,
-                    context: context,
-                    content: "Get Connect",
-                    namedRouter: "/http/getConnect"),
-              ]),
-              _category(title: "Kakao API", widgets: []),
-              _category(title: "Naver API", widgets: []),
-              _category(title: 'Webview', widgets: [
-                _item(
-                  context: context,
-                  content: 'WebviewFlutter',
-                  namedRouter: '/webview/webviewFlutter',
-                ),
-                _item(
-                  context: context,
-                  content: 'InAppWebview',
-                  namedRouter: '/webview/inapp',
-                ),
-                _item(
-                  context: context,
-                  content: 'Launcher',
-                  namedRouter: '/webview/launcher',
-                ),
-                _item(
-                  context: context,
-                  content: 'DaumPost WebView',
-                  namedRouter: '/webview/daumPost',
-                ),
-                _item(
-                  context: context,
-                  content: 'Swift UiWebView',
-                  namedRouter: '/webview/swift/uiWebview',
-                ),
-                _item(
-                  context: context,
-                  content: 'Swift WkWebView',
-                  namedRouter: '/webview/swift/wkWebview',
-                ),
-              ]),
-              _category(title: 'Life Cycle', widgets: [
-                _item(
-                  length: 3,
-                  context: context,
-                  content: 'Get X',
-                  namedRouter: '/lifeCycle/getx',
-                ),
-                _item(
-                  length: 3,
-                  context: context,
-                  content: 'State ful',
-                  namedRouter: '/lifeCycle/stateful',
-                ),
-                _item(
-                  length: 3,
-                  context: context,
-                  content: 'Native',
-                  namedRouter: '/lifeCycle/native',
-                ),
-              ]),
-              _category(title: 'Library', widgets: [
-                _item(
-                  length: 3,
-                  context: context,
-                  content: 'Freezed',
-                ),
-                _item(
-                  length: 3,
-                  context: context,
-                  content: 'Dartz',
-                ),
-                _item(
-                  length: 3,
-                  context: context,
-                  content: "Logger",
-                ),
-                _item(
-                  length: 3,
-                  context: context,
-                  content: 'Equatable',
-                  namedRouter: '/library/equatable',
-                ),
-                _item(
-                  length: 3,
-                  context: context,
-                  content: 'DaumPostCode',
-                  namedRouter: '/library/daumPostcode',
-                ),
-                _item(
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _category(title: 'App', widgets: [
+              _item(
+                context: context,
+                content: 'Timer',
+              ),
+              _item(
+                context: context,
+                content: 'Calculator',
+                namedRouter: 'app/caculator',
+                isPost: true,
+              ),
+              _item(
+                context: context,
+                content: 'To do',
+              ),
+              _item(
+                context: context,
+                content: 'Date Picker',
+              ),
+            ]),
+            _category(title: "Firebase", widgets: [
+              _item(
+                context: context,
+                content: "Authentication",
+                namedRouter: "firebase/authentication",
+                isPost: true,
+              ),
+              _item(
+                context: context,
+                content: "Dynamic Links",
+                isPost: false,
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: "Firestore",
+                isPost: false,
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: "Realtime",
+                isPost: false,
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: "Storage",
+                isPost: false,
+              ),
+              _item(
+                context: context,
+                content: "GA(Google Analytics)",
+                isPost: false,
+              ),
+              _item(
+                context: context,
+                content: "Crashlytics",
+                isPost: false,
+              ),
+            ]),
+            // _category(title: "Bloc Pattern (example)", widgets: [
+            //   _item(context: context, content: "Photos"),
+            // ]),
+            _category(title: 'State Management With Count App', widgets: [
+              _item(
+                length: 3,
+                context: context,
+                content: 'State Ful',
+                namedRouter: '/count/app/stateFul',
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: 'Listenerable',
+                namedRouter: '/count/app/listenerable',
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: 'Provider',
+                namedRouter: '/count/app/provider',
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: 'Get X(simple)',
+                namedRouter: '/count/app/get/simple',
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: 'Get X(Reactive)',
+                namedRouter: '/count/app/get/reactive',
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: 'BLoC',
+                namedRouter: '/count/app/bloc',
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: 'Cubit',
+                namedRouter: '/count/app/cubit',
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: 'Riverpod',
+                namedRouter: '/count/app/riverpod',
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: 'MobX',
+                namedRouter: '/count/app/mobx',
+              ),
+            ]),
+            _category(title: 'UI', widgets: [
+              _item(
+                context: context,
+                content: 'SNS Heart Icon',
+                namedRouter: '/ui/sns/heart/icon',
+              ),
+              _item(
+                context: context,
+                content: 'SNS Heart Motion',
+                namedRouter: '/ui/sns/heart/motion',
+              ),
+              _item(
+                context: context,
+                content: "Flexible Slider",
+                namedRouter: "/ui/flexible/slider",
+              ),
+              _item(
+                context: context,
+                content: "Over Image Slider",
+                namedRouter: "/ui/over/image/slider",
+                isPost: true,
+              ),
+              _item(
+                context: context,
+                content: "Overlap Slider",
+                namedRouter: "/ui/overlap/slider",
+                isPost: true,
+              ),
+            ]),
+            _category(title: 'Tab View', widgets: [
+              _item(
+                length: 3,
+                context: context,
+                content: 'Tabbar View',
+                namedRouter: '/tabview/tabbar',
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: 'Page View',
+                namedRouter: '/tabview/pageView',
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: 'Custom View',
+                namedRouter: '/tabview/custom',
+              ),
+            ]),
+            _category(title: 'Scroll View', widgets: [
+              _item(
+                length: 3,
+                context: context,
+                content: 'Single Child',
+                namedRouter: '/scroll/view/single',
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: 'Custom Scroll',
+                namedRouter: '/scroll/view/custom',
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: 'List View',
+                namedRouter: '/scroll/view/list/view',
+              ),
+              _item(
+                length: 2,
+                context: context,
+                content: 'Gesture To Scroll',
+                namedRouter: '/scroll/view/gestureToScroll',
+              ),
+              _item(
+                length: 2,
+                context: context,
+                content: 'View vs Builder',
+                namedRouter: '/scroll/view/viewAndBuilder',
+              ),
+            ]),
+            _category(title: 'Scroll Indicator', widgets: [
+              _item(
+                context: context,
+                content: 'Vertical',
+                namedRouter: '/scrollIndicator/vertical',
+              ),
+              _item(
+                context: context,
+                content: 'Horizontal',
+                namedRouter: '/scrollIndicator/horizontal',
+              ),
+            ]),
+            _category(title: 'Infinity Scroll', widgets: [
+              _item(
+                length: 3,
+                context: context,
+                content: 'Vertical',
+                namedRouter: '/infinityScroll/vertical',
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: 'Horizontal',
+                namedRouter: '/infinityScroll/horizontal',
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: 'PageView',
+                namedRouter: '/infinityScroll/pageview',
+              ),
+            ]),
+            _category(title: 'Sliver', widgets: []),
+            _category(title: "HTTP", widgets: [
+              _item(
+                length: 3,
+                context: context,
+                content: "Http",
+                namedRouter: "/http/http",
+              ),
+              _item(
                   length: 3,
                   context: context,
                   content: "Dio",
-                  namedRouter: '/library/dio',
-                ),
-              ]),
-              _category(title: "Dart", widgets: [
-                _item(
+                  namedRouter: "/http/dio"),
+              _item(
+                  length: 3,
                   context: context,
-                  content: "Singleton Pattenr",
-                  namedRouter: "/dart/pattern/singleton",
-                ),
-                _item(
-                  context: context,
-                  content: "Factory Pattenr",
-                  namedRouter: "/dart/pattern/factory",
-                ),
-              ]),
-              const SizedBox(height: 40),
-            ],
-          ),
+                  content: "Get Connect",
+                  namedRouter: "/http/getConnect"),
+            ]),
+            _category(title: "Kakao API", widgets: []),
+            _category(title: "Naver API", widgets: []),
+            _category(title: 'Webview', widgets: [
+              _item(
+                context: context,
+                content: 'WebviewFlutter',
+                namedRouter: '/webview/webviewFlutter',
+              ),
+              _item(
+                context: context,
+                content: 'InAppWebview',
+                namedRouter: '/webview/inapp',
+              ),
+              _item(
+                context: context,
+                content: 'Launcher',
+                namedRouter: '/webview/launcher',
+              ),
+              _item(
+                context: context,
+                content: 'DaumPost WebView',
+                namedRouter: '/webview/daumPost',
+              ),
+              _item(
+                context: context,
+                content: 'Swift UiWebView',
+                namedRouter: '/webview/swift/uiWebview',
+              ),
+              _item(
+                context: context,
+                content: 'Swift WkWebView',
+                namedRouter: '/webview/swift/wkWebview',
+              ),
+            ]),
+            _category(title: 'Life Cycle', widgets: [
+              _item(
+                length: 3,
+                context: context,
+                content: 'Get X',
+                namedRouter: '/lifeCycle/getx',
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: 'State ful',
+                namedRouter: '/lifeCycle/stateful',
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: 'Native',
+                namedRouter: '/lifeCycle/native',
+              ),
+            ]),
+            _category(title: 'Library', widgets: [
+              _item(
+                length: 3,
+                context: context,
+                content: 'Freezed',
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: 'Dartz',
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: "Logger",
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: 'Equatable',
+                namedRouter: '/library/equatable',
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: 'DaumPostCode',
+                namedRouter: '/library/daumPostcode',
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: "Dio",
+                namedRouter: '/library/dio',
+              ),
+            ]),
+            _category(title: "Dart", widgets: [
+              _item(
+                context: context,
+                content: "Singleton Pattenr",
+                namedRouter: "/dart/pattern/singleton",
+              ),
+              _item(
+                context: context,
+                content: "Factory Pattenr",
+                namedRouter: "/dart/pattern/factory",
+              ),
+            ]),
+            const SizedBox(height: 40),
+          ],
         ),
-      );
-    });
+      ),
+    );
   }
 
   IgnorePointer _item({
