@@ -7,7 +7,7 @@ import 'package:flutter_velog_sample/_core/app_size.dart';
 import 'package:flutter_velog_sample/firebase/authentication/bloc/authentication_type.dart';
 import 'package:flutter_velog_sample/firebase/authentication/bloc/firebase_auth_bloc.dart';
 import 'package:flutter_velog_sample/firebase/authentication/bloc/firebase_auth_event.dart';
-import 'package:flutter_velog_sample/firebase/authentication/ui/firebase_auth_input_screen.dart';
+import 'package:flutter_velog_sample/firebase/authentication/presentation/firebase_auth_input_screen.dart';
 import 'package:flutter_velog_sample/firebase/authentication/bloc/firebase_auth_state.dart';
 
 class FirebaseAuthenticationScreen extends StatelessWidget {

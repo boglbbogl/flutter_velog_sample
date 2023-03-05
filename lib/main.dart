@@ -14,7 +14,7 @@ import 'package:flutter_velog_sample/count_app/provider/count_screen_with_provid
 import 'package:flutter_velog_sample/count_app/count_screen_with_riverpod.dart';
 import 'package:flutter_velog_sample/dart_lang/factory/dart_pattern_screen_with_factory.dart';
 import 'package:flutter_velog_sample/dart_lang/singleton/dart_pattern_screen_with_singleton.dart';
-import 'package:flutter_velog_sample/firebase/authentication/ui/firebase_authentication_screen.dart';
+import 'package:flutter_velog_sample/firebase/authentication/presentation/firebase_authentication_screen.dart';
 import 'package:flutter_velog_sample/firebase_options.dart';
 import 'package:flutter_velog_sample/http/dio/http_with_dio_screen.dart';
 import 'package:flutter_velog_sample/http/get_connect/http_with_get_connect_screen.dart';
