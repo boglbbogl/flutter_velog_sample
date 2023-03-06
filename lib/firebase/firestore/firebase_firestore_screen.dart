@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
+import 'package:flutter_velog_sample/main.dart';
 
 class Test {
   final int id;
@@ -36,13 +38,27 @@ class FirebaseFirestoreScreen extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () async {
-              FirebaseFirestore _firestore = FirebaseFirestore.instance;
-              for (int i = 0; i < 10; i++) {
-                await _firestore
-                    .collection("read_test")
-                    .doc()
-                    .set(Test(id: i, rank: i + 1, name: "Tyger$i").toJson());
-              }
+              String _yourDomain = "tyger";
+              DynamicLinkParameters dynamicLinkParams = DynamicLinkParameters(
+                uriPrefix: "https://$_yourDomain.page.link",
+                link: Uri.parse("https://$_yourDomain.page.link/test"),
+                androidParameters: const AndroidParameters(
+                  packageName: "com.tyger.flutter_velog_sample",
+                  minimumVersion: 0,
+                ),
+              );
+              ShortDynamicLink dynamicLink = await FirebaseDynamicLinks.instance
+                  .buildShortLink(dynamicLinkParams);
+
+              String url = dynamicLink.shortUrl.toString();
+              logger.e(url);
+              // FirebaseFirestore _firestore = FirebaseFirestore.instance;
+              // for (int i = 0; i < 10; i++) {
+              //   await _firestore
+              //       .collection("read_test")
+              //       .doc()
+              //       .set(Test(id: i, rank: i + 1, name: "Tyger$i").toJson());
+              // }
             },
             child: Container(
               width: 100,
