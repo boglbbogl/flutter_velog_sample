@@ -18,6 +18,7 @@ import 'package:flutter_velog_sample/firebase/authentication/presentation/fireba
 import 'package:flutter_velog_sample/firebase/dynamic_links/dynamic_links_argument_screen.dart';
 import 'package:flutter_velog_sample/firebase/dynamic_links/dynamic_links_multi_args_screen.dart';
 import 'package:flutter_velog_sample/firebase/dynamic_links/dynamic_links_nomal_screen.dart';
+import 'package:flutter_velog_sample/firebase/dynamic_links/dynamic_links_provider.dart';
 import 'package:flutter_velog_sample/firebase/dynamic_links/firebase_dynamic_links_screen.dart';
 import 'package:flutter_velog_sample/firebase/firestore/firebase_firestore_screen.dart';
 import 'package:flutter_velog_sample/firebase_options.dart';
@@ -80,6 +81,9 @@ class App extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
             create: ((context) => LifeCycleNativeProvider())),
+        ChangeNotifierProvider(
+            create: ((context) =>
+                DynamicLinksProvider()..initialDynamicLink())),
       ],
       child: MaterialApp(
         theme: AppTheme.darkTheme,
