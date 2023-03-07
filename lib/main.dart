@@ -15,6 +15,10 @@ import 'package:flutter_velog_sample/count_app/count_screen_with_riverpod.dart';
 import 'package:flutter_velog_sample/dart_lang/factory/dart_pattern_screen_with_factory.dart';
 import 'package:flutter_velog_sample/dart_lang/singleton/dart_pattern_screen_with_singleton.dart';
 import 'package:flutter_velog_sample/firebase/authentication/presentation/firebase_authentication_screen.dart';
+import 'package:flutter_velog_sample/firebase/dynamic_links/dynamic_links_argument_screen.dart';
+import 'package:flutter_velog_sample/firebase/dynamic_links/dynamic_links_multi_args_screen.dart';
+import 'package:flutter_velog_sample/firebase/dynamic_links/dynamic_links_nomal_screen.dart';
+import 'package:flutter_velog_sample/firebase/dynamic_links/firebase_dynamic_links_screen.dart';
 import 'package:flutter_velog_sample/firebase/firestore/firebase_firestore_screen.dart';
 import 'package:flutter_velog_sample/firebase_options.dart';
 import 'package:flutter_velog_sample/http/dio/http_with_dio_screen.dart';
@@ -85,6 +89,14 @@ class App extends StatelessWidget {
           "firebase/authentication": (context) =>
               const FirebaseAuthenticationScreen(),
           "firebase/firestore": (context) => const FirebaseFirestoreScreen(),
+          "firebase/dynamicLinks": (context) =>
+              const FirebaseDynamicLinksScreen(),
+          "firebase/dynamicLinks/nomal": (context) =>
+              const DynamicLinksNomalScreen(),
+          "firebase/dynamicLinks/multi": (context) =>
+              const DynamicLinksMultiArgsScreen(),
+          "firebase/dynamicLinks/argument": (context) =>
+              const DynamicLinksArgumentScreen(),
           "/count/app/stateFul": (context) => const CountScreenWithStateFul(),
           "/count/app/listenerable": (context) =>
               const CountScreenWithListenarable(),
