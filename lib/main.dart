@@ -15,10 +15,10 @@ import 'package:flutter_velog_sample/count_app/count_screen_with_riverpod.dart';
 import 'package:flutter_velog_sample/dart_lang/factory/dart_pattern_screen_with_factory.dart';
 import 'package:flutter_velog_sample/dart_lang/singleton/dart_pattern_screen_with_singleton.dart';
 import 'package:flutter_velog_sample/firebase/authentication/presentation/firebase_authentication_screen.dart';
-import 'package:flutter_velog_sample/firebase/dynamic_links/dynamic_links_argument_screen.dart';
-import 'package:flutter_velog_sample/firebase/dynamic_links/dynamic_links_multi_args_screen.dart';
-import 'package:flutter_velog_sample/firebase/dynamic_links/dynamic_links_nomal_screen.dart';
+import 'package:flutter_velog_sample/firebase/dynamic_links/dynamic_links_first_screen.dart';
 import 'package:flutter_velog_sample/firebase/dynamic_links/dynamic_links_provider.dart';
+import 'package:flutter_velog_sample/firebase/dynamic_links/dynamic_links_second_screen.dart';
+import 'package:flutter_velog_sample/firebase/dynamic_links/dynamic_links_third_screen.dart';
 import 'package:flutter_velog_sample/firebase/dynamic_links/firebase_dynamic_links_screen.dart';
 import 'package:flutter_velog_sample/firebase/firestore/firebase_firestore_screen.dart';
 import 'package:flutter_velog_sample/firebase_options.dart';
@@ -81,9 +81,7 @@ class App extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
             create: ((context) => LifeCycleNativeProvider())),
-        ChangeNotifierProvider(
-            create: ((context) =>
-                DynamicLinksProvider()..initialDynamicLink())),
+        ChangeNotifierProvider(create: (context) => DynamicLinksProvider()),
       ],
       child: MaterialApp(
         theme: AppTheme.darkTheme,
@@ -95,12 +93,12 @@ class App extends StatelessWidget {
           "firebase/firestore": (context) => const FirebaseFirestoreScreen(),
           "firebase/dynamicLinks": (context) =>
               const FirebaseDynamicLinksScreen(),
-          "firebase/dynamicLinks/nomal": (context) =>
-              const DynamicLinksNomalScreen(),
-          "firebase/dynamicLinks/multi": (context) =>
-              const DynamicLinksMultiArgsScreen(),
-          "firebase/dynamicLinks/argument": (context) =>
-              const DynamicLinksArgumentScreen(),
+          "firebase/dynamicLinks/first": (context) =>
+              const DynamicLinksFirstScreen(),
+          "firebase/dynamicLinks/second": (context) =>
+              const DynamicLinksSecondScreen(),
+          "firebase/dynamicLinks/third": (context) =>
+              const DynamicLinksThirdScreen(),
           "/count/app/stateFul": (context) => const CountScreenWithStateFul(),
           "/count/app/listenerable": (context) =>
               const CountScreenWithListenarable(),

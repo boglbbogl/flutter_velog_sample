@@ -11,7 +11,7 @@ class InitialApp extends StatelessWidget {
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
     theme = Theme.of(context);
-    context.watch<DynamicLinksProvider>().dynamicLinkListener();
+    context.watch<DynamicLinksProvider>().listener(context);
     return const MainScreen();
   }
 }

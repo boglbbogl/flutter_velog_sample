@@ -1,9 +1,9 @@
 import 'dart:ui';
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
-import 'package:flutter_velog_sample/main.dart';
+import 'package:flutter_velog_sample/firebase/dynamic_links/dynamic_links_provider.dart';
+import 'package:provider/provider.dart';
 
 class FirebaseDynamicLinksScreen extends StatelessWidget {
   const FirebaseDynamicLinksScreen({super.key});
@@ -17,15 +17,15 @@ class FirebaseDynamicLinksScreen extends StatelessWidget {
         children: [
           _button(
             context: context,
-            content: "nomal",
+            content: "first",
           ),
           _button(
             context: context,
-            content: "argument",
+            content: "second",
           ),
           _button(
             context: context,
-            content: "multi",
+            content: "third",
           ),
         ],
       ),
@@ -43,8 +43,7 @@ class FirebaseDynamicLinksScreen extends StatelessWidget {
           GestureDetector(
             onTap: () {
               HapticFeedback.mediumImpact();
-              Navigator.of(context)
-                  .pushNamed("/firebase/dynamicLinks/$content");
+              Navigator.of(context).pushNamed("firebase/dynamicLinks/$content");
             },
             child: Container(
               width: MediaQueryData.fromWindow(window).size.width / 2 - 30,
@@ -64,25 +63,9 @@ class FirebaseDynamicLinksScreen extends StatelessWidget {
           const SizedBox(width: 20),
           GestureDetector(
             onTap: () async {
-              HapticFeedback.mediumImpact();
-              DynamicLinkParameters _parms = DynamicLinkParameters(
-                uriPrefix: "https://tyger.page.link",
-                link: Uri.parse(
-                    "https://tyger.page.link/firebase/dynamicLinks/$content"),
-                androidParameters: const AndroidParameters(
-                  packageName: "com.tyger.flutter_velog_sample",
-                  minimumVersion: 0,
-                ),
-                iosParameters: const IOSParameters(
-                  bundleId: "com.tyger.velogsample",
-                  minimumVersion: '0',
-                ),
-              );
-              ShortDynamicLink _dynamicLink =
-                  await FirebaseDynamicLinks.instance.buildShortLink(_parms);
-              String _shortLink = _dynamicLink.shortUrl.toString();
-              Clipboard.setData(ClipboardData(text: _shortLink));
-              logger.e(_shortLink);
+              context
+                  .read<DynamicLinksProvider>()
+                  .createDynamicLink(context, content);
             },
             child: Container(
               width: MediaQueryData.fromWindow(window).size.width / 2 - 30,

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_size.dart';
-import 'package:flutter_velog_sample/firebase/dynamic_links/dynamic_links_provider.dart';
-import 'package:provider/provider.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -22,7 +20,6 @@ class MainScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(context.watch<DynamicLinksProvider>().dynamicLink ?? "null"),
             _category(title: 'App', widgets: [
               _item(
                 context: context,
