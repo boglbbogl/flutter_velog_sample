@@ -50,7 +50,8 @@ class MainScreen extends StatelessWidget {
               _item(
                 context: context,
                 content: "Dynamic Links",
-                isPost: false,
+                isPost: true,
+                namedRouter: "firebase/dynamicLinks",
               ),
               _item(
                 length: 3,

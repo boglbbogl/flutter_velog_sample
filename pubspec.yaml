@@ -35,6 +35,7 @@ dependencies:
   equatable: ^2.0.5
   firebase_auth: ^4.2.9
   firebase_core: ^2.7.0
+  firebase_dynamic_links: ^5.0.15
   flutter:
     sdk: flutter
   flutter_app_badger: ^1.5.0
