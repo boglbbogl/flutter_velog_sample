@@ -1,30 +1,32 @@
 import 'dart:async';
 import 'dart:ui';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
-import 'package:flutter_velog_sample/main.dart';
 
-class Test {
+class _InfinityScrollModel {
   final int id;
-  final int rank;
   final String name;
+  final Timestamp dateTime;
 
-  Test({required this.id, required this.rank, required this.name});
+  _InfinityScrollModel({
+    required this.id,
+    required this.name,
+    required this.dateTime,
+  });
 
-  factory Test.fromJson(Map<String, dynamic> json) {
-    return Test(
+  factory _InfinityScrollModel.fromJson(Map<String, dynamic> json) {
+    return _InfinityScrollModel(
       id: json["id"],
-      rank: json["rank"],
       name: json["name"],
+      dateTime: json["dateTime"],
     );
   }
   Map<String, dynamic> toJson() {
     return {
       "id": id,
-      "rank": rank,
       "name": name,
+      "dateTime": dateTime,
     };
   }
 }
@@ -38,23 +40,43 @@ class FirebaseFirestoreScreen extends StatefulWidget {
 }
 
 class _FirebaseFirestoreScreenState extends State<FirebaseFirestoreScreen> {
-  List<Test> testData = [];
+  List<_InfinityScrollModel> infinityData = [];
+  DocumentSnapshot? lastSnapshot;
 
-  Future<void> _fromFirestore() async {
+  Future<void> _initData() async {
     FirebaseFirestore _firestore = FirebaseFirestore.instance;
     QuerySnapshot<Map<String, dynamic>> _snapshot = await _firestore
-        .collection("read_test")
-        .orderBy("rank", descending: true)
+        .collection("infinity_scroll")
+        .limit(2)
+        .orderBy("dateTime")
         .get();
     setState(() {
-      testData = _snapshot.docs.map((e) => Test.fromJson(e.data())).toList();
+      lastSnapshot = _snapshot.docs.last;
+      infinityData = _snapshot.docs
+          .map((e) => _InfinityScrollModel.fromJson(e.data()))
+          .toList();
+    });
+  }
+
+  Future<void> _infinityScroll() async {
+    FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    QuerySnapshot<Map<String, dynamic>> _snapshot = await _firestore
+        .collection("infinity_scroll")
+        .orderBy("dateTime")
+        .startAfterDocument(lastSnapshot!)
+        .limit(2)
+        .get();
+    setState(() {
+      lastSnapshot = _snapshot.docs.last;
+      infinityData.addAll(_snapshot.docs
+          .map((e) => _InfinityScrollModel.fromJson(e.data()))
+          .toList());
     });
   }
 
   @override
   void initState() {
-    _fromFirestore();
-
+    _initData();
     super.initState();
   }
 
@@ -62,37 +84,38 @@ class _FirebaseFirestoreScreenState extends State<FirebaseFirestoreScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(title: "Firebase Firestore"),
-      bottomNavigationBar: SafeArea(
-        child: GestureDetector(
-          onTap: () async {
-            FirebaseFirestore _firestore = FirebaseFirestore.instance;
-            for (int i = 0; i < 10; i++) {
-              await _firestore
-                  .collection("read_test")
-                  .doc()
-                  .set(Test(id: i, rank: i + 1, name: "Tyger $i").toJson());
-            }
-          },
-          child: Container(
-            width: 100,
-            height: 60,
-            color: Colors.black,
-            child: const Center(child: Text("CREATE")),
-          ),
-        ),
-      ),
       body: ListView.separated(
-        itemCount: testData.length,
+        itemCount: infinityData.length,
         itemBuilder: (context, index) {
           return DefaultTextStyle(
             style: TextStyle(
                 fontWeight: FontWeight.bold, color: Colors.accents[index % 15]),
-            child: Column(
-              children: [
-                Text("ID : ${testData[index].id}"),
-                Text("Name :  ${testData[index].rank}"),
-                Text("Rank : ${testData[index].name}"),
-              ],
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("ID : ${infinityData[index].id}"),
+                  Text("Rank : ${infinityData[index].name}"),
+                  Text("DateTime : ${infinityData[index].dateTime.toDate()}"),
+                  if (infinityData.length - 1 == index) ...[
+                    SizedBox(
+                      height: 100,
+                      child: Center(
+                        child: IconButton(
+                          onPressed: () async {
+                            await _infinityScroll();
+                          },
+                          icon: const Icon(
+                            Icons.add_circle_outline,
+                            size: 30,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ],
+              ),
             ),
           );
         },
