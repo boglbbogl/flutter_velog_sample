@@ -38,79 +38,75 @@ class FirebaseFirestoreScreen extends StatefulWidget {
 }
 
 class _FirebaseFirestoreScreenState extends State<FirebaseFirestoreScreen> {
-  Stream<QuerySnapshot> _fromFirestore() {
-    FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  List<Test> testData = [];
 
-    return _firestore.collection("read_test").snapshots();
-    // return
+  Future<void> _fromFirestore() async {
+    FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    QuerySnapshot<Map<String, dynamic>> _snapshot = await _firestore
+        .collection("read_test")
+        .orderBy("rank", descending: true)
+        .get();
+    setState(() {
+      testData = _snapshot.docs.map((e) => Test.fromJson(e.data())).toList();
+    });
+  }
+
+  @override
+  void initState() {
+    _fromFirestore();
+
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(title: "Firebase Firestore"),
-      // bottomNavigationBar: SafeArea(
-      //   child: GestureDetector(
-      //     onTap: () async {
-      //       FirebaseFirestore _firestore = FirebaseFirestore.instance;
-      //       for (int i = 0; i < 10; i++) {
-      //         await _firestore
-      //             .collection("read_test")
-      //             .doc()
-      //             .set(Test(id: i, rank: i + 1, name: "Tyger $i").toJson());
-      //       }
-      //     },
-      //     child: Container(
-      //       width: 100,
-      //       height: 60,
-      //       color: Colors.black,
-      //       child: const Center(child: Text("CREATE")),
-      //     ),
-      //   ),
-      // ),
-      // body: StreamBuilder<Stream<QuerySnapshot>>(
-      //     stream: _fromFirestore(),
-      //     builder: (context, snapshot) {
-      //       if (snapshot.connectionState == ConnectionState.done) {
-      //         return ListView.separated(
-      //           itemCount: snapshot.data!.length,
-      //           itemBuilder: (context, index) {
-      //             return DefaultTextStyle(
-      //               style: TextStyle(
-      //                   fontWeight: FontWeight.bold,
-      //                   color: Colors.accents[index % 15]),
-      //               child: Column(
-      //                 children: [
-      //                   Text("ID : ${snapshot.data![index].id}"),
-      //                   Text("Name :  ${snapshot.data![index].rank}"),
-      //                   Text("Rank : ${snapshot.data![index].name}"),
-      //                 ],
-      //               ),
-      //             );
-      //           },
-      //           separatorBuilder: (BuildContext context, int index) {
-      //             return Padding(
-      //               padding: const EdgeInsets.symmetric(vertical: 12),
-      //               child: Container(
-      //                 height: 1,
-      //                 width: MediaQueryData.fromWindow(window).size.width,
-      //                 color: const Color.fromRGBO(91, 91, 91, 1),
-      //               ),
-      //             );
-      //           },
-      //         );
-      //       } else if (snapshot.connectionState == ConnectionState.waiting) {
-      //         return const Center(
-      //           child: CircularProgressIndicator(
-      //             color: Colors.amber,
-      //           ),
-      //         );
-      //       } else {
-      //         return Container(
-      //           color: Colors.red,
-      //         );
-      //       }
-      //     }),
+      bottomNavigationBar: SafeArea(
+        child: GestureDetector(
+          onTap: () async {
+            FirebaseFirestore _firestore = FirebaseFirestore.instance;
+            for (int i = 0; i < 10; i++) {
+              await _firestore
+                  .collection("read_test")
+                  .doc()
+                  .set(Test(id: i, rank: i + 1, name: "Tyger $i").toJson());
+            }
+          },
+          child: Container(
+            width: 100,
+            height: 60,
+            color: Colors.black,
+            child: const Center(child: Text("CREATE")),
+          ),
+        ),
+      ),
+      body: ListView.separated(
+        itemCount: testData.length,
+        itemBuilder: (context, index) {
+          return DefaultTextStyle(
+            style: TextStyle(
+                fontWeight: FontWeight.bold, color: Colors.accents[index % 15]),
+            child: Column(
+              children: [
+                Text("ID : ${testData[index].id}"),
+                Text("Name :  ${testData[index].rank}"),
+                Text("Rank : ${testData[index].name}"),
+              ],
+            ),
+          );
+        },
+        separatorBuilder: (BuildContext context, int index) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12),
+            child: Container(
+              height: 1,
+              width: MediaQueryData.fromWindow(window).size.width,
+              color: const Color.fromRGBO(91, 91, 91, 1),
+            ),
+          );
+        },
+      ),
     );
   }
 }
