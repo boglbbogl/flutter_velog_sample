@@ -64,7 +64,8 @@ class MainScreen extends StatelessWidget {
                 length: 3,
                 context: context,
                 content: "Realtime",
-                isPost: false,
+                namedRouter: "firebase/realtime",
+                isPost: true,
               ),
               _item(
                 length: 3,
