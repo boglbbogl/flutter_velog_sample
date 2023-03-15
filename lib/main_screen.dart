@@ -71,7 +71,8 @@ class MainScreen extends StatelessWidget {
                 length: 3,
                 context: context,
                 content: "Storage",
-                isPost: false,
+                namedRouter: "firebase/storage",
+                isPost: true,
               ),
               _item(
                 context: context,

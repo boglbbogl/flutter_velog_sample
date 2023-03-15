@@ -22,6 +22,7 @@ import 'package:flutter_velog_sample/firebase/dynamic_links/dynamic_links_third_
 import 'package:flutter_velog_sample/firebase/dynamic_links/firebase_dynamic_links_screen.dart';
 import 'package:flutter_velog_sample/firebase/firestore/firebase_firestore_screen.dart';
 import 'package:flutter_velog_sample/firebase/realtime/firebase_realtime_screen.dart';
+import 'package:flutter_velog_sample/firebase/storage/firebase_storage_screen.dart';
 import 'package:flutter_velog_sample/firebase_options.dart';
 import 'package:flutter_velog_sample/http/dio/http_with_dio_screen.dart';
 import 'package:flutter_velog_sample/http/get_connect/http_with_get_connect_screen.dart';
@@ -93,6 +94,7 @@ class App extends StatelessWidget {
               const FirebaseAuthenticationScreen(),
           "firebase/firestore": (context) => const FirebaseFirestoreScreen(),
           "firebase/realtime": (context) => const FirebaseRealtimeScreen(),
+          "firebase/storage": (context) => const FirebaseStorageScreen(),
           "firebase/dynamicLinks": (context) =>
               const FirebaseDynamicLinksScreen(),
           "firebase/dynamicLinks/first": (context) =>
