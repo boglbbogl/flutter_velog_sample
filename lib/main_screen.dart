@@ -223,6 +223,17 @@ class MainScreen extends StatelessWidget {
                 content: 'View vs Builder',
                 namedRouter: '/scroll/view/viewAndBuilder',
               ),
+              _item(
+                context: context,
+                content: "Scroll To Index (H)",
+                namedRouter: "/scroll/to/horizontal",
+                isPost: true,
+              ),
+              _item(
+                context: context,
+                content: "Scroll To Index (V)",
+                namedRouter: "/scroll/to/vertical",
+              ),
             ]),
             _category(title: 'Scroll Indicator', widgets: [
               _item(
