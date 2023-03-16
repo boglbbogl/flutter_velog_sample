@@ -45,6 +45,10 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>사진, 동영상 기능을 사용하기 위해 접근하도록 권한을 허용합니다</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>사진, 동영상 기능을 사용하기 위해 접근하도록 권한을 허용합니다</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
