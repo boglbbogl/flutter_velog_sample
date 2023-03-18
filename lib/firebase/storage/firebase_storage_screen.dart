@@ -5,49 +5,37 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
-import 'package:flutter_velog_sample/main.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-class _FeedImageModel {
-  final String url;
-  final String path;
-  const _FeedImageModel({required this.url, required this.path});
-  factory _FeedImageModel.fromFirestore(Map<String, dynamic> json) {
-    return _FeedImageModel(
-      url: json["url"],
-      path: json["path"],
-    );
-  }
-  Map<String, dynamic> toFirestore() => {
-        "url": url,
-        "path": path,
-      };
-}
-
 class _FeedModel {
-  final String userKey;
-  final List<_FeedImageModel> images;
+  final String uid;
+  final String docId;
+  final String image;
+  final String path;
   final Timestamp dateTime;
+
   const _FeedModel({
-    required this.userKey,
-    required this.images,
+    required this.uid,
+    required this.docId,
+    required this.image,
+    required this.path,
     required this.dateTime,
   });
   factory _FeedModel.fromFirestore(Map<String, dynamic> json) {
     return _FeedModel(
-      userKey: json["userKey"],
-      images: (json["images"] as List<dynamic>)
-          .map((e) => _FeedImageModel.fromFirestore(e))
-          .toList(),
+      uid: json["uid"],
+      docId: json["docId"],
+      image: json["image"],
+      path: json["path"],
       dateTime: json["dateTime"],
     );
   }
   Map<String, dynamic> toFirestore() => {
-        "userKey": userKey,
-        "images": images
-            .map((e) => _FeedImageModel(url: e.url, path: e.path).toFirestore())
-            .toList(),
+        "uid": uid,
+        "docId": docId,
+        "image": image,
+        "path": path,
         "dateTime": dateTime,
       };
 }
@@ -60,71 +48,77 @@ class FirebaseStorageScreen extends StatefulWidget {
 }
 
 class _FirebaseStorageScreenState extends State<FirebaseStorageScreen> {
-  List<_FeedImageModel> feedImages = [];
-  final String _userKey = "123456789";
+  List<_FeedModel> _feed = [];
+  final String _uid = "123456789";
   bool _isUpload = false;
 
-  Future<List<_FeedImageModel>> _imagePickerToUpload() async {
+  Future<Map<String, String>?> _imagePickerToUpload() async {
     setState(() {
       _isUpload = true;
     });
-    List<_FeedImageModel> _imageUrls = [];
     if (Platform.isIOS) {
       await Permission.photosAddOnly.request();
     }
-
     final String _dateTime = DateTime.now().millisecondsSinceEpoch.toString();
     ImagePicker _picker = ImagePicker();
-    List<XFile> _images = await _picker.pickMultiImage();
-    for (int i = 0; i < _images.length; i++) {
-      String _imageRef = "feed/${_userKey}_${_dateTime}_$i";
-      File _file = File(_images[i].path);
+    XFile? _images = await _picker.pickImage(source: ImageSource.gallery);
+    if (_images != null) {
+      String _imageRef = "feed/${_uid}_$_dateTime";
+      File _file = File(_images.path);
       await FirebaseStorage.instance.ref(_imageRef).putFile(_file);
       final String _urlString =
           await FirebaseStorage.instance.ref(_imageRef).getDownloadURL();
-      _imageUrls.add(_FeedImageModel(url: _urlString, path: _imageRef));
+      return {
+        "image": _urlString,
+        "path": _imageRef,
+      };
+    } else {
+      return null;
     }
-    return _imageUrls;
   }
 
-  Future<String?> _toFirestore(List<_FeedImageModel> images) async {
+  Future<void> _toFirestore(Map<String, String> images) async {
     try {
       DocumentReference<Map<String, dynamic>> _reference =
           FirebaseFirestore.instance.collection("feed").doc();
       await _reference.set(_FeedModel(
-              userKey: _userKey, images: images, dateTime: Timestamp.now())
-          .toFirestore());
-      return null;
+        uid: _uid,
+        docId: _reference.id,
+        image: images["image"].toString(),
+        path: images["path"].toString(),
+        dateTime: Timestamp.now(),
+      ).toFirestore());
     } on FirebaseException catch (error) {
-      return error.message;
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(error.message ?? "")));
     }
   }
 
   Future<void> _getFeed({bool isRefresh = false}) async {
     if (isRefresh) {
-      feedImages.clear();
+      _feed.clear();
     }
     QuerySnapshot<Map<String, dynamic>> _snapshot = await FirebaseFirestore
         .instance
         .collection("feed")
         .orderBy("dateTime", descending: true)
         .get();
-    List<_FeedModel> _data =
-        _snapshot.docs.map((e) => _FeedModel.fromFirestore(e.data())).toList();
-    for (final e in _data) {
-      feedImages.addAll(e.images);
-    }
     setState(() {
-      feedImages = feedImages;
+      _feed = _snapshot.docs
+          .map((e) => _FeedModel.fromFirestore(e.data()))
+          .toList();
     });
   }
 
-  Future<void> deleteImage(_FeedImageModel data) async {
-    // await FirebaseStorage.instance.ref(data.path).delete();
-    // QuerySnapshot<Map<String, dynamic>> _data = await FirebaseFirestore.instance
-    //     .collection("feed")
-    //     .where(data, isEqualTo: true)
-    //     .get();
+  Future<void> _deleteFeed(_FeedModel data) async {
+    await FirebaseStorage.instance.ref(data.path).delete();
+    await FirebaseFirestore.instance
+        .collection("feed")
+        .doc(data.docId)
+        .delete();
+    setState(() {
+      _feed.remove(data);
+    });
   }
 
   @override
@@ -154,12 +148,10 @@ class _FirebaseStorageScreenState extends State<FirebaseStorageScreen> {
                       icon: Icons.add_circle_outline_outlined,
                       onTap: () async {
                         HapticFeedback.mediumImpact();
-                        List<_FeedImageModel> _images =
+                        Map<String, String>? _images =
                             await _imagePickerToUpload();
-                        String? _error = await _toFirestore(_images);
-                        if (_error != null) {
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(SnackBar(content: Text(_error)));
+                        if (_images != null) {
+                          await _toFirestore(_images);
                         }
                         setState(() {
                           _isUpload = false;
@@ -169,7 +161,7 @@ class _FirebaseStorageScreenState extends State<FirebaseStorageScreen> {
               ),
             ),
             body: GridView.builder(
-                itemCount: feedImages.length,
+                itemCount: _feed.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
                   mainAxisSpacing: 4,
@@ -177,16 +169,16 @@ class _FirebaseStorageScreenState extends State<FirebaseStorageScreen> {
                 ),
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    onLongPress: () {
+                    onLongPress: () async {
                       HapticFeedback.mediumImpact();
-                      logger.e(feedImages[index]);
+                      await _deleteFeed(_feed[index]);
                     },
                     child: Container(
                       width: MediaQueryData.fromWindow(window).size.width,
                       height: MediaQueryData.fromWindow(window).size.width,
                       color: const Color.fromRGBO(115, 115, 115, 1),
                       child: Image.network(
-                        feedImages[index].url,
+                        _feed[index].image,
                         fit: BoxFit.cover,
                       ),
                     ),

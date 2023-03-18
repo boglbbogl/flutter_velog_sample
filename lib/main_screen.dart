@@ -22,22 +22,29 @@ class MainScreen extends StatelessWidget {
           children: [
             _category(title: 'App', widgets: [
               _item(
+                length: 3,
                 context: context,
                 content: 'Timer',
               ),
               _item(
+                length: 3,
                 context: context,
                 content: 'Calculator',
                 namedRouter: 'app/caculator',
                 isPost: true,
               ),
               _item(
+                length: 3,
                 context: context,
                 content: 'To do',
               ),
               _item(
                 context: context,
                 content: 'Date Picker',
+              ),
+              _item(
+                context: context,
+                content: 'Color Picker',
               ),
             ]),
             _category(title: "Firebase", widgets: [
@@ -233,6 +240,7 @@ class MainScreen extends StatelessWidget {
                 context: context,
                 content: "Scroll To Index (V)",
                 namedRouter: "/scroll/to/vertical",
+                isPost: true,
               ),
             ]),
             _category(title: 'Scroll Indicator', widgets: [
