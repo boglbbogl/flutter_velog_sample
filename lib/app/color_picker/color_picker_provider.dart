@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_velog_sample/app/color_picker/color_picker_model.dart';
 
 class ColorPickerProvider extends ChangeNotifier {
@@ -49,6 +50,7 @@ class ColorPickerProvider extends ChangeNotifier {
   }
 
   void pickerColorTap(ColorPickerModel data) {
+    HapticFeedback.mediumImpact();
     duration = 200;
     double _width = (MediaQueryData.fromWindow(window).size.width - 40);
     currentColor = data.color;
@@ -62,6 +64,7 @@ class ColorPickerProvider extends ChangeNotifier {
   }
 
   void dragUpdate(DragUpdateDetails? details) {
+    HapticFeedback.lightImpact();
     double _dx = details!.delta.dx;
     double _itemWidth = (MediaQueryData.fromWindow(window).size.width) - 40;
     currentPosition = (currentPosition + _dx < 10) ||
@@ -73,6 +76,7 @@ class ColorPickerProvider extends ChangeNotifier {
   }
 
   void dragStart(DragStartDetails? details) {
+    HapticFeedback.mediumImpact();
     duration = 0;
     notifyListeners();
   }
