@@ -44,7 +44,9 @@ class MainScreen extends StatelessWidget {
               ),
               _item(
                 context: context,
-                content: 'Color Picker',
+                content: "Color Picker",
+                namedRouter: "app/color/picker",
+                isPost: true,
               ),
             ]),
             _category(title: "Firebase", widgets: [
