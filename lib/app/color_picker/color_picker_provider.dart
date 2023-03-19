@@ -1,70 +1,47 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/app/color_picker/color_picker_model.dart';
-import 'package:flutter_velog_sample/app/color_picker/color_picker_services.dart';
 
 class ColorPickerProvider extends ChangeNotifier {
   List<ColorPickerModel> pickerColors = [];
-  List<Color> colorList = [
-    const Color.fromRGBO(255, 0, 0, 1),
-    const Color.fromRGBO(233, 30, 99, 1),
-    const Color.fromRGBO(255, 87, 34, 1),
-    const Color.fromRGBO(255, 152, 0, 1),
-    const Color.fromRGBO(255, 193, 7, 1),
-    const Color.fromRGBO(255, 235, 59, 1),
-    const Color.fromRGBO(139, 195, 74, 1),
-    const Color.fromRGBO(76, 175, 80, 1),
-    const Color.fromRGBO(0, 188, 212, 1),
-    const Color.fromRGBO(3, 169, 244, 1),
-    const Color.fromRGBO(33, 150, 243, 1),
-  ];
+
   double currentPosition = 0;
   int duration = 0;
   late Color currentColor;
+  int currentIndex = 0;
+  List<ColorType> colorType = List.generate(
+      ColorType.values.length, (index) => ColorType.values[index]);
 
-  void _colorState(int index) {
-    switch (index) {
-      case 0:
-        pickerColors = ColorPickerServices.instance.red();
-        break;
-      case 1:
-        pickerColors = ColorPickerServices.instance.pink();
-        break;
-      case 2:
-        pickerColors = ColorPickerServices.instance.deepOrange();
-        break;
-      case 3:
-        pickerColors = ColorPickerServices.instance.orange();
-        break;
-      case 4:
-        pickerColors = ColorPickerServices.instance.amber();
-        break;
-      case 5:
-        pickerColors = ColorPickerServices.instance.yellow();
-        break;
-      case 6:
-        pickerColors = ColorPickerServices.instance.lightGreen();
-        break;
-      case 7:
-        pickerColors = ColorPickerServices.instance.green();
-        break;
-      case 8:
-        pickerColors = ColorPickerServices.instance.cyan();
-        break;
-      case 9:
-        pickerColors = ColorPickerServices.instance.lightBlue();
-        break;
-      case 10:
-        pickerColors = ColorPickerServices.instance.blue();
-        break;
-      default:
-        pickerColors = ColorPickerServices.instance.red();
-        break;
-    }
+  void _colorState(ColorType type) {
+    pickerColors = List.generate(
+        50,
+        (index) => ColorPickerModel(
+              index: (index - 49).abs(),
+              color: Color.fromRGBO(
+                  (type.rgb[0] + index > 255) ? 255 : type.rgb[0] + index,
+                  (type.rgb[1] + index > 255) ? 255 : type.rgb[1] + index,
+                  (type.rgb[2] + index > 255) ? 255 : type.rgb[2] + index,
+                  1),
+            ));
+    pickerColors = pickerColors.reversed.toList();
+    pickerColors.addAll([
+      ...List.generate(
+          50,
+          (index) => ColorPickerModel(
+                index: 50 + index,
+                color: Color.fromRGBO(
+                  (type.rgb[0] - index < 0) ? 0 : type.rgb[0] - index,
+                  (type.rgb[1] - index < 0) ? 0 : type.rgb[1] - index,
+                  (type.rgb[2] - index < 0) ? 0 : type.rgb[2] - index,
+                  1,
+                ),
+              ))
+    ]);
   }
 
-  void colorChanged(int index) {
-    _colorState(index);
+  void colorChanged(ColorType type, int index) {
+    _colorState(type);
+    currentIndex = index;
     currentColor = pickerColors[49].color;
     currentPosition =
         ((MediaQueryData.fromWindow(window).size.width - 40) / 100) * 50;
