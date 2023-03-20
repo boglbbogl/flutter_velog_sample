@@ -1,11 +1,8 @@
-import 'dart:convert';
-
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
-import 'package:flutter_velog_sample/main.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter_velog_sample/firebase/fcm/cloud_message_provider.dart';
+import 'package:provider/provider.dart';
 
 class FirebaseMessageScreen extends StatelessWidget {
   const FirebaseMessageScreen({super.key});
@@ -13,28 +10,31 @@ class FirebaseMessageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(title: "Firebase Messaging"),
-      body: Column(
-        children: [
-          Center(
-            child: GestureDetector(
-                onTap: () async {
-                  HapticFeedback.mediumImpact();
-                  String? _fcmToken =
-                      await FirebaseMessaging.instance.getToken();
-                  logger.e(_fcmToken);
-                  FirebaseMessaging.instance
-                      .sendMessage(
-                    to: _fcmToken,
-                  )
-                      .then((value) {
-                    logger.e("value");
-                  });
-                },
-                child: Text("adslkfjkladjsf")),
-          )
-        ],
-      ),
-    );
+        appBar: appBar(title: "Firebase Messaging"),
+        body: Center(
+          child: GestureDetector(
+              onTap: () async {
+                HapticFeedback.mediumImpact();
+                String? _message;
+                _message = await context
+                    .read<CloudMessageProvider>()
+                    .sendMessageWithAPI();
+
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    backgroundColor:
+                        _message == null ? Colors.green : Colors.amber,
+                    content: Text(
+                      _message ?? "Success",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: _message == null ? Colors.white : Colors.red,
+                      ),
+                    )));
+              },
+              child: const Icon(
+                Icons.send_rounded,
+                size: 50,
+              )),
+        ));
   }
 }
