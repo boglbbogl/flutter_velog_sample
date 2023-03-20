@@ -1,11 +1,17 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_size.dart';
+import 'package:flutter_velog_sample/main.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    FirebaseMessaging.onMessageOpenedApp.listen((event) {
+      logger.e("message");
+      logger.e(event);
+    });
     size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -84,11 +90,20 @@ class MainScreen extends StatelessWidget {
                 isPost: true,
               ),
               _item(
+                length: 3,
                 context: context,
-                content: "GA(Google Analytics)",
+                content: "FCM",
+                namedRouter: "firebase/messaging",
+                isPost: true,
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: "GA",
                 isPost: false,
               ),
               _item(
+                length: 3,
                 context: context,
                 content: "Crashlytics",
                 isPost: false,

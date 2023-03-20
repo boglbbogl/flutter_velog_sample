@@ -21,6 +21,8 @@ import 'package:flutter_velog_sample/firebase/dynamic_links/dynamic_links_provid
 import 'package:flutter_velog_sample/firebase/dynamic_links/dynamic_links_second_screen.dart';
 import 'package:flutter_velog_sample/firebase/dynamic_links/dynamic_links_third_screen.dart';
 import 'package:flutter_velog_sample/firebase/dynamic_links/firebase_dynamic_links_screen.dart';
+import 'package:flutter_velog_sample/firebase/fcm/cloud_message_provider.dart';
+import 'package:flutter_velog_sample/firebase/fcm/firebase_message_screen.dart';
 import 'package:flutter_velog_sample/firebase/firestore/firebase_firestore_screen.dart';
 import 'package:flutter_velog_sample/firebase/realtime/firebase_realtime_screen.dart';
 import 'package:flutter_velog_sample/firebase/storage/firebase_storage_screen.dart';
@@ -86,6 +88,7 @@ class App extends StatelessWidget {
         ChangeNotifierProvider(
             create: ((context) => LifeCycleNativeProvider())),
         ChangeNotifierProvider(create: (context) => DynamicLinksProvider()),
+        ChangeNotifierProvider(create: (context) => CloudMessageProvider()),
       ],
       child: MaterialApp(
         theme: AppTheme.darkTheme,
@@ -106,6 +109,7 @@ class App extends StatelessWidget {
               const DynamicLinksSecondScreen(),
           "firebase/dynamicLinks/third": (context) =>
               const DynamicLinksThirdScreen(),
+          "firebase/messaging": (context) => const FirebaseMessageScreen(),
           "/count/app/stateFul": (context) => const CountScreenWithStateFul(),
           "/count/app/listenerable": (context) =>
               const CountScreenWithListenarable(),
