@@ -41,6 +41,8 @@ class MainScreen extends StatelessWidget {
               _item(
                 context: context,
                 content: 'Date Picker',
+                namedRouter: "app/date/picker",
+                isPost: true,
               ),
               _item(
                 context: context,

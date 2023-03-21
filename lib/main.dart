@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart' as river;
 import 'package:flutter_velog_sample/_core/app_theme.dart';
 import 'package:flutter_velog_sample/app/calculator/app_calculator_screen.dart';
 import 'package:flutter_velog_sample/app/color_picker/app_color_picker_screen.dart';
+import 'package:flutter_velog_sample/app/date_picker/app_date_picker_screen.dart';
 import 'package:flutter_velog_sample/count_app/bloc/count_screen_with_bloc.dart';
 import 'package:flutter_velog_sample/count_app/count_screen_with_listenerable.dart';
 import 'package:flutter_velog_sample/count_app/count_screen_with_stateful.dart';
@@ -98,8 +99,9 @@ class App extends StatelessWidget {
         theme: AppTheme.darkTheme,
         home: const InitialApp(),
         routes: {
-          "app/caculator": ((context) => const AppCaculatorScreen()),
-          "app/color/picker": ((context) => const AppColorPickerScreen()),
+          "app/caculator": (context) => const AppCaculatorScreen(),
+          "app/color/picker": (context) => const AppColorPickerScreen(),
+          "app/date/picker": (context) => AppDatePickerScreen(),
           "firebase/authentication": (context) =>
               const FirebaseAuthenticationScreen(),
           "firebase/firestore": (context) => const FirebaseFirestoreScreen(),

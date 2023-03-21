@@ -93,9 +93,7 @@ class CloudMessageProvider extends ChangeNotifier {
   Future<String?> sendMessageWithAPI() async {
     String? _fcmToken = await FirebaseMessaging.instance.getToken();
     if (_fcmToken != null) {
-      // Future.delayed(const Duration(milliseconds: 0), () async {
       String? _result = await _postMessage(_fcmToken);
-      // });
       return _result;
     } else {
       return "FCM Token Empty";
