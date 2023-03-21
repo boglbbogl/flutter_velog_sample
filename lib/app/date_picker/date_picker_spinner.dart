@@ -1,15 +1,173 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_velog_sample/main.dart';
 
-void datePickerSpinner(BuildContext context) {
-  showBottomSheet(
-      context: context,
-      builder: (context) {
-        return Container(
-          height: 300,
-          width: MediaQueryData.fromWindow(window).size.width,
-          color: Colors.amber,
-        );
-      });
+class DatePickerSpinner extends StatefulWidget {
+  final double? height;
+  final double? width;
+  final int? interval;
+  final DateTime date;
+  const DatePickerSpinner({
+    super.key,
+    this.height,
+    this.width,
+    this.interval,
+    required this.date,
+  });
+
+  @override
+  State<DatePickerSpinner> createState() => _DatePickerSpinnerState();
+}
+
+class _DatePickerSpinnerState extends State<DatePickerSpinner> {
+  List<String> _year = [];
+  final List<String> _month = List.generate(
+      12, (index) => index < 9 ? "0${index + 1}" : "${index + 1}");
+  List<String> _day = [];
+  late double _width;
+  late double _height;
+  late Size _itemSize;
+  late ValueNotifier<String> currentDate;
+
+  @override
+  void initState() {
+    currentDate = ValueNotifier(
+        widget.date.toString().replaceAll("-", "").substring(0, 8));
+    _width = widget.width ?? MediaQueryData.fromWindow(window).size.width;
+    _height = widget.height ?? 300;
+    _itemSize = Size(_width / 3, _height);
+    int _currentYear = DateTime.now().year;
+    _year = List.generate(
+        widget.interval == null || widget.interval == 0
+            ? 100
+            : widget.interval!,
+        (index) => widget.interval == null || widget.interval! < 1
+            ? "${index + (_currentYear - 50)}"
+            : "${index + (_currentYear - (widget.interval == 1 ? 0 : widget.interval! ~/ 2))}");
+    _daySetting();
+    super.initState();
+  }
+
+  void _changedDate(int dateType, int index) {
+    String _currentYear = currentDate.value.substring(0, 4);
+    String _currentMonth = currentDate.value.substring(4, 6);
+    String _currentDay = currentDate.value.substring(6, 8);
+
+    switch (dateType) {
+      case 0:
+        currentDate.value = _year[index] + _currentMonth + _currentDay;
+        if (_currentMonth == "02") {
+          _leapYearChecked();
+        }
+        break;
+      case 1:
+        currentDate.value = _currentYear + _month[index] + _currentDay;
+        _daySetting();
+        break;
+      case 2:
+        currentDate.value = _currentYear + _currentMonth + _day[index];
+        break;
+      default:
+    }
+  }
+
+  void _daySetting() {
+    int _month = int.parse(currentDate.value.substring(4, 6));
+    List _thiryFirst = [1, 3, 5, 7, 8, 10, 12];
+    if (_thiryFirst.contains(_month)) {
+      _day = List.generate(
+          31, (index) => index < 9 ? "0${index + 1}" : "${index + 1}");
+    } else if (_month == 2) {
+      _leapYearChecked();
+    } else {
+      _day = List.generate(
+          30, (index) => index < 9 ? "0${index + 1}" : "${index + 1}");
+    }
+    // _lastDay = int.parse(day.last);
+  }
+
+  void _leapYearChecked() {
+    int _dayLength = 0;
+    int _year = int.parse(currentDate.value.substring(0, 4));
+    if (_year % 4 == 0) {
+      if (_year % 100 == 0) {
+        if (_year % 400 == 0) {
+          _dayLength = 29;
+        } else {
+          _dayLength = 28;
+        }
+        _dayLength = 28;
+      } else {
+        _dayLength = 29;
+      }
+    } else {
+      _dayLength = 28;
+    }
+    _day = List.generate(
+        _dayLength, (index) => index < 9 ? "0${index + 1}" : "${index + 1}");
+    // _lastDay = int.parse(day.last);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder<String>(
+        valueListenable: currentDate,
+        builder: (context, value, child) {
+          return Container(
+            height: _height,
+            width: _width,
+            color: const Color.fromRGBO(71, 71, 71, 1),
+            child: Wrap(
+              children: [
+                _pickerForm(
+                    date: _year, dateIndex: 0, current: value.substring(0, 4)),
+                _pickerForm(
+                    date: _month, dateIndex: 1, current: value.substring(4, 6)),
+                _pickerForm(
+                    date: _day, dateIndex: 2, current: value.substring(6, 8)),
+              ],
+            ),
+          );
+        });
+  }
+
+  SizedBox _pickerForm({
+    required List<String> date,
+    required int dateIndex,
+    required String current,
+  }) {
+    return SizedBox(
+      height: _itemSize.height,
+      width: _itemSize.width,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        child: ListWheelScrollView(
+          onSelectedItemChanged: (int i) {
+            HapticFeedback.lightImpact();
+            _changedDate(dateIndex, i);
+          },
+          squeeze: 0.6,
+          perspective: 0.00001,
+          physics: const FixedExtentScrollPhysics(),
+          itemExtent: 30,
+          children: [
+            ...List.generate(
+                date.length,
+                (index) => Text(
+                      date[index],
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: date[index] == current ? 12 : 11,
+                        color: date[index] == current
+                            ? Colors.white
+                            : Colors.white54,
+                      ),
+                    )),
+          ],
+        ),
+      ),
+    );
+  }
 }
