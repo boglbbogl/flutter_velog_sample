@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' as river;
 import 'package:flutter_velog_sample/_core/app_theme.dart';
@@ -68,12 +69,15 @@ import 'webview/daum_post/webview_with_daum_post_screen.dart';
 
 Logger logger = Logger();
 
+Future<void> _onBackgroundMessage(RemoteMessage message) async {}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Provider.debugCheckInvalidValueType = null;
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  FirebaseMessaging.onBackgroundMessage(_onBackgroundMessage);
   runApp(const App());
 }
 

@@ -93,10 +93,10 @@ class CloudMessageProvider extends ChangeNotifier {
   Future<String?> sendMessageWithAPI() async {
     String? _fcmToken = await FirebaseMessaging.instance.getToken();
     if (_fcmToken != null) {
-      Future.delayed(const Duration(milliseconds: 5000), () async {
-        await _postMessage(_fcmToken);
-      });
-      return null;
+      // Future.delayed(const Duration(milliseconds: 0), () async {
+      String? _result = await _postMessage(_fcmToken);
+      // });
+      return _result;
     } else {
       return "FCM Token Empty";
     }
@@ -105,7 +105,7 @@ class CloudMessageProvider extends ChangeNotifier {
   Future<String?> _postMessage(String fcmToken) async {
     try {
       String _accessToken =
-          "ya29.a0AVvZVsrOj8dwN6xc75fOgQhjx1s2ktJSMzthZ4eakH4iC22VnuN6al1yaVGYNF3Px-RkFpOWf5_zf4Fum0V55eEZc-QcGEdlob8ftbmRNapu1pT7wsNate80fimXV4xCZk_LByfZXiycFBh_ha5YPePNHf7-aCgYKAYISARESFQGbdwaIeQ3GPaWb5OmuFKwn3iIJEQ0163";
+          "ya29.a0AVvZVsoSkC9T8wLkF0LTqMxIrcqRFVIityK82fKGvTGrHddiYbFPmYgrxIlHFUUNYtyFShRH8iY3y66r1bYy7GWIqGzGhMiUxTg7nFAeyAWbh5gPO3quO0RKwLNhcmuk7TIeveTHr0p-6I__vzX9MUq1Z9CqaCgYKAWQSARESFQGbdwaIIPNAfZ2BvjRTdQvUP0FHUw0163";
       http.Response _response = await http.post(
           Uri.parse(
             "https://fcm.googleapis.com/v1/projects/flutter-velog-sample/messages:send",
@@ -116,7 +116,9 @@ class CloudMessageProvider extends ChangeNotifier {
           },
           body: json.encode({
             "message": {
-              "token": fcmToken,
+              // "token": fcmToken,
+              "topic": "user_uid",
+
               "notification": {
                 "title": "FCM Test Title",
                 "body": "FCM Test Body",
@@ -124,6 +126,19 @@ class CloudMessageProvider extends ChangeNotifier {
               "data": {
                 "click_action": "FCM Test Click Action",
               },
+              "android": {
+                "notification": {
+                  "click_action": "Android Click Action",
+                }
+              },
+              "apns": {
+                "payload": {
+                  "aps": {
+                    "category": "Message Category",
+                    "content-available": 1
+                  }
+                }
+              }
             }
           }));
       if (_response.statusCode == 200) {
