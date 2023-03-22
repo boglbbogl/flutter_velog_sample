@@ -32,5 +32,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:328834457993:ios:c978cf923953818ce5c158</string>
+	<key>DATABASE_URL</key>
+	<string>https://flutter-velog-sample-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>

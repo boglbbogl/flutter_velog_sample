@@ -101,7 +101,7 @@ class App extends StatelessWidget {
         routes: {
           "app/caculator": (context) => const AppCaculatorScreen(),
           "app/color/picker": (context) => const AppColorPickerScreen(),
-          "app/date/picker": (context) => AppDatePickerScreen(),
+          "app/date/picker": (context) => const AppDatePickerScreen(),
           "firebase/authentication": (context) =>
               const FirebaseAuthenticationScreen(),
           "firebase/firestore": (context) => const FirebaseFirestoreScreen(),

@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "328834457993",
+    "firebase_url": "https://flutter-velog-sample-default-rtdb.firebaseio.com",
     "project_id": "flutter-velog-sample",
     "storage_bucket": "flutter-velog-sample.appspot.com"
   },
