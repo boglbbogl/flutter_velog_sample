@@ -44,8 +44,8 @@ import 'package:flutter_velog_sample/life_cycle/life_cycle_screen_with_getx.dart
 import 'package:flutter_velog_sample/life_cycle/life_cycle_screen_with_native.dart';
 import 'package:flutter_velog_sample/life_cycle/life_cycle_screen_with_statful.dart';
 import 'package:flutter_velog_sample/scroll_indicator/vertical_indicator/vertical_indicator_screen.dart';
-import 'package:flutter_velog_sample/scroll_view/scroll_to_index_horizontal_screen.dart';
-import 'package:flutter_velog_sample/scroll_view/scroll_to_index_vertical_screen.dart';
+import 'package:flutter_velog_sample/scroll_view/scroll_to_index/scroll_to_index_horizontal_screen.dart';
+import 'package:flutter_velog_sample/scroll_view/scroll_to_index/scroll_to_index_vertical_screen.dart';
 import 'package:flutter_velog_sample/scroll_view/scroll_view_with_custom_scroll_screen.dart';
 import 'package:flutter_velog_sample/scroll_view/scroll_view_with_gesture_to_scroll_screen.dart';
 import 'package:flutter_velog_sample/scroll_view/scroll_view_with_list_view_screen.dart';
