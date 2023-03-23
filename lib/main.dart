@@ -6,6 +6,8 @@ import 'package:flutter_velog_sample/_core/app_theme.dart';
 import 'package:flutter_velog_sample/app/calculator/app_calculator_screen.dart';
 import 'package:flutter_velog_sample/app/color_picker/app_color_picker_screen.dart';
 import 'package:flutter_velog_sample/app/date_picker/app_date_picker_screen.dart';
+import 'package:flutter_velog_sample/closed_app/closed_app_flutter_screen.dart';
+import 'package:flutter_velog_sample/closed_app/closed_app_native_screen.dart';
 import 'package:flutter_velog_sample/count_app/bloc/count_screen_with_bloc.dart';
 import 'package:flutter_velog_sample/count_app/count_screen_with_listenerable.dart';
 import 'package:flutter_velog_sample/count_app/count_screen_with_stateful.dart';
@@ -176,6 +178,8 @@ class App extends StatelessWidget {
           "/lifeCycle/stateful": (context) =>
               const LifeCycleScreenWithStateful(),
           "/lifeCycle/native": (context) => const LifeCycleScreenWithNative(),
+          "/closed/app/flutter": (context) => const ClosedAppFlutterScreen(),
+          "/closed/app/native": (context) => const ClosedAppNativeScreen(),
           "/library/equatable": (context) => const LibraryEquatableScreen(),
           "/library/daumPostcode": (context) =>
               const LibararyDaumPostcodeScreen(),

@@ -241,13 +241,11 @@ class MainScreen extends StatelessWidget {
                 context: context,
                 content: "Scroll To Index (H)",
                 namedRouter: "/scroll/to/horizontal",
-                isPost: true,
               ),
               _item(
                 context: context,
                 content: "Scroll To Index (V)",
                 namedRouter: "/scroll/to/vertical",
-                isPost: true,
               ),
             ]),
             _category(title: 'Scroll Indicator', widgets: [
@@ -282,7 +280,7 @@ class MainScreen extends StatelessWidget {
                 namedRouter: '/infinityScroll/pageview',
               ),
             ]),
-            _category(title: 'Sliver', widgets: []),
+            // _category(title: 'Sliver', widgets: []),
             _category(title: "HTTP", widgets: [
               _item(
                 length: 3,
@@ -353,6 +351,20 @@ class MainScreen extends StatelessWidget {
                 context: context,
                 content: 'Native',
                 namedRouter: '/lifeCycle/native',
+              ),
+            ]),
+            _category(title: "Closed App", widgets: [
+              _item(
+                context: context,
+                content: "Flutter",
+                namedRouter: "/closed/app/flutter",
+                isPost: true,
+              ),
+              _item(
+                context: context,
+                content: "Native",
+                namedRouter: "/closed/app/native",
+                isPost: true,
               ),
             ]),
             _category(title: 'Library', widgets: [

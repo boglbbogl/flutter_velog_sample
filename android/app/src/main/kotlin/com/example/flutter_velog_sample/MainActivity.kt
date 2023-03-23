@@ -7,11 +7,13 @@ package com.tyger.flutter_velog_sample
  import io.flutter.embedding.engine.FlutterEngine
  import io.flutter.plugin.common.StringCodec
  import io.flutter.plugin.common.BasicMessageChannel
+ import io.flutter.plugin.common.MethodChannel
  import io.flutter.plugins.GeneratedPluginRegistrant
 
 class MainActivity: FlutterActivity() {
 
     private lateinit var appLifeCycle: BasicMessageChannel<String>
+    private val closedChannel = "tyger/closed"
 
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         GeneratedPluginRegistrant.registerWith(flutterEngine)
@@ -24,6 +26,16 @@ class MainActivity: FlutterActivity() {
               Log.d("AppLifeCycle", "AppLifeCycle Message = $message")
               reply.reply("From Android Life Cycle")
           }
+
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, closedChannel).setMethodCallHandler{
+            call, result ->
+            if(call.method == "close"){
+                result.success("System Finish !!")
+                finish()
+            }else{
+                result.success("Not Call Method !!")
+            }
+        }
      }
 
     override fun onPause() {

@@ -14,8 +14,6 @@ class AppDatePickerScreen extends StatelessWidget {
         DateTime.now().toString().substring(0, 10).replaceAll("-", ""));
     ValueNotifier<String> _sheetDate = ValueNotifier<String>(
         DateTime.now().toString().substring(0, 10).replaceAll("-", ""));
-    ValueNotifier<String> _alertDate = ValueNotifier<String>(
-        DateTime.now().toString().substring(0, 10).replaceAll("-", ""));
     return Scaffold(
       appBar: appBar(title: "Date Picker"),
       body: Column(
