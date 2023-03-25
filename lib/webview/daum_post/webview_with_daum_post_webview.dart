@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
+import 'package:flutter_velog_sample/main.dart';
 import 'package:flutter_velog_sample/webview/daum_post/daum_post_model.dart';
 
 class WebviewWithDaumPostWebview extends StatefulWidget {
@@ -75,11 +76,13 @@ class _WebviewWithDaumPostWebviewState
               });
             },
             onLoadError: ((controller, url, code, message) {
+              logger.e(message);
               setState(() {
                 isError = true;
               });
             }),
             onLoadHttpError: (controller, url, statusCode, description) {
+              logger.e(description);
               setState(() {
                 isError = true;
               });

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_velog_sample/_core/app_size.dart';
 
 class MainScreen extends StatelessWidget {
@@ -24,14 +25,15 @@ class MainScreen extends StatelessWidget {
               _item(
                 length: 3,
                 context: context,
-                content: 'Timer',
+                content: 'Stopwatch',
+                namedRouter: "app/stopwatch",
+                isPost: true,
               ),
               _item(
                 length: 3,
                 context: context,
                 content: 'Calculator',
                 namedRouter: 'app/caculator',
-                isPost: true,
               ),
               _item(
                 length: 3,
@@ -42,7 +44,6 @@ class MainScreen extends StatelessWidget {
                 context: context,
                 content: 'Date Picker',
                 namedRouter: "app/date/picker",
-                isPost: true,
               ),
               _item(
                 context: context,
@@ -432,6 +433,7 @@ class MainScreen extends StatelessWidget {
       ignoring: namedRouter == null,
       child: GestureDetector(
         onTap: () {
+          HapticFeedback.mediumImpact();
           if (namedRouter != null) {
             Navigator.of(context).pushNamed(namedRouter);
           }

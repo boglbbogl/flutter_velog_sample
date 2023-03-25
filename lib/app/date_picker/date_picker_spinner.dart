@@ -106,17 +106,8 @@ class _DatePickerSpinnerState extends State<DatePickerSpinner> {
   void _leapYearChecked() {
     int _dayLength = 0;
     int _year = int.parse(currentDate.value.substring(0, 4));
-    if (_year % 4 == 0) {
-      if (_year % 100 == 0) {
-        if (_year % 400 == 0) {
-          _dayLength = 29;
-        } else {
-          _dayLength = 28;
-        }
-        _dayLength = 28;
-      } else {
-        _dayLength = 29;
-      }
+    if (((_year % 4 == 0) && (_year % 100 != 0)) || (_year % 400 == 0)) {
+      _dayLength = 29;
     } else {
       _dayLength = 28;
     }

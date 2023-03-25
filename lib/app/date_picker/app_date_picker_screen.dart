@@ -88,6 +88,7 @@ class AppDatePickerScreen extends StatelessWidget {
           ),
           DatePickerSpinner(
             date: DateTime.now(),
+            interval: 1200,
             onChanged: (value) => _currentDate.value = value,
           ),
         ],
