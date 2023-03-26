@@ -18,6 +18,8 @@ import 'package:flutter_velog_sample/count_app/get/count_screen_with_get_simple.
 import 'package:flutter_velog_sample/count_app/mobx/count_screen_with_mobx.dart';
 import 'package:flutter_velog_sample/count_app/provider/count_screen_with_provider.dart';
 import 'package:flutter_velog_sample/count_app/count_screen_with_riverpod.dart';
+import 'package:flutter_velog_sample/custom_painter/bubble_chat/painter_bubble_chat_screen.dart';
+import 'package:flutter_velog_sample/custom_painter/watch/painter_apple_watch_screen.dart';
 import 'package:flutter_velog_sample/dart_lang/factory/dart_pattern_screen_with_factory.dart';
 import 'package:flutter_velog_sample/dart_lang/singleton/dart_pattern_screen_with_singleton.dart';
 import 'package:flutter_velog_sample/firebase/authentication/presentation/firebase_authentication_screen.dart';
@@ -102,24 +104,28 @@ class App extends StatelessWidget {
         theme: AppTheme.darkTheme,
         home: const InitialApp(),
         routes: {
-          "app/caculator": (context) => const AppCaculatorScreen(),
-          "app/color/picker": (context) => const AppColorPickerScreen(),
-          "app/date/picker": (context) => const AppDatePickerScreen(),
-          "app/stopwatch": (context) => const AppStopWatchScreen(),
-          "firebase/authentication": (context) =>
+          "/app/caculator": (context) => const AppCaculatorScreen(),
+          "/app/color/picker": (context) => const AppColorPickerScreen(),
+          "/app/date/picker": (context) => const AppDatePickerScreen(),
+          "/app/stopwatch": (context) => const AppStopWatchScreen(),
+          "/firebase/authentication": (context) =>
               const FirebaseAuthenticationScreen(),
-          "firebase/firestore": (context) => const FirebaseFirestoreScreen(),
-          "firebase/realtime": (context) => const FirebaseRealtimeScreen(),
-          "firebase/storage": (context) => const FirebaseStorageScreen(),
-          "firebase/dynamicLinks": (context) =>
+          "/firebase/firestore": (context) => const FirebaseFirestoreScreen(),
+          "/firebase/realtime": (context) => const FirebaseRealtimeScreen(),
+          "/firebase/storage": (context) => const FirebaseStorageScreen(),
+          "/firebase/dynamicLinks": (context) =>
               const FirebaseDynamicLinksScreen(),
-          "firebase/dynamicLinks/first": (context) =>
+          "/firebase/dynamicLinks/first": (context) =>
               const DynamicLinksFirstScreen(),
-          "firebase/dynamicLinks/second": (context) =>
+          "/firebase/dynamicLinks/second": (context) =>
               const DynamicLinksSecondScreen(),
-          "firebase/dynamicLinks/third": (context) =>
+          "/firebase/dynamicLinks/third": (context) =>
               const DynamicLinksThirdScreen(),
-          "firebase/messaging": (context) => const FirebaseMessageScreen(),
+          "/firebase/messaging": (context) => const FirebaseMessageScreen(),
+          "/custom/painter/bubble/chat": (context) =>
+              const PainterBubbleChatScreen(),
+          "/custom/painter/apple/watch": (context) =>
+              const PainterAppleWatchScreen(),
           "/count/app/stateFul": (context) => const CountScreenWithStateFul(),
           "/count/app/listenerable": (context) =>
               const CountScreenWithListenarable(),

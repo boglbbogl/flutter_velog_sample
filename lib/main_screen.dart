@@ -26,14 +26,14 @@ class MainScreen extends StatelessWidget {
                 length: 3,
                 context: context,
                 content: 'Stopwatch',
-                namedRouter: "app/stopwatch",
+                namedRouter: "/app/stopwatch",
                 isPost: true,
               ),
               _item(
                 length: 3,
                 context: context,
                 content: 'Calculator',
-                namedRouter: 'app/caculator',
+                namedRouter: '/app/caculator',
               ),
               _item(
                 length: 3,
@@ -43,12 +43,12 @@ class MainScreen extends StatelessWidget {
               _item(
                 context: context,
                 content: 'Date Picker',
-                namedRouter: "app/date/picker",
+                namedRouter: "/app/date/picker",
               ),
               _item(
                 context: context,
                 content: "Color Picker",
-                namedRouter: "app/color/picker",
+                namedRouter: "/app/color/picker",
                 isPost: true,
               ),
             ]),
@@ -56,41 +56,41 @@ class MainScreen extends StatelessWidget {
               _item(
                 context: context,
                 content: "Authentication",
-                namedRouter: "firebase/authentication",
+                namedRouter: "/firebase/authentication",
                 isPost: true,
               ),
               _item(
                 context: context,
                 content: "Dynamic Links",
                 isPost: true,
-                namedRouter: "firebase/dynamicLinks",
+                namedRouter: "/firebase/dynamicLinks",
               ),
               _item(
                 length: 3,
                 context: context,
                 content: "Firestore",
-                namedRouter: "firebase/firestore",
+                namedRouter: "/firebase/firestore",
                 isPost: true,
               ),
               _item(
                 length: 3,
                 context: context,
                 content: "Realtime",
-                namedRouter: "firebase/realtime",
+                namedRouter: "/firebase/realtime",
                 isPost: true,
               ),
               _item(
                 length: 3,
                 context: context,
                 content: "Storage",
-                namedRouter: "firebase/storage",
+                namedRouter: "/firebase/storage",
                 isPost: true,
               ),
               _item(
                 length: 3,
                 context: context,
                 content: "FCM",
-                namedRouter: "firebase/messaging",
+                namedRouter: "/firebase/messaging",
                 isPost: true,
               ),
               _item(
@@ -106,9 +106,20 @@ class MainScreen extends StatelessWidget {
                 isPost: false,
               ),
             ]),
-            // _category(title: "Bloc Pattern (example)", widgets: [
-            //   _item(context: context, content: "Photos"),
-            // ]),
+            _category(title: "Custom Painter", widgets: [
+              _item(
+                context: context,
+                content: "Bubble Chat",
+                namedRouter: "/custom/painter/bubble/chat",
+                isPost: true,
+              ),
+              _item(
+                context: context,
+                content: "Apple Watch",
+                namedRouter: "/custom/painter/apple/watch",
+                isPost: true,
+              ),
+            ]),
             _category(title: 'State Management With Count App', widgets: [
               _item(
                 length: 3,

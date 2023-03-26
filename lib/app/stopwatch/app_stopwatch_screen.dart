@@ -140,7 +140,7 @@ class AppStopWatchScreen extends StatelessWidget {
                                 ? Colors.blue
                                 : Colors.red,
                             content: state.stopwatchState == StopwatchState.stop
-                                ? "RE START"
+                                ? "RE"
                                 : "STOP",
                             onTap: () {
                               if (state.stopwatchState == StopwatchState.stop) {
@@ -280,7 +280,7 @@ class AppStopWatchScreen extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           color: color,
         ),
-        width: 120,
+        width: 100,
         height: 45,
         child: Center(
             child: Text(
