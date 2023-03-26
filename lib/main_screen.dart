@@ -117,7 +117,6 @@ class MainScreen extends StatelessWidget {
                 context: context,
                 content: "Apple Watch",
                 namedRouter: "/custom/painter/apple/watch",
-                isPost: true,
               ),
             ]),
             _category(title: 'State Management With Count App', widgets: [
@@ -292,7 +291,6 @@ class MainScreen extends StatelessWidget {
                 namedRouter: '/infinityScroll/pageview',
               ),
             ]),
-            // _category(title: 'Sliver', widgets: []),
             _category(title: "HTTP", widgets: [
               _item(
                 length: 3,
@@ -370,13 +368,11 @@ class MainScreen extends StatelessWidget {
                 context: context,
                 content: "Flutter",
                 namedRouter: "/closed/app/flutter",
-                isPost: true,
               ),
               _item(
                 context: context,
                 content: "Native",
                 namedRouter: "/closed/app/native",
-                isPost: true,
               ),
             ]),
             _category(title: 'Library', widgets: [
