@@ -18,6 +18,37 @@ class MainActivity: FlutterActivity() {
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         GeneratedPluginRegistrant.registerWith(flutterEngine)
 
+        var count : Int = 0
+
+        val countToastChannel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "tyger/count/toast")
+
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "tyger/count/app").setMethodCallHandler {
+                call, result ->
+
+            when(call.method){
+                "reset" -> {
+                    count = 0
+                    result.success(count)
+                }
+                "increment" ->{
+                    val args : Int? = call.argument<Int>("count")
+                    count += args!!
+                    result.success(count)
+                    countToastChannel.invokeMethod("Count : $count     Argument : $args", null)
+                }
+                "decrement" -> {
+                    val args : Int? = call.argument<Int>("count")
+                    count -= args!!
+                    result.success(count)
+                    countToastChannel.invokeMethod("Count : $count     Argument : $args", null)
+                }
+                else -> {
+                    result.success(null)
+                }
+            }
+
+        }
+
           appLifeCycle = BasicMessageChannel(
               flutterEngine.dartExecutor.binaryMessenger,
               "appLifeCycle",

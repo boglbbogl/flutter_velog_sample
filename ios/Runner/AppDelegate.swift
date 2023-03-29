@@ -40,15 +40,31 @@ import WebKit
         }else{
             result("Not Call Method !!")
         }
-    // This method is invoked on the UI thread.
-//    guard call.method == "getBatteryLevel" else {
-//      result(FlutterMethodNotImplemented)
-//      return
-//    }
-//        exit(0)
-//        result(111)
-//    self?.receiveBatteryLevel(result: result)
   })
+      
+      let countToastChannel = FlutterMethodChannel(name: "tyger/count/toast", binaryMessenger: (window?.rootViewController as! FlutterViewController).binaryMessenger)
+      
+      var count : Int = 0
+      
+      FlutterMethodChannel(name: "tyger/count/app",binaryMessenger: (window?.rootViewController as! FlutterViewController).binaryMessenger).setMethodCallHandler({
+          [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
+          if(call.method == "reset"){
+              count = 0
+              result(count)
+          } else if (call.method == "increment") {
+//              let args : Int? = call.arguments["count"]
+            //   let test = call.arguments
+              count += 1
+              result(count)
+              countToastChannel.invokeMethod("increment",arguments: nil)
+          } else if (call.method == "decrement") {
+              count -= 1
+              result(count)
+              countToastChannel.invokeMethod("decrement",arguments: nil)
+          } else {
+              result(nil)
+          }
+    })
 
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
