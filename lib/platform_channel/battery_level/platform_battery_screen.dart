@@ -61,6 +61,8 @@ class PlatformBatteryScreen extends StatelessWidget {
                       ],
                     ),
                   ),
+                  SizedBox(
+                      height: MediaQueryData.fromWindow(window).padding.top),
                 ],
               ),
             ),

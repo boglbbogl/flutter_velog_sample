@@ -5,7 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PlatformBatteryCubit extends Cubit<PlatformBatteryState> {
   PlatformBatteryCubit() : super(const NativeBatteryCheckingState());
-  final MethodChannel _channel = const MethodChannel("tyger/battery/level");
+  final MethodChannel _levelChannel =
+      const MethodChannel("tyger/battery/level");
 
   Timer? _timer;
 
@@ -18,7 +19,7 @@ class PlatformBatteryCubit extends Cubit<PlatformBatteryState> {
   }
 
   Future<void> getBatteryLevel() async {
-    int? _level = await _channel.invokeMethod("level");
+    int? _level = await _levelChannel.invokeMethod("level");
     if (_level != null) {
       _timer = Timer.periodic(const Duration(milliseconds: 10),
           (Timer timer) => _tick(timer, _level));
