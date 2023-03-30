@@ -26,7 +26,9 @@ import WebKit
             name: "appLifeCycle",
             binaryMessenger: (window?.rootViewController as! FlutterViewController).binaryMessenger,
             codec: FlutterStringCodec.sharedInstance())
- 
+
+      
+    FlutterEventChannel(name: "tyger/battery/state", binaryMessenger: (window?.rootViewController as! FlutterViewController).binaryMessenger).setStreamHandler(BatteryStateStreamHandler())
       
     closedChannel.setMethodCallHandler({
         [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
@@ -104,6 +106,41 @@ import WebKit
 
     override func applicationDidEnterBackground(_ application: UIApplication) {
         appLifeCycle.sendMessage("lifeCycleStateWithInactive")
+    }
+}
+
+class BatteryStateStreamHandler: NSObject, FlutterStreamHandler {
+    
+    var events : FlutterEventSink?
+    
+    func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
+        self.events = events
+        
+        let device = UIDevice.current
+        device.isBatteryMonitoringEnabled = true
+        batteryStateDidChange()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.batteryStateDidChange), name: UIDevice.batteryStateDidChangeNotification, object: nil)
+        
+        return nil
+    }
+    
+    func onCancel(withArguments arguments: Any?) -> FlutterError? {
+        self.events = nil
+        return nil
+    }
+    
+    @objc private func batteryStateDidChange(){
+        let device = UIDevice.current
+        device.isBatteryMonitoringEnabled = true
+        switch device.batteryState {
+        case UIDevice.BatteryState.unplugged, UIDevice.BatteryState.unknown:
+            self.events!(false)
+            break
+        default:
+            self.events!(true)
+            break
+        }
     }
 }
 

@@ -10,7 +10,9 @@ class PlatformBatteryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<PlatformBatteryCubit>(
-      create: (context) => PlatformBatteryCubit()..getBatteryLevel(),
+      create: (context) => PlatformBatteryCubit()
+        ..getBatteryLevel()
+        ..listener(),
       child: BlocBuilder<PlatformBatteryCubit, PlatformBatteryState>(
         builder: (context, state) {
           return Scaffold(
@@ -18,8 +20,9 @@ class PlatformBatteryScreen extends StatelessWidget {
             body: SizedBox(
               width: MediaQueryData.fromWindow(window).size.width,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  const SizedBox(),
                   Container(
                     width: MediaQueryData.fromWindow(window).size.width - 40,
                     height: 150,
@@ -61,8 +64,20 @@ class PlatformBatteryScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(
-                      height: MediaQueryData.fromWindow(window).padding.top),
+                  SafeArea(
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 40),
+                      child: Text(
+                        state.isConnected ? "CONNECTED" : "DISCONNECTED",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 28,
+                            color: state.isConnected
+                                ? Colors.blue
+                                : const Color.fromRGBO(155, 155, 155, 1)),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

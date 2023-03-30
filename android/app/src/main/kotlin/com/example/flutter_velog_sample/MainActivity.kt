@@ -1,6 +1,9 @@
 package com.tyger.flutter_velog_sample
 
+ import android.content.BroadcastReceiver
  import android.content.Context
+ import android.content.Intent
+ import android.content.IntentFilter
  import android.os.BatteryManager
  import android.util.Log
  import androidx.annotation.NonNull
@@ -8,6 +11,8 @@ package com.tyger.flutter_velog_sample
  import io.flutter.embedding.engine.FlutterEngine
  import io.flutter.plugin.common.StringCodec
  import io.flutter.plugin.common.BasicMessageChannel
+ import io.flutter.plugin.common.EventChannel
+ import io.flutter.plugin.common.EventChannel.EventSink
  import io.flutter.plugin.common.MethodChannel
  import io.flutter.plugins.GeneratedPluginRegistrant
 
@@ -76,12 +81,13 @@ class MainActivity: FlutterActivity() {
                 result.success(level)
             }
         }
+
+        EventChannel(flutterEngine.dartExecutor.binaryMessenger, "tyger/battery/state").setStreamHandler(BatteryStateEventChannel(context))
      }
 
     private fun getBatteryLevel(): Int {
     val batteryManager = getSystemService(Context.BATTERY_SERVICE) as BatteryManager
     val batteryLevel : Int = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
-    
     return batteryLevel
   }
 
@@ -104,4 +110,52 @@ class MainActivity: FlutterActivity() {
           appLifeCycle.send("lifeCycleStateWithDetached")
           super.onDestroy()
       }
+}
+
+class BatteryStateEventChannel(context: Context) : EventChannel.StreamHandler {
+
+    private var connectReceiver: BroadcastReceiver? = null
+    private var disConnectReceiver: BroadcastReceiver? = null
+    private var context: Context = context
+
+    override fun onListen(arguments: Any?, events: EventChannel.EventSink?) {
+        connectReceiver = connected(events!!)
+        disConnectReceiver = disConnected(events!!)
+        context.registerReceiver(connectReceiver, IntentFilter(Intent.ACTION_POWER_CONNECTED))
+        context.registerReceiver(disConnectReceiver, IntentFilter(Intent.ACTION_POWER_DISCONNECTED))
+    }
+
+    private  fun connected(events: EventChannel.EventSink) : BroadcastReceiver? {
+        return  object : BroadcastReceiver(){
+            override fun onReceive(context: Context?, intent: Intent) {
+                events.success(true)
+            }
+        }
+    }
+
+    private  fun disConnected(events: EventChannel.EventSink) : BroadcastReceiver? {
+        return  object : BroadcastReceiver(){
+            override fun onReceive(context: Context?, intent: Intent) {
+                events.success(false)
+            }
+        }
+    }
+
+//    private fun createBatteryReceiver(events: EventChannel.EventSink): BroadcastReceiver? {
+//        return object : BroadcastReceiver(){
+//            override fun onReceive(context: Context?, intent: Intent) {
+//
+//                events.success(Intent.ACTION_POWER_CONNECTED)
+//            }
+//        }
+//
+//    }
+
+    override fun onCancel(arguments: Any?) {
+        context.unregisterReceiver(connectReceiver)
+        context.unregisterReceiver(disConnectReceiver)
+        connectReceiver = null
+        disConnectReceiver = null
+    }
+
 }
