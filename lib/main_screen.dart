@@ -128,6 +128,8 @@ class MainScreen extends StatelessWidget {
               _item(
                 context: context,
                 content: "Battery",
+                namedRouter: "/platform/battery",
+                isPost: true,
               ),
             ]),
             _category(title: 'State Management With Count App', widgets: [

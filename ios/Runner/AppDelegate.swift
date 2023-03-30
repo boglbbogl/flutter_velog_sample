@@ -71,22 +71,14 @@ import WebKit
           default:
               break
           }
-//          if(call.method == "reset"){
-//              count = 0
-//              result(count)
-//          } else if (call.method == "increment") {
-//              let args = call.arguments as? Dictionary<String, Any>
-//              count += 1
-//              result(count)
-//              countToastChannel.invokeMethod(args,arguments: nil)
-//          } else if (call.method == "decrement") {
-//              count -= 1
-//              result(count)
-//              countToastChannel.invokeMethod("decrement",arguments: nil)
-//          } else {
-//              result(nil)
-//          }
     })
+      
+      FlutterMethodChannel(name: "tyger/battery/level", binaryMessenger: (window?.rootViewController as! FlutterViewController).binaryMessenger).setMethodCallHandler({
+          [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
+          if(call.method == "level"){
+              self?.receiveBatteryLevel(result: result)
+          }
+      })
 
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
@@ -95,12 +87,9 @@ import WebKit
      let device = UIDevice.current
      device.isBatteryMonitoringEnabled = true
      if device.batteryState == UIDevice.BatteryState.unknown {
-       result(55)
-       // result(FlutterError(code: "UNAVAILABLE",
-       //                     message: "Battery level not available.",
-       //                     details: nil))
+         result(nil)
      } else {
-       result(Int(device.batteryLevel * 100))
+         result(Int(device.batteryLevel * 100))
      }
    }
 
