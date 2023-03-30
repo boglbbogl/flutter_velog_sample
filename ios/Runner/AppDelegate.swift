@@ -92,7 +92,7 @@ import WebKit
          result(Int(device.batteryLevel * 100))
      }
    }
-
+   
     override func applicationWillTerminate(_ application: UIApplication) {
         appLifeCycle.sendMessage("lifeCycleStateWithDetached")
         sleep(2)

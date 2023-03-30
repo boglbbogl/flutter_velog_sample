@@ -1,28 +1,43 @@
+import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_velog_sample/main.dart';
 
 class PlatformBatteryCubit extends Cubit<PlatformBatteryState> {
   PlatformBatteryCubit() : super(const NativeBatteryCheckingState());
   final MethodChannel _channel = const MethodChannel("tyger/battery/level");
 
+  Timer? _timer;
+
+  Future<void> _tick(Timer timer, int level) async {
+    if (level >= timer.tick) {
+      emit(NativeBatteryCheckedState(level: timer.tick));
+    } else {
+      _timer?.cancel();
+    }
+  }
+
   Future<void> getBatteryLevel() async {
-    emit(const NativeBatteryCheckingState(level: null));
     int? _level = await _channel.invokeMethod("level");
     if (_level != null) {
-      emit(NativeBatteryCheckingState(level: _level));
+      _timer = Timer.periodic(const Duration(milliseconds: 10),
+          (Timer timer) => _tick(timer, _level));
     } else {
       emit(const NativeBatteryErrorState("Null"));
     }
-    logger.e(state.level);
+  }
+
+  @override
+  Future<void> close() {
+    _timer?.cancel();
+    return super.close();
   }
 }
 
 abstract class PlatformBatteryState extends Equatable {
-  final int? level;
+  final int level;
   const PlatformBatteryState({
-    this.level,
+    this.level = 0,
   });
 }
 
@@ -42,9 +57,7 @@ class NativeBatteryCheckedState extends PlatformBatteryState {
 
 class NativeBatteryErrorState extends PlatformBatteryState {
   final String message;
-  const NativeBatteryErrorState(
-    this.message,
-  );
+  const NativeBatteryErrorState(this.message);
 
   @override
   List<Object?> get props => [message];
