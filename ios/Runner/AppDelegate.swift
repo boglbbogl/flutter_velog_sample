@@ -40,15 +40,45 @@ import WebKit
         }else{
             result("Not Call Method !!")
         }
-    // This method is invoked on the UI thread.
-//    guard call.method == "getBatteryLevel" else {
-//      result(FlutterMethodNotImplemented)
-//      return
-//    }
-//        exit(0)
-//        result(111)
-//    self?.receiveBatteryLevel(result: result)
   })
+      
+      let countToastChannel = FlutterMethodChannel(name: "tyger/count/toast", binaryMessenger: (window?.rootViewController as! FlutterViewController).binaryMessenger)
+      
+      var count : Int = 0
+      var selectCount : Int = 1
+      
+      FlutterMethodChannel(name: "tyger/count/app",binaryMessenger: (window?.rootViewController as! FlutterViewController).binaryMessenger).setMethodCallHandler({
+          [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
+          if let args = call.arguments as? Dictionary<String, Any>,
+             let param = args["count"] as? Int {
+              selectCount = param
+          }
+          switch call.method {
+          case "reset":
+              count = 0
+              result(count)
+              break
+          case "increment":
+              count += selectCount
+              result(count)
+              countToastChannel.invokeMethod("Count : \(count)     Argument : \(selectCount)",arguments: nil)
+              break
+          case "decrement":
+              count -= selectCount
+              result(count)
+              countToastChannel.invokeMethod("Count : \(count)     Argument : \(selectCount)",arguments: nil)
+              break
+          default:
+              break
+          }
+    })
+      
+      FlutterMethodChannel(name: "tyger/battery/level", binaryMessenger: (window?.rootViewController as! FlutterViewController).binaryMessenger).setMethodCallHandler({
+          [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
+          if(call.method == "level"){
+              self?.receiveBatteryLevel(result: result)
+          }
+      })
 
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
@@ -57,15 +87,12 @@ import WebKit
      let device = UIDevice.current
      device.isBatteryMonitoringEnabled = true
      if device.batteryState == UIDevice.BatteryState.unknown {
-       result(55)
-       // result(FlutterError(code: "UNAVAILABLE",
-       //                     message: "Battery level not available.",
-       //                     details: nil))
+         result(nil)
      } else {
-       result(Int(device.batteryLevel * 100))
+         result(Int(device.batteryLevel * 100))
      }
    }
-
+   
     override func applicationWillTerminate(_ application: UIApplication) {
         appLifeCycle.sendMessage("lifeCycleStateWithDetached")
         sleep(2)
@@ -79,7 +106,6 @@ import WebKit
         appLifeCycle.sendMessage("lifeCycleStateWithInactive")
     }
 }
-
 
 class WkWebViewFactory: NSObject, FlutterPlatformViewFactory {
     private var messenger: FlutterBinaryMessenger?

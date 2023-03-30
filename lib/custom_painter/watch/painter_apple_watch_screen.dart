@@ -14,15 +14,22 @@ class PainterAppleWatchScreen extends StatefulWidget {
 
 class _PainterAppleWatchScreenState extends State<PainterAppleWatchScreen> {
   late DateTime now;
+  Timer? _timer;
   @override
   void initState() {
     super.initState();
     now = DateTime.now();
-    Timer.periodic(const Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         now = DateTime.now();
       });
     });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
   }
 
   @override

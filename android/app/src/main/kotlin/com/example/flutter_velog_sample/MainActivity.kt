@@ -1,6 +1,7 @@
 package com.tyger.flutter_velog_sample
- import android.os.Bundle
- import android.os.PersistableBundle
+
+ import android.content.Context
+ import android.os.BatteryManager
  import android.util.Log
  import androidx.annotation.NonNull
  import io.flutter.embedding.android.FlutterActivity
@@ -17,6 +18,37 @@ class MainActivity: FlutterActivity() {
 
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         GeneratedPluginRegistrant.registerWith(flutterEngine)
+
+        var count : Int = 0
+
+        val countToastChannel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "tyger/count/toast")
+
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "tyger/count/app").setMethodCallHandler {
+                call, result ->
+
+            when(call.method){
+                "reset" -> {
+                    count = 0
+                    result.success(count)
+                }
+                "increment" ->{
+                    val args : Int? = call.argument<Int>("count")
+                    count += args!!
+                    result.success(count)
+                    countToastChannel.invokeMethod("Count : $count     Argument : $args", null)
+                }
+                "decrement" -> {
+                    val args : Int? = call.argument<Int>("count")
+                    count -= args!!
+                    result.success(count)
+                    countToastChannel.invokeMethod("Count : $count     Argument : $args", null)
+                }
+                else -> {
+                    result.success(null)
+                }
+            }
+
+        }
 
           appLifeCycle = BasicMessageChannel(
               flutterEngine.dartExecutor.binaryMessenger,
@@ -36,7 +68,22 @@ class MainActivity: FlutterActivity() {
                 result.success("Not Call Method !!")
             }
         }
+
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "tyger/battery/level").setMethodCallHandler{
+            call, result ->
+            if(call.method == "level"){
+                val level = getBatteryLevel()
+                result.success(level)
+            }
+        }
      }
+
+    private fun getBatteryLevel(): Int {
+    val batteryManager = getSystemService(Context.BATTERY_SERVICE) as BatteryManager
+    val batteryLevel : Int = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
+    
+    return batteryLevel
+  }
 
     override fun onPause() {
           super.onPause()

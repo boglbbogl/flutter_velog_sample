@@ -49,7 +49,6 @@ class MainScreen extends StatelessWidget {
                 context: context,
                 content: "Color Picker",
                 namedRouter: "/app/color/picker",
-                isPost: true,
               ),
             ]),
             _category(title: "Firebase", widgets: [
@@ -117,6 +116,20 @@ class MainScreen extends StatelessWidget {
                 context: context,
                 content: "Apple Watch",
                 namedRouter: "/custom/painter/apple/watch",
+              ),
+            ]),
+            _category(title: "Platform Channel", widgets: [
+              _item(
+                context: context,
+                content: "Count App",
+                namedRouter: "/platform/count",
+                isPost: true,
+              ),
+              _item(
+                context: context,
+                content: "Battery",
+                namedRouter: "/platform/battery",
+                isPost: true,
               ),
             ]),
             _category(title: 'State Management With Count App', widgets: [
