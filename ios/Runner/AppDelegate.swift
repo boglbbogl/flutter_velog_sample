@@ -85,7 +85,7 @@ import WebKit
           [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
           if(call.method == "level"){
               self?.receiveBatteryLevel(result: result)
-              self?.deviceNameBasicChannel.sendMessage(UIDevice.current.systemName)
+              self?.deviceNameBasicChannel.sendMessage(UIDevice.current.name)
           }
       })
 
