@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_velog_sample/main.dart';
 
 class PlatformBatteryCubit extends Cubit<PlatformBatteryState> {
   PlatformBatteryCubit() : super(const NativeBatteryCheckingState());
