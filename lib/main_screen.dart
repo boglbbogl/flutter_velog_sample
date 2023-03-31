@@ -27,7 +27,6 @@ class MainScreen extends StatelessWidget {
                 context: context,
                 content: 'Stopwatch',
                 namedRouter: "/app/stopwatch",
-                isPost: true,
               ),
               _item(
                 length: 3,

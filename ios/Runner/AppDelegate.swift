@@ -6,6 +6,7 @@ import WebKit
 @objc class AppDelegate: FlutterAppDelegate {
 
     var appLifeCycle: FlutterBasicMessageChannel!
+    var deviceNameBasicChannel : FlutterBasicMessageChannel!
 
   override func application(
     _ application: UIApplication,
@@ -26,8 +27,13 @@ import WebKit
             name: "appLifeCycle",
             binaryMessenger: (window?.rootViewController as! FlutterViewController).binaryMessenger,
             codec: FlutterStringCodec.sharedInstance())
-
       
+    deviceNameBasicChannel = FlutterBasicMessageChannel(
+        name:"tyger/device/name",
+        binaryMessenger: (window?.rootViewController as! FlutterViewController).binaryMessenger,
+        codec: FlutterStringCodec.sharedInstance())
+      
+     
     FlutterEventChannel(name: "tyger/battery/state", binaryMessenger: (window?.rootViewController as! FlutterViewController).binaryMessenger).setStreamHandler(BatteryStateStreamHandler())
       
     closedChannel.setMethodCallHandler({
@@ -79,6 +85,7 @@ import WebKit
           [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
           if(call.method == "level"){
               self?.receiveBatteryLevel(result: result)
+              self?.deviceNameBasicChannel.sendMessage("dsjflksdjf")
           }
       })
 

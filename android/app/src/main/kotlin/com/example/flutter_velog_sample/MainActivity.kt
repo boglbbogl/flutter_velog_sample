@@ -20,6 +20,7 @@ class MainActivity: FlutterActivity() {
 
     private lateinit var appLifeCycle: BasicMessageChannel<String>
     private val closedChannel = "tyger/closed"
+    private lateinit var deviceNameChannel : BasicMessageChannel<String>
 
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         GeneratedPluginRegistrant.registerWith(flutterEngine)
@@ -55,14 +56,19 @@ class MainActivity: FlutterActivity() {
 
         }
 
-          appLifeCycle = BasicMessageChannel(
+        appLifeCycle = BasicMessageChannel(
               flutterEngine.dartExecutor.binaryMessenger,
               "appLifeCycle",
               StringCodec.INSTANCE)
-          appLifeCycle.setMessageHandler { message, reply ->
+
+        appLifeCycle.setMessageHandler { message, reply ->
               Log.d("AppLifeCycle", "AppLifeCycle Message = $message")
               reply.reply("From Android Life Cycle")
           }
+
+        deviceNameChannel = BasicMessageChannel(flutterEngine.dartExecutor.binaryMessenger,
+            "tyger/device/name",
+            StringCodec.INSTANCE)
 
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, closedChannel).setMethodCallHandler{
             call, result ->
@@ -77,6 +83,7 @@ class MainActivity: FlutterActivity() {
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "tyger/battery/level").setMethodCallHandler{
             call, result ->
             if(call.method == "level"){
+                deviceNameChannel.send("dsflksdfjflk")
                 val level = getBatteryLevel()
                 result.success(level)
             }

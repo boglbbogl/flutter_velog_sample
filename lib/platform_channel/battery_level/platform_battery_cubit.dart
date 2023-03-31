@@ -9,6 +9,8 @@ class PlatformBatteryCubit extends Cubit<PlatformBatteryState> {
   final MethodChannel _levelChannel =
       const MethodChannel("tyger/battery/level");
   final EventChannel _stateChannel = const EventChannel("tyger/battery/state");
+  final BasicMessageChannel<String> _deviceNameChannel =
+      const BasicMessageChannel<String>("tyger/device/name", StringCodec());
 
   Timer? _timer;
 
@@ -24,12 +26,17 @@ class PlatformBatteryCubit extends Cubit<PlatformBatteryState> {
   Future<void> listener() async {
     _stateChannel.receiveBroadcastStream().listen((event) {
       emit(NativeBatteryStatusState(level: state.level, isConnected: event));
-      logger.e(state.isConnected);
     });
   }
 
   Future<void> getBatteryLevel() async {
     int? _level = await _levelChannel.invokeMethod("level");
+    _deviceNameChannel.setMessageHandler((String? message) async {
+      if (message != null) {
+        logger.e(message);
+      }
+      return message!;
+    });
     if (_level != null) {
       _timer = Timer.periodic(const Duration(milliseconds: 10),
           (Timer timer) => _tick(timer, _level));
