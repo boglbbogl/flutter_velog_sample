@@ -1,10 +1,13 @@
 package com.tyger.flutter_velog_sample
 
+ import android.app.admin.DevicePolicyManager
+ import android.bluetooth.BluetoothClass.Device
  import android.content.BroadcastReceiver
  import android.content.Context
  import android.content.Intent
  import android.content.IntentFilter
  import android.os.BatteryManager
+ import android.os.Build
  import android.util.Log
  import androidx.annotation.NonNull
  import io.flutter.embedding.android.FlutterActivity
@@ -83,7 +86,7 @@ class MainActivity: FlutterActivity() {
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "tyger/battery/level").setMethodCallHandler{
             call, result ->
             if(call.method == "level"){
-                deviceNameChannel.send("dsflksdfjflk")
+                deviceNameChannel.send(Build.MODEL)
                 val level = getBatteryLevel()
                 result.success(level)
             }
@@ -147,16 +150,6 @@ class BatteryStateEventChannel(context: Context) : EventChannel.StreamHandler {
             }
         }
     }
-
-//    private fun createBatteryReceiver(events: EventChannel.EventSink): BroadcastReceiver? {
-//        return object : BroadcastReceiver(){
-//            override fun onReceive(context: Context?, intent: Intent) {
-//
-//                events.success(Intent.ACTION_POWER_CONNECTED)
-//            }
-//        }
-//
-//    }
 
     override fun onCancel(arguments: Any?) {
         context.unregisterReceiver(connectReceiver)

@@ -88,6 +88,8 @@ import WebKit
               self?.deviceNameBasicChannel.sendMessage(UIDevice.current.name)
           }
       })
+      
+      
 
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }

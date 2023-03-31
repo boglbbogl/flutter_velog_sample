@@ -14,10 +14,10 @@ class PlatformBatteryCubit extends Cubit<PlatformBatteryState> {
 
   Timer? _timer;
 
-  Future<void> _tick(Timer timer, int level) async {
+  Future<void> _tick(Timer timer, int level, String name) async {
     if (level >= timer.tick) {
       emit(NativeBatteryCheckedState(
-          level: timer.tick, isConnected: state.isConnected));
+          level: timer.tick, isConnected: state.isConnected, name: name));
     } else {
       _timer?.cancel();
     }
@@ -25,21 +25,23 @@ class PlatformBatteryCubit extends Cubit<PlatformBatteryState> {
 
   Future<void> listener() async {
     _stateChannel.receiveBroadcastStream().listen((event) {
-      emit(NativeBatteryStatusState(level: state.level, isConnected: event));
+      emit(NativeBatteryStatusState(
+          level: state.level, isConnected: event, name: state.name));
     });
   }
 
   Future<void> getBatteryLevel() async {
     int? _level = await _levelChannel.invokeMethod("level");
+    String _name = "";
     _deviceNameChannel.setMessageHandler((String? message) async {
       if (message != null) {
-        logger.e(message);
+        _name = message;
       }
       return message!;
     });
     if (_level != null) {
       _timer = Timer.periodic(const Duration(milliseconds: 10),
-          (Timer timer) => _tick(timer, _level));
+          (Timer timer) => _tick(timer, _level, _name));
     } else {
       emit(const NativeBatteryErrorState("Null"));
     }
@@ -55,16 +57,18 @@ class PlatformBatteryCubit extends Cubit<PlatformBatteryState> {
 abstract class PlatformBatteryState extends Equatable {
   final int level;
   final bool isConnected;
+  final String name;
   const PlatformBatteryState({
     this.level = 0,
     this.isConnected = false,
+    this.name = "",
   });
 }
 
 class NativeBatteryStatusState extends PlatformBatteryState {
-  const NativeBatteryStatusState({super.level, super.isConnected});
+  const NativeBatteryStatusState({super.level, super.isConnected, super.name});
   @override
-  List<Object?> get props => [level, isConnected];
+  List<Object?> get props => [level, isConnected, name];
 }
 
 class NativeBatteryCheckingState extends PlatformBatteryState {
@@ -75,10 +79,10 @@ class NativeBatteryCheckingState extends PlatformBatteryState {
 }
 
 class NativeBatteryCheckedState extends PlatformBatteryState {
-  const NativeBatteryCheckedState({super.level, super.isConnected});
+  const NativeBatteryCheckedState({super.level, super.isConnected, super.name});
 
   @override
-  List<Object?> get props => [level, isConnected];
+  List<Object?> get props => [level, isConnected, name];
 }
 
 class NativeBatteryErrorState extends PlatformBatteryState {

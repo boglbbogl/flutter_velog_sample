@@ -22,7 +22,19 @@ class PlatformBatteryScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 24),
+                    child: Text(
+                      state.name,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: state.isConnected
+                            ? Colors.blue
+                            : const Color.fromRGBO(155, 155, 155, 1),
+                      ),
+                    ),
+                  ),
                   Container(
                     width: MediaQueryData.fromWindow(window).size.width - 40,
                     height: 150,
