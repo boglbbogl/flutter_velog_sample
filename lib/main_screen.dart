@@ -38,6 +38,8 @@ class MainScreen extends StatelessWidget {
                 length: 3,
                 context: context,
                 content: 'To do',
+                namedRouter: "/app/toDo",
+                isPost: true,
               ),
               _item(
                 context: context,
