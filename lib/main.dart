@@ -23,6 +23,7 @@ import 'package:flutter_velog_sample/custom_painter/bubble_chat/painter_bubble_c
 import 'package:flutter_velog_sample/custom_painter/watch/painter_apple_watch_screen.dart';
 import 'package:flutter_velog_sample/dart_lang/factory/dart_pattern_screen_with_factory.dart';
 import 'package:flutter_velog_sample/dart_lang/singleton/dart_pattern_screen_with_singleton.dart';
+import 'package:flutter_velog_sample/firebase/analytics/firebase_analytics_screen.dart';
 import 'package:flutter_velog_sample/firebase/authentication/presentation/firebase_authentication_screen.dart';
 import 'package:flutter_velog_sample/firebase/dynamic_links/dynamic_links_first_screen.dart';
 import 'package:flutter_velog_sample/firebase/dynamic_links/dynamic_links_provider.dart';
@@ -126,6 +127,7 @@ class App extends StatelessWidget {
           "/firebase/dynamicLinks/third": (context) =>
               const DynamicLinksThirdScreen(),
           "/firebase/messaging": (context) => const FirebaseMessageScreen(),
+          "/firebase/analytics": (context) => const FirebaseAnalyticsScreen(),
           "/custom/painter/bubble/chat": (context) =>
               const PainterBubbleChatScreen(),
           "/custom/painter/apple/watch": (context) =>

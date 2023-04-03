@@ -97,7 +97,8 @@ class MainScreen extends StatelessWidget {
                 length: 3,
                 context: context,
                 content: "GA",
-                isPost: false,
+                namedRouter: "/firebase/analytics",
+                isPost: true,
               ),
               _item(
                 length: 3,
