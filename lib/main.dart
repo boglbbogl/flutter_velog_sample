@@ -50,6 +50,7 @@ import 'package:flutter_velog_sample/life_cycle/life_cycle_native_provider.dart'
 import 'package:flutter_velog_sample/life_cycle/life_cycle_screen_with_getx.dart';
 import 'package:flutter_velog_sample/life_cycle/life_cycle_screen_with_native.dart';
 import 'package:flutter_velog_sample/life_cycle/life_cycle_screen_with_statful.dart';
+import 'package:flutter_velog_sample/management/cubit/management_cubit_screen.dart';
 import 'package:flutter_velog_sample/platform_channel/battery_level/platform_battery_screen.dart';
 import 'package:flutter_velog_sample/platform_channel/count/platform_count_screen.dart';
 import 'package:flutter_velog_sample/scroll_indicator/vertical_indicator/vertical_indicator_screen.dart';
@@ -137,6 +138,7 @@ class App extends StatelessWidget {
           "/count/app/stateFul": (context) => const CountScreenWithStateFul(),
           "/count/app/listenerable": (context) =>
               const CountScreenWithListenarable(),
+          "/management/cubit": (context) => const ManagementCubitScreen(),
           "/count/app/provider": (context) => const CountScreenWithProvider(),
           "/count/app/get/simple": (context) =>
               const CountScreenWithGetSimple(),

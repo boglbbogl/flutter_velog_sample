@@ -132,6 +132,18 @@ class MainScreen extends StatelessWidget {
                 namedRouter: "/platform/battery",
               ),
             ]),
+            _category(title: "State Management", widgets: [
+              _item(
+                context: context,
+                content: "BLoC",
+              ),
+              _item(
+                context: context,
+                content: "Cubit",
+                namedRouter: "/management/cubit",
+                isPost: true,
+              ),
+            ]),
             _category(title: 'State Management With Count App', widgets: [
               _item(
                 length: 3,
