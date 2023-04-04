@@ -70,7 +70,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '328834457993',
     projectId: 'flutter-velog-sample',
     storageBucket: 'flutter-velog-sample.appspot.com',
-    iosClientId: '328834457993-7e2rdf8e3gbnh938oak7i7okdbr76cq3.apps.googleusercontent.com',
+    iosClientId:
+        '328834457993-7e2rdf8e3gbnh938oak7i7okdbr76cq3.apps.googleusercontent.com',
     iosBundleId: 'com.tyger.velogsample',
   );
 }
