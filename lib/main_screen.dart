@@ -135,7 +135,9 @@ class MainScreen extends StatelessWidget {
             _category(title: "State Management", widgets: [
               _item(
                 context: context,
-                content: "BLoC",
+                content: "Changed Image",
+                namedRouter: "/management/changed/image",
+                isPost: true,
               ),
               _item(
                 context: context,

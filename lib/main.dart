@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' as river;
 import 'package:flutter_velog_sample/_core/app_theme.dart';
 import 'package:flutter_velog_sample/app/calculator/app_calculator_screen.dart';
@@ -50,7 +51,7 @@ import 'package:flutter_velog_sample/life_cycle/life_cycle_native_provider.dart'
 import 'package:flutter_velog_sample/life_cycle/life_cycle_screen_with_getx.dart';
 import 'package:flutter_velog_sample/life_cycle/life_cycle_screen_with_native.dart';
 import 'package:flutter_velog_sample/life_cycle/life_cycle_screen_with_statful.dart';
-import 'package:flutter_velog_sample/management/cubit/management_cubit_screen.dart';
+import 'package:flutter_velog_sample/management/changed_image/changed_image_cubit_screen.dart';
 import 'package:flutter_velog_sample/platform_channel/battery_level/platform_battery_screen.dart';
 import 'package:flutter_velog_sample/platform_channel/count/platform_count_screen.dart';
 import 'package:flutter_velog_sample/scroll_indicator/vertical_indicator/vertical_indicator_screen.dart';
@@ -82,6 +83,26 @@ Logger logger = Logger();
 
 Future<void> _onBackgroundMessage(RemoteMessage message) async {}
 
+class Observer extends BlocObserver {
+  @override
+  void onCreate(BlocBase bloc) {
+    print("Create :: $bloc");
+    super.onCreate(bloc);
+  }
+
+  @override
+  void onClose(BlocBase bloc) {
+    print("Close :: $bloc");
+    super.onClose(bloc);
+  }
+
+  @override
+  void onChange(BlocBase bloc, Change change) {
+    print(change);
+    super.onChange(bloc, change);
+  }
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Provider.debugCheckInvalidValueType = null;
@@ -89,6 +110,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   FirebaseMessaging.onBackgroundMessage(_onBackgroundMessage);
+  Bloc.observer = Observer();
   runApp(const App());
 }
 
@@ -135,10 +157,11 @@ class App extends StatelessWidget {
               const PainterAppleWatchScreen(),
           "/platform/count": (context) => const PlatformCountScreen(),
           "/platform/battery": (context) => const PlatformBatteryScreen(),
+          "/management/changed/image": (context) =>
+              const ChangedImageCubitScreen(),
           "/count/app/stateFul": (context) => const CountScreenWithStateFul(),
           "/count/app/listenerable": (context) =>
               const CountScreenWithListenarable(),
-          "/management/cubit": (context) => const ManagementCubitScreen(),
           "/count/app/provider": (context) => const CountScreenWithProvider(),
           "/count/app/get/simple": (context) =>
               const CountScreenWithGetSimple(),
