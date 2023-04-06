@@ -141,8 +141,8 @@ class MainScreen extends StatelessWidget {
               ),
               _item(
                 context: context,
-                content: "Cubit",
-                namedRouter: "/management/cubit",
+                content: "Infinity Image",
+                namedRouter: "/management/infinity/image",
                 isPost: true,
               ),
             ]),
