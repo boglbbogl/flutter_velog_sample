@@ -51,6 +51,7 @@ import 'package:flutter_velog_sample/life_cycle/life_cycle_native_provider.dart'
 import 'package:flutter_velog_sample/life_cycle/life_cycle_screen_with_getx.dart';
 import 'package:flutter_velog_sample/life_cycle/life_cycle_screen_with_native.dart';
 import 'package:flutter_velog_sample/life_cycle/life_cycle_screen_with_statful.dart';
+import 'package:flutter_velog_sample/management/bloc_listener/screen/bloc_listener_screen.dart';
 import 'package:flutter_velog_sample/management/changed_image/presentation/changed_image_cubit_screen.dart';
 import 'package:flutter_velog_sample/management/infinity_image/presentation/infinity_image_bloc_screen.dart';
 import 'package:flutter_velog_sample/platform_channel/battery_level/platform_battery_screen.dart';
@@ -161,6 +162,7 @@ class App extends StatelessWidget {
               const ChangedImageCubitScreen(),
           "/management/infinity/image": (context) =>
               const InfinityImageBlocScreen(),
+          "/management/bloc/listener": (context) => const BlocListenerScreen(),
           "/count/app/stateFul": (context) => const CountScreenWithStateFul(),
           "/count/app/listenerable": (context) =>
               const CountScreenWithListenarable(),

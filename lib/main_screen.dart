@@ -137,12 +137,17 @@ class MainScreen extends StatelessWidget {
                 context: context,
                 content: "Changed Image",
                 namedRouter: "/management/changed/image",
-                isPost: true,
               ),
               _item(
                 context: context,
                 content: "Infinity Image",
                 namedRouter: "/management/infinity/image",
+                isPost: true,
+              ),
+              _item(
+                context: context,
+                content: "BLoC Listener",
+                namedRouter: "/management/bloc/listener",
                 isPost: true,
               ),
             ]),
