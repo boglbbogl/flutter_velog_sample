@@ -146,8 +146,8 @@ class MainScreen extends StatelessWidget {
               ),
               _item(
                 context: context,
-                content: "BLoC Listener",
-                namedRouter: "/management/bloc/listener",
+                content: "Text Listener",
+                namedRouter: "/management/text/listener",
                 isPost: true,
               ),
             ]),
