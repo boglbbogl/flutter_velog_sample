@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' as river;
@@ -80,6 +81,7 @@ import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'scroll_indicator/horizontal_indicator/horizontal_indicator_screen.dart';
 import 'webview/daum_post/webview_with_daum_post_screen.dart';
+import 'dart:developer' as dev;
 
 Logger logger = Logger();
 
@@ -88,13 +90,19 @@ Future<void> _onBackgroundMessage(RemoteMessage message) async {}
 class Observer extends BlocObserver {
   @override
   void onCreate(BlocBase bloc) {
-    print("Create :: $bloc");
+    if (kDebugMode) {
+      String _default = "Created BLoC";
+      dev.log('\x1B[37m$_default $bloc\x1B[0m');
+    }
     super.onCreate(bloc);
   }
 
   @override
   void onClose(BlocBase bloc) {
-    print("Close :: $bloc");
+    if (kDebugMode) {
+      String _default = "Closed BLoC";
+      dev.log('\x1B[32m$_default $bloc\x1B[0m');
+    }
     super.onClose(bloc);
   }
 
