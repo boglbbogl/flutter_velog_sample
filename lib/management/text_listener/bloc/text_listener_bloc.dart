@@ -9,6 +9,7 @@ class TextListenerBloc extends Bloc<TextListenerEvent, TextListenerState> {
 
   void _textAddListener(
       TextAddListenerEvent event, Emitter<TextListenerState> emit) {
+    emit(TextListenerInputState());
     String _text = event.controller.text.isNotEmpty
         ? event.controller.text.substring(event.controller.text.length - 1)
         : "";

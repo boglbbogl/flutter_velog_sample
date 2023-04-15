@@ -10,6 +10,11 @@ class TextListenerInitState extends TextListenerState {
   List<Object?> get props => [];
 }
 
+class TextListenerInputState extends TextListenerState {
+  @override
+  List<Object?> get props => [];
+}
+
 class TextListenerSpecialErrorState extends TextListenerState {
   const TextListenerSpecialErrorState({super.message});
   @override

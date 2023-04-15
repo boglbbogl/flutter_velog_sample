@@ -57,7 +57,6 @@ class MainScreen extends StatelessWidget {
                 context: context,
                 content: "Authentication",
                 namedRouter: "/firebase/authentication",
-                isPost: true,
               ),
               _item(
                 context: context,
@@ -70,7 +69,6 @@ class MainScreen extends StatelessWidget {
                 context: context,
                 content: "Firestore",
                 namedRouter: "/firebase/firestore",
-                isPost: true,
               ),
               _item(
                 length: 3,
@@ -134,21 +132,22 @@ class MainScreen extends StatelessWidget {
             ]),
             _category(title: "State Management", widgets: [
               _item(
+                length: 3,
                 context: context,
                 content: "Changed Image",
                 namedRouter: "/management/changed/image",
               ),
               _item(
+                length: 3,
                 context: context,
                 content: "Infinity Image",
                 namedRouter: "/management/infinity/image",
-                isPost: true,
               ),
               _item(
+                length: 3,
                 context: context,
                 content: "Text Listener",
                 namedRouter: "/management/text/listener",
-                isPost: true,
               ),
             ]),
             _category(title: 'State Management With Count App', widgets: [

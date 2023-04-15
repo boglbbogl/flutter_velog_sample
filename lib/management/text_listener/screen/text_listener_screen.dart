@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
-import 'package:flutter_velog_sample/main.dart';
 import 'package:flutter_velog_sample/management/text_listener/bloc/text_listener_bloc.dart';
 import 'package:flutter_velog_sample/management/text_listener/bloc/text_listener_event.dart';
 
