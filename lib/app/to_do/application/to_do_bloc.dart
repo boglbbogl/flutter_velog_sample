@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_velog_sample/app/to_do/application/to_do_event.dart';
 import 'package:flutter_velog_sample/app/to_do/application/to_do_state.dart';
+import 'package:flutter_velog_sample/app/to_do/model/to_do_model.dart';
 import 'package:flutter_velog_sample/app/to_do/repository/to_do_repository.dart';
 
 class TodoBloc extends Bloc<TodoEvent, TodoState> {
@@ -15,8 +16,9 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
   }
 
   Future<void> _list(TodoListEvent event, Emitter<TodoState> emit) async {
-    await _repository.readTodoList(uid: event.user!.uid);
-    emit(TodoListState(user: event.user));
+    List<TodoModel> _todos =
+        await _repository.readTodoList(uid: event.user!.uid);
+    emit(TodoListState(user: event.user, todos: _todos));
   }
 
   Future<void> _userCheck(
@@ -26,7 +28,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
     if (_user != null) {
       add(TodoListEvent(user: _user));
     } else {
-      emit(TodoUnUserState());
+      emit(const TodoUnUserState(user: null));
     }
   }
 
@@ -38,7 +40,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
       if (_user != null) {
         emit(TodoListState(user: _user));
       } else {
-        emit(TodoUnUserState());
+        emit(const TodoUnUserState(user: null));
       }
     }
   }

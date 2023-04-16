@@ -1,12 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_velog_sample/app/to_do/model/to_do_model.dart';
 
 class TodoRepository {
   static final TodoRepository instance = TodoRepository._internal();
   factory TodoRepository() => instance;
   TodoRepository._internal();
 
-  Future<void> readTodoList({
+  Future<List<TodoModel>> readTodoList({
     required String uid,
   }) async {
     QuerySnapshot<Map<String, dynamic>> _snapshot = await FirebaseFirestore
@@ -15,10 +17,7 @@ class TodoRepository {
         .limit(2)
         .orderBy("dateTime")
         .get();
-    // lastSnapshot = _snapshot.docs.last;
-    // infinityData = _snapshot.docs
-    //     .map((e) => _InfinityScrollModel.fromJson(e.data()))
-    //     .toList();
+    return _snapshot.docs.map((e) => TodoModel.fromJson(e.data())).toList();
   }
 
   Future<User?> currentUserCheck() async {

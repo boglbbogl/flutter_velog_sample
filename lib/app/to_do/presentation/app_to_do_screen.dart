@@ -1,11 +1,13 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
 import 'package:flutter_velog_sample/app/to_do/application/to_do_bloc.dart';
 import 'package:flutter_velog_sample/app/to_do/application/to_do_event.dart';
 import 'package:flutter_velog_sample/app/to_do/application/to_do_state.dart';
+import 'package:flutter_velog_sample/app/to_do/presentation/app_create_to_do_screen.dart';
 
 class AppToDoScreen extends StatelessWidget {
   const AppToDoScreen({super.key});
@@ -67,7 +69,58 @@ class AppToDoScreen extends StatelessWidget {
                             )),
                       ),
                     )
-                  : ListView(),
+                  : Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 12),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                "",
+                                style: TextStyle(
+                                    color: Colors.green,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  HapticFeedback.mediumImpact();
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (_) => AppCreateTodoScreen(
+                                            todo: null,
+                                            uid: state.user!.uid,
+                                          )));
+                                },
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(8),
+                                        color: Colors.amber),
+                                    child: const Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 20, vertical: 8),
+                                      child: Text(
+                                        "CREATE",
+                                        style: TextStyle(
+                                            color: Colors.green,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16),
+                                      ),
+                                    )),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: ListView.builder(
+                              itemCount: 1,
+                              itemBuilder: (context, index) {
+                                return Container();
+                              }),
+                        )
+                      ],
+                    ),
             );
           }
         },
