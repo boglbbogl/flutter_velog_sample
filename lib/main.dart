@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' as river;
 import 'package:flutter_velog_sample/_core/app_theme.dart';
+import 'package:flutter_velog_sample/app/calander/app_calander_screen.dart';
 import 'package:flutter_velog_sample/app/calculator/app_calculator_screen.dart';
 import 'package:flutter_velog_sample/app/color_picker/app_color_picker_screen.dart';
 import 'package:flutter_velog_sample/app/date_picker/app_date_picker_screen.dart';
@@ -143,6 +144,7 @@ class App extends StatelessWidget {
           "/app/caculator": (context) => const AppCaculatorScreen(),
           "/app/color/picker": (context) => const AppColorPickerScreen(),
           "/app/date/picker": (context) => const AppDatePickerScreen(),
+          "/app/calander": (context) => const AppCalanderScreen(),
           "/app/stopwatch": (context) => const AppStopWatchScreen(),
           "/app/toDo": (context) => const AppToDoScreen(),
           "/firebase/authentication": (context) =>

@@ -5,7 +5,6 @@ import 'package:flutter_velog_sample/app/to_do/application/create_to_do_bloc.dar
 import 'package:flutter_velog_sample/app/to_do/application/create_to_do_event.dart';
 import 'package:flutter_velog_sample/app/to_do/application/create_to_do_state.dart';
 import 'package:flutter_velog_sample/app/to_do/model/to_do_model.dart';
-import 'package:flutter_velog_sample/main.dart';
 
 class AppCreateTodoScreen extends StatelessWidget {
   final TodoModel? todo;
