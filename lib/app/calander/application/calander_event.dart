@@ -1,12 +1,13 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_velog_sample/app/calander/model/calander_model.dart';
 
 abstract class CalanderEvent extends Equatable {}
 
-class TestEvent extends CalanderEvent {
-  final TestModel test;
+class CalanderStartEvent extends CalanderEvent {
+  final DateTime? datTime;
 
-  TestEvent({required this.test});
+  CalanderStartEvent({
+    this.datTime,
+  });
   @override
   List<Object?> get props => [];
 }

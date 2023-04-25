@@ -1,27 +1,25 @@
 class CalanderModel {
-  final List<TestModel> testModel;
-
+  final int year;
+  final int month;
+  final List<int> days;
   const CalanderModel({
-    required this.testModel,
+    required this.year,
+    required this.month,
+    required this.days,
   });
 
   CalanderModel copyWith({
-    final List<TestModel>? testModel,
+    final int? year,
+    final int? month,
+    final List<int>? days,
   }) {
     return CalanderModel(
-      testModel: testModel ?? this.testModel,
+      year: year ?? this.year,
+      month: month ?? this.month,
+      days: days ?? this.days,
     );
   }
 
-  factory CalanderModel.empty() => const CalanderModel(testModel: []);
-}
-
-class TestModel {
-  final int number;
-  final String name;
-
-  const TestModel({
-    required this.number,
-    required this.name,
-  });
+  factory CalanderModel.empty() =>
+      const CalanderModel(year: 0, month: 0, days: []);
 }
