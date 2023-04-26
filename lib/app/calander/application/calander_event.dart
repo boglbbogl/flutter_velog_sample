@@ -11,3 +11,10 @@ class CalanderStartEvent extends CalanderEvent {
   @override
   List<Object?> get props => [];
 }
+
+class CalanderChangeEvent extends CalanderEvent {
+  final bool isNext;
+  CalanderChangeEvent({required this.isNext});
+  @override
+  List<Object?> get props => [];
+}

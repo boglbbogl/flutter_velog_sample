@@ -6,8 +6,22 @@ import 'package:flutter_velog_sample/main.dart';
 import 'package:intl/intl.dart';
 
 class CalanderBloc extends Bloc<CalanderEvent, CalanderState> {
-  CalanderBloc() : super(CalanderState(calander: CalanderModel.empty())) {
+  CalanderBloc()
+      : super(CalanderState(
+            calander: CalanderModel.empty(), currentDate: DateTime.now())) {
     on<CalanderStartEvent>(_start);
+    on<CalanderChangeEvent>(_change);
+  }
+
+  Future<void> _change(
+      CalanderChangeEvent event, Emitter<CalanderState> emit) async {
+    int _index = event.isNext ? 1 : -1;
+    DateTime _dateTime =
+        DateTime(state.currentDate.year, state.currentDate.month + _index);
+    List<int> _day = _days(_dateTime);
+    emit(state.copyWith(
+        calander: state.calander.copyWith(
+            year: _dateTime.year, month: _dateTime.month, days: _day)));
   }
 
   Future<void> _start(
