@@ -83,43 +83,84 @@ class AppCalanderScreen extends StatelessWidget {
                               child: Center(
                                 child: Text(
                                   ["S", "M", "T", "W", "T", "F", "S"][index],
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 14),
+                                      fontSize: 14,
+                                      color: index == 0
+                                          ? Colors.red
+                                          : index == 6
+                                              ? Colors.blue
+                                              : Colors.white),
                                 ),
                               ),
                             ),
                           ),
                         ],
                       ),
-                      Wrap(
+                      Stack(
                         children: [
-                          ...List.generate(
-                            state.calander.days.length,
-                            (index) => Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color:
-                                          const Color.fromRGBO(51, 51, 51, 1))),
-                              height:
-                                  MediaQueryData.fromWindow(window).size.width /
-                                      7,
-                              width:
-                                  MediaQueryData.fromWindow(window).size.width /
-                                      7,
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 4, top: 4),
-                                child: Text(
-                                  state.calander.days[index] == 0
-                                      ? ""
-                                      : state.calander.days[index].toString(),
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
+                          GestureDetector(
+                            onHorizontalDragEnd: (details) => context
+                                .read<CalanderBloc>()
+                                .add(CalanderEndBlurEvent(endDetails: details)),
+                            onHorizontalDragUpdate: (details) => context
+                                .read<CalanderBloc>()
+                                .add(CalanderUpdateBlurEvent(
+                                    updateDetails: details)),
+                            child: Wrap(
+                              children: [
+                                ...List.generate(
+                                  state.calander.days.length,
+                                  (index) => BackdropFilter(
+                                    filter: ImageFilter.blur(
+                                      sigmaX: state.blur,
+                                      sigmaY: state.blur,
+                                    ),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: const Color.fromRGBO(
+                                                  51, 51, 51, 1))),
+                                      height: MediaQueryData.fromWindow(window)
+                                              .size
+                                              .width /
+                                          7,
+                                      width: MediaQueryData.fromWindow(window)
+                                              .size
+                                              .width /
+                                          7,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 4, top: 4),
+                                        child: Text(
+                                          state.calander.days[index] == 0
+                                              ? ""
+                                              : state.calander.days[index]
+                                                  .toString(),
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: (state.calander.year ==
+                                                          DateTime.now().year &&
+                                                      state.calander.month ==
+                                                          DateTime.now()
+                                                              .month &&
+                                                      state.calander
+                                                              .days[index] ==
+                                                          DateTime.now().day)
+                                                  ? Colors.amber
+                                                  : index % 7 - 6 == 0
+                                                      ? Colors.blue
+                                                      : index % 7 == 0
+                                                          ? Colors.red
+                                                          : Colors.white),
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
+                                )
+                              ],
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ],

@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_velog_sample/app/calander/application/calander_event.dart';
 import 'package:flutter_velog_sample/app/calander/application/calander_state.dart';
 import 'package:flutter_velog_sample/app/calander/model/calander_model.dart';
-import 'package:flutter_velog_sample/main.dart';
 import 'package:intl/intl.dart';
 
 class CalanderBloc extends Bloc<CalanderEvent, CalanderState> {
@@ -11,6 +10,28 @@ class CalanderBloc extends Bloc<CalanderEvent, CalanderState> {
             calander: CalanderModel.empty(), currentDate: DateTime.now())) {
     on<CalanderStartEvent>(_start);
     on<CalanderChangeEvent>(_change);
+    on<CalanderUpdateBlurEvent>(_updateBlur);
+    on<CalanderEndBlurEvent>(_endBlur);
+  }
+
+  Future<void> _endBlur(
+      CalanderEndBlurEvent event, Emitter<CalanderState> emit) async {
+    bool _isNext = event.endDetails.primaryVelocity! < 0;
+    emit(state.copyWith(blur: 0.0));
+    add(CalanderChangeEvent(isNext: _isNext));
+  }
+
+  Future<void> _updateBlur(
+      CalanderUpdateBlurEvent event, Emitter<CalanderState> emit) async {
+    double _blur = state.blur;
+    double _dx = 0.0;
+    if (event.updateDetails.delta.dx > 0) {
+      _dx = event.updateDetails.delta.dx / 70;
+    } else {
+      _dx = -(event.updateDetails.delta.dx) / 70;
+    }
+    _blur = _dx + _blur > 0.5 ? 0.5 : _dx + _blur;
+    emit(state.copyWith(blur: _blur));
   }
 
   Future<void> _change(
@@ -20,6 +41,7 @@ class CalanderBloc extends Bloc<CalanderEvent, CalanderState> {
         DateTime(state.currentDate.year, state.currentDate.month + _index);
     List<int> _day = _days(_dateTime);
     emit(state.copyWith(
+        currentDate: _dateTime,
         calander: state.calander.copyWith(
             year: _dateTime.year, month: _dateTime.month, days: _day)));
   }
@@ -77,7 +99,6 @@ class CalanderBloc extends Bloc<CalanderEvent, CalanderState> {
         break;
       case "Sunday":
         _spaceLength = isLast ? 6 : 0;
-
         break;
       default:
     }
@@ -103,7 +124,6 @@ class CalanderBloc extends Bloc<CalanderEvent, CalanderState> {
 
   @override
   void onChange(Change<CalanderState> change) {
-    logger.e(change);
     super.onChange(change);
   }
 }
