@@ -60,6 +60,12 @@ class MainScreen extends StatelessWidget {
                 content: "Color Picker",
                 namedRouter: "/app/color/picker",
               ),
+              _item(
+                context: context,
+                content: "Address",
+                namedRouter: "/app/address",
+                isPost: true,
+              ),
             ]),
             _category(title: "Firebase", widgets: [
               _item(
@@ -84,7 +90,6 @@ class MainScreen extends StatelessWidget {
                 context: context,
                 content: "Realtime",
                 namedRouter: "/firebase/realtime",
-                isPost: true,
               ),
               _item(
                 length: 3,

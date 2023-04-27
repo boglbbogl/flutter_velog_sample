@@ -1,0 +1,52 @@
+{
+    "result": [
+        {
+            "addr_name": "강서구"
+        },
+        {
+            "addr_name": "금정구"
+        },
+        {
+            "addr_name": "기장군"
+        },
+        {
+            "addr_name": "남구"
+        },
+        {
+            "addr_name": "동구"
+        },
+        {
+            "addr_name": "동래구"
+        },
+        {
+            "addr_name": "부산진구"
+        },
+        {
+            "addr_name": "북구"
+        },
+        {
+            "addr_name": "사상구"
+        },
+        {
+            "addr_name": "사하구"
+        },
+        {
+            "addr_name": "서구"
+        },
+        {
+            "addr_name": "수영구"
+        },
+        {
+            "addr_name": "연제구"
+        },
+        {
+            "addr_name": "영도구"
+        },
+        {
+            "addr_name": "중구"
+        },
+        {
+            "addr_name": "해운대구"
+        }
+    ]
+}

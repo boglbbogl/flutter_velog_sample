@@ -1,0 +1,58 @@
+{
+    "result": [
+        {
+            "addr_name": "강릉시"
+        },
+        {
+            "addr_name": "고성군"
+        },
+        {
+            "addr_name": "동해시"
+        },
+        {
+            "addr_name": "삼척시"
+        },
+        {
+            "addr_name": "속초시"
+        },
+        {
+            "addr_name": "양구군"
+        },
+        {
+            "addr_name": "양양군"
+        },
+        {
+            "addr_name": "영월군"
+        },
+        {
+            "addr_name": "원주시"
+        },
+        {
+            "addr_name": "인제군"
+        },
+        {
+            "addr_name": "정선군"
+        },
+        {
+            "addr_name": "철원군"
+        },
+        {
+            "addr_name": "춘천시"
+        },
+        {
+            "addr_name": "태백시"
+        },
+        {
+            "addr_name": "평창군"
+        },
+        {
+            "addr_name": "홍천군"
+        },
+        {
+            "addr_name": "화천군"
+        },
+        {
+            "addr_name": "횡성군"
+        }
+    ]
+}

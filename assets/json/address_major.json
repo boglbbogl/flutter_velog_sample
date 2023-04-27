@@ -1,0 +1,55 @@
+{
+    "result": [
+        {
+            "addr_name": "서울특별시"
+        },
+        {
+            "addr_name": "부산광역시"
+        },
+        {
+            "addr_name": "대구광역시"
+        },
+        {
+            "addr_name": "인천광역시"
+        },
+        {
+            "addr_name": "광주광역시"
+        },
+        {
+            "addr_name": "대전광역시"
+        },
+        {
+            "addr_name": "울산광역시"
+        },
+        {
+            "addr_name": "세종특별자치시"
+        },
+        {
+            "addr_name": "경기도"
+        },
+        {
+            "addr_name": "강원도"
+        },
+        {
+            "addr_name": "충청북도"
+        },
+        {
+            "addr_name": "충청남도"
+        },
+        {
+            "addr_name": "전라북도"
+        },
+        {
+            "addr_name": "전라남도"
+        },
+        {
+            "addr_name": "경상북도"
+        },
+        {
+            "addr_name": "경상남도"
+        },
+        {
+            "addr_name": "제주특별자치도"
+        }
+    ]
+}
