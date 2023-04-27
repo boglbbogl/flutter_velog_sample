@@ -1,0 +1,52 @@
+{
+    "result": [
+        {
+            "addr_name": "계룡시"
+        },
+        {
+            "addr_name": "공주시"
+        },
+        {
+            "addr_name": "금산군"
+        },
+        {
+            "addr_name": "논산시"
+        },
+        {
+            "addr_name": "당진시"
+        },
+        {
+            "addr_name": "보령시"
+        },
+        {
+            "addr_name": "부여군"
+        },
+        {
+            "addr_name": "서산시"
+        },
+        {
+            "addr_name": "서천군"
+        },
+        {
+            "addr_name": "아산시"
+        },
+        {
+            "addr_name": "예산군"
+        },
+        {
+            "addr_name": "천안시 동남구"
+        },
+        {
+            "addr_name": "천안시 서북구"
+        },
+        {
+            "addr_name": "청양군"
+        },
+        {
+            "addr_name": "태안군"
+        },
+        {
+            "addr_name": "홍성군"
+        }
+    ]
+}

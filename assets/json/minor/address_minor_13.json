@@ -1,0 +1,49 @@
+{
+    "result": [
+        {
+            "addr_name": "고창군"
+        },
+        {
+            "addr_name": "군산시"
+        },
+        {
+            "addr_name": "김제시"
+        },
+        {
+            "addr_name": "남원시"
+        },
+        {
+            "addr_name": "무주군"
+        },
+        {
+            "addr_name": "부안군"
+        },
+        {
+            "addr_name": "순창군"
+        },
+        {
+            "addr_name": "완주군"
+        },
+        {
+            "addr_name": "익산시"
+        },
+        {
+            "addr_name": "임실군"
+        },
+        {
+            "addr_name": "장수군"
+        },
+        {
+            "addr_name": "전주시 덕진구"
+        },
+        {
+            "addr_name": "전주시 완산구"
+        },
+        {
+            "addr_name": "정읍시"
+        },
+        {
+            "addr_name": "진안군"
+        }
+    ]
+}

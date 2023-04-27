@@ -1,0 +1,28 @@
+{
+    "result": [
+        {
+            "addr_name": "남구"
+        },
+        {
+            "addr_name": "달서구"
+        },
+        {
+            "addr_name": "달성군"
+        },
+        {
+            "addr_name": "동구"
+        },
+        {
+            "addr_name": "북구"
+        },
+        {
+            "addr_name": "서구"
+        },
+        {
+            "addr_name": "수성구"
+        },
+        {
+            "addr_name": "중구"
+        }
+    ]
+}

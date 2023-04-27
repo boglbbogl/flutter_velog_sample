@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' as river;
 import 'package:flutter_velog_sample/_core/app_theme.dart';
+import 'package:flutter_velog_sample/app/address/presentation/app_address_screen.dart';
 import 'package:flutter_velog_sample/app/calander/presentation/app_calander_screen.dart';
 import 'package:flutter_velog_sample/app/calculator/app_calculator_screen.dart';
 import 'package:flutter_velog_sample/app/color_picker/app_color_picker_screen.dart';
@@ -147,6 +148,7 @@ class App extends StatelessWidget {
           "/app/calander": (context) => const AppCalanderScreen(),
           "/app/stopwatch": (context) => const AppStopWatchScreen(),
           "/app/toDo": (context) => const AppToDoScreen(),
+          "/app/address": (context) => const AppAddressScreen(),
           "/firebase/authentication": (context) =>
               const FirebaseAuthenticationScreen(),
           "/firebase/firestore": (context) => const FirebaseFirestoreScreen(),

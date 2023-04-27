@@ -1,0 +1,79 @@
+{
+    "result": [
+        {
+            "addr_name": "강남구"
+        },
+        {
+            "addr_name": "강동구"
+        },
+        {
+            "addr_name": "강북구"
+        },
+        {
+            "addr_name": "강서구"
+        },
+        {
+            "addr_name": "관악구"
+        },
+        {
+            "addr_name": "광진구"
+        },
+        {
+            "addr_name": "구로구"
+        },
+        {
+            "addr_name": "금천구"
+        },
+        {
+            "addr_name": "노원구"
+        },
+        {
+            "addr_name": "도봉구"
+        },
+        {
+            "addr_name": "동대문구"
+        },
+        {
+            "addr_name": "동작구"
+        },
+        {
+            "addr_name": "마포구"
+        },
+        {
+            "addr_name": "서대문구"
+        },
+        {
+            "addr_name": "서초구"
+        },
+        {
+            "addr_name": "성동구"
+        },
+        {
+            "addr_name": "성북구"
+        },
+        {
+            "addr_name": "송파구"
+        },
+        {
+            "addr_name": "양천구"
+        },
+        {
+            "addr_name": "영등포구"
+        },
+        {
+            "addr_name": "용산구"
+        },
+        {
+            "addr_name": "은평구"
+        },
+        {
+            "addr_name": "종로구"
+        },
+        {
+            "addr_name": "중구"
+        },
+        {
+            "addr_name": "중랑구"
+        }
+    ]
+}
