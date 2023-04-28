@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
+import 'package:flutter_velog_sample/app/address/depth/presentation/address_depth_screen.dart';
 import 'package:flutter_velog_sample/app/address/step/presentation/address_step_screen.dart';
 
 class AppAddressScreen extends StatelessWidget {
@@ -15,7 +16,13 @@ class AppAddressScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _buttonForm(
-              context: context, title: "STEP", widget: AddressStepScreen()),
+              context: context,
+              title: "STEP",
+              widget: const AddressStepScreen()),
+          _buttonForm(
+              context: context,
+              title: "DEPTH",
+              widget: const AddressDepthScreen()),
         ],
       ),
     );

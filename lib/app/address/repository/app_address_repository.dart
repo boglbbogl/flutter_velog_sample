@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:flutter_velog_sample/app/address/model/depth/address_depth_model.dart';
+import 'package:flutter_velog_sample/app/address/model/depth/address_depth_server_model.dart';
 import 'package:flutter_velog_sample/app/address/model/step/address_step_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -47,26 +49,26 @@ class AppAddressRepository {
     }
   }
 
-  // Future<List<AddressStepDetailModel>> stepAddressInformation({
-  //   required String token,
-  //   String? code,
-  // }) async {
-  //   try {
-  //     String? _code = code == null ? "" : "&cd=$code";
-  //     http.Response _response = await http.get(Uri.parse(
-  //         "https://sgisapi.kostat.go.kr/OpenAPI3/addr/stage.json?accessToken=$token$_code"));
-  //     if (_response.statusCode == 200) {
-  //       Map<String, dynamic> _body =
-  //           json.decode(_response.body) as Map<String, dynamic>;
-  //       List<dynamic> _result = _body["result"];
-  //       List<AddressStepDetailModel> _model =
-  //           _result.map((e) => AddressStepDetailModel.fromJson(e)).toList();
-  //       return _model;
-  //     } else {
-  //       return [];
-  //     }
-  //   } catch (error) {
-  //     return [];
-  //   }
-  // }
+  Future<List<AddressDepthServerModel>> depthAddressInformation({
+    required String token,
+    String? code,
+  }) async {
+    try {
+      String? _code = code == null ? "" : "&cd=$code";
+      http.Response _response = await http.get(Uri.parse(
+          "https://sgisapi.kostat.go.kr/OpenAPI3/addr/stage.json?accessToken=$token$_code"));
+      if (_response.statusCode == 200) {
+        Map<String, dynamic> _body =
+            json.decode(_response.body) as Map<String, dynamic>;
+        List<dynamic> _result = _body["result"];
+        List<AddressDepthServerModel> _model =
+            _result.map((e) => AddressDepthServerModel.fromJson(e)).toList();
+        return _model;
+      } else {
+        return [];
+      }
+    } catch (error) {
+      return [];
+    }
+  }
 }

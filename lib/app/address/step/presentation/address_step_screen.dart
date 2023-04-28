@@ -6,8 +6,7 @@ import 'package:flutter_velog_sample/app/address/step/application/address_step_c
 import 'package:flutter_velog_sample/app/address/step/application/address_step_state.dart';
 
 class AddressStepScreen extends StatelessWidget {
-  final ScrollController controller = ScrollController();
-  AddressStepScreen({super.key});
+  const AddressStepScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +36,9 @@ class AddressStepScreen extends StatelessWidget {
                               onTap: () => context
                                   .read<AddressStepCubit>()
                                   .tapToScrollAnimated(
-                                      index: index, controller: controller),
+                                      index: index,
+                                      controller:
+                                          PrimaryScrollController.of(context)),
                               child: Container(
                                 color: state.positionIndex == index
                                     ? const Color.fromRGBO(51, 51, 51, 1)
@@ -63,7 +64,7 @@ class AddressStepScreen extends StatelessWidget {
                       return false;
                     },
                     child: SingleChildScrollView(
-                      controller: controller,
+                      controller: PrimaryScrollController.of(context),
                       child: Column(
                         children: [
                           ...List.generate(
