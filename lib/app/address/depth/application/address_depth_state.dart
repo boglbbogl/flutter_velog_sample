@@ -10,6 +10,12 @@ abstract class AddressDepthState extends Equatable {
   });
 }
 
+class AddressDepthInitState extends AddressDepthState {
+  const AddressDepthInitState({super.address});
+  @override
+  List<Object?> get props => [address];
+}
+
 class AddressDepthMajorState extends AddressDepthState {
   const AddressDepthMajorState({super.accessToken, super.address});
   @override

@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import 'package:flutter_velog_sample/app/address/model/depth/address_depth_model.dart';
 import 'package:flutter_velog_sample/app/address/model/depth/address_depth_server_model.dart';
 import 'package:flutter_velog_sample/app/address/model/step/address_step_model.dart';
 import 'package:http/http.dart' as http;

@@ -7,7 +7,18 @@ class AddressDepthMajorEvent extends AddressDepthEvent {
   List<Object?> get props => [];
 }
 
-class AddressDepthMiddlevent extends AddressDepthEvent {
+class AddressDepthMiddleEvent extends AddressDepthEvent {
+  final String code;
+
+  AddressDepthMiddleEvent({required this.code});
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [code];
+}
+
+class AddressDepthMinorEvent extends AddressDepthEvent {
+  final String code;
+
+  AddressDepthMinorEvent({required this.code});
+  @override
+  List<Object?> get props => [code];
 }

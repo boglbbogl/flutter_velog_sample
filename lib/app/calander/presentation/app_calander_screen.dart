@@ -76,10 +76,10 @@ class AppCalanderScreen extends StatelessWidget {
                                           const Color.fromRGBO(51, 51, 51, 1))),
                               height:
                                   MediaQueryData.fromWindow(window).size.width /
-                                      7,
+                                      7.0001,
                               width:
                                   MediaQueryData.fromWindow(window).size.width /
-                                      7,
+                                      7.0001,
                               child: Center(
                                 child: Text(
                                   ["S", "M", "T", "W", "T", "F", "S"][index],
@@ -124,11 +124,11 @@ class AppCalanderScreen extends StatelessWidget {
                                       height: MediaQueryData.fromWindow(window)
                                               .size
                                               .width /
-                                          7,
+                                          7.0001,
                                       width: MediaQueryData.fromWindow(window)
                                               .size
                                               .width /
-                                          7,
+                                          7.0001,
                                       child: Padding(
                                         padding: const EdgeInsets.only(
                                             left: 4, top: 4),
