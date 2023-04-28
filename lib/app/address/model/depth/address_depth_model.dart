@@ -46,7 +46,7 @@ class AddressDepthDetailModel {
     final List<AddressDepthServerModel>? address,
   }) {
     return AddressDepthDetailModel(
-      current: current ?? this.current,
+      current: current,
       address: address ?? this.address,
     );
   }
