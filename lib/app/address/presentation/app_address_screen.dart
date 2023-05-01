@@ -16,9 +16,7 @@ class AppAddressScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _buttonForm(
-              context: context,
-              title: "STEP",
-              widget: const AddressStepScreen()),
+              context: context, title: "STEP", widget: AddressStepScreen()),
           _buttonForm(
               context: context,
               title: "DEPTH",
