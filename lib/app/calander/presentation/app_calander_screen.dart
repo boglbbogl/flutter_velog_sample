@@ -12,7 +12,7 @@ class AppCalanderScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<CalanderBloc>(
-      create: (_) => CalanderBloc()..add(CalanderStartEvent()),
+      create: (_) => CalanderBloc(),
       child: BlocBuilder<CalanderBloc, CalanderState>(
         builder: (context, state) {
           return Scaffold(

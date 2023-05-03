@@ -12,6 +12,7 @@ class CalanderBloc extends Bloc<CalanderEvent, CalanderState> {
     on<CalanderChangeEvent>(_change);
     on<CalanderUpdateBlurEvent>(_updateBlur);
     on<CalanderEndBlurEvent>(_endBlur);
+    add(CalanderStartEvent());
   }
 
   Future<void> _endBlur(
