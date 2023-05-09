@@ -37,25 +37,16 @@ class MainScreen extends StatelessWidget {
               _item(
                 length: 3,
                 context: context,
-                content: 'To do',
-                namedRouter: "/app/toDo",
-                isPost: true,
-              ),
-              _item(
-                length: 3,
-                context: context,
                 content: 'Date Picker',
                 namedRouter: "/app/date/picker",
               ),
               _item(
-                length: 3,
                 context: context,
                 content: 'Calander',
                 namedRouter: "/app/calander",
                 isPost: true,
               ),
               _item(
-                length: 3,
                 context: context,
                 content: "Color Picker",
                 namedRouter: "/app/color/picker",
@@ -64,6 +55,12 @@ class MainScreen extends StatelessWidget {
                 context: context,
                 content: "Address",
                 namedRouter: "/app/address",
+                isPost: true,
+              ),
+              _item(
+                context: context,
+                content: "Search Filter",
+                namedRouter: "/app/search/filter",
                 isPost: true,
               ),
             ]),

@@ -10,8 +10,8 @@ import 'package:flutter_velog_sample/app/calander/presentation/app_calander_scre
 import 'package:flutter_velog_sample/app/calculator/app_calculator_screen.dart';
 import 'package:flutter_velog_sample/app/color_picker/app_color_picker_screen.dart';
 import 'package:flutter_velog_sample/app/date_picker/app_date_picker_screen.dart';
+import 'package:flutter_velog_sample/app/search/filter/presentation/search_filter_screen.dart';
 import 'package:flutter_velog_sample/app/stopwatch/app_stopwatch_screen.dart';
-import 'package:flutter_velog_sample/app/to_do/presentation/app_to_do_screen.dart';
 import 'package:flutter_velog_sample/closed_app/closed_app_flutter_screen.dart';
 import 'package:flutter_velog_sample/closed_app/closed_app_native_screen.dart';
 import 'package:flutter_velog_sample/count_app/bloc/count_screen_with_bloc.dart';
@@ -147,8 +147,8 @@ class App extends StatelessWidget {
           "/app/date/picker": (context) => const AppDatePickerScreen(),
           "/app/calander": (context) => const AppCalanderScreen(),
           "/app/stopwatch": (context) => const AppStopWatchScreen(),
-          "/app/toDo": (context) => const AppToDoScreen(),
           "/app/address": (context) => const AppAddressScreen(),
+          "/app/search/filter": (context) => const AppSearchFilterScreen(),
           "/firebase/authentication": (context) =>
               const FirebaseAuthenticationScreen(),
           "/firebase/firestore": (context) => const FirebaseFirestoreScreen(),
