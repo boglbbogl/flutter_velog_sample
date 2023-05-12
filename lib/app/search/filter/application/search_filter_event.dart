@@ -4,7 +4,6 @@ abstract class SearchFilterEvent extends Equatable {}
 
 class SearchFilterSearchingEvent extends SearchFilterEvent {
   final String query;
-
   SearchFilterSearchingEvent({required this.query});
 
   @override
@@ -13,7 +12,6 @@ class SearchFilterSearchingEvent extends SearchFilterEvent {
 
 class SearchFilterTimerEvent extends SearchFilterEvent {
   final String query;
-
   SearchFilterTimerEvent({required this.query});
   @override
   List<Object?> get props => [query];

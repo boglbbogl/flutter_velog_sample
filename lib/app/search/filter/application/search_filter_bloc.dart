@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_velog_sample/app/search/filter/application/search_filter_event.dart';
 import 'package:flutter_velog_sample/app/search/filter/application/search_filter_state.dart';
 import 'package:flutter_velog_sample/app/search/repository/search_repository.dart';
-import 'package:flutter_velog_sample/main.dart';
 
 class SearchFilterBloc extends Bloc<SearchFilterEvent, SearchFilterState> {
-  SearchFilterBloc() : super(SearchFilterInitState()) {
+  final bool isFilter;
+  SearchFilterBloc(this.isFilter) : super(SearchFilterInitState()) {
     on<SearchFilterSearchingEvent>(_searching);
     on<SearchFilterTimerEvent>(_timer);
   }
@@ -28,10 +28,18 @@ class SearchFilterBloc extends Bloc<SearchFilterEvent, SearchFilterState> {
       SearchFilterSearchingEvent event, Emitter<SearchFilterState> emit) async {
     List<String> _result =
         await SearchRepository.instance.getNaverBlogSearch(query: event.query);
-    List<List<String>> _strings =
-        _allMatching(strings: _result, query: event.query);
-    emit(SearchFilterSearchedState(strings: _strings, query: event.query));
+
+    if (isFilter) {
+      _filtering();
+      emit(SearchFilterSearchedState(query: event.query, filterings: []));
+    } else {
+      List<List<String>> _strings =
+          _allMatching(strings: _result, query: event.query);
+      emit(SearchFilterSearchedState(strings: _strings, query: event.query));
+    }
   }
+
+  _filtering() {}
 
   List<List<String>> _allMatching({
     required List<String> strings,
@@ -41,15 +49,6 @@ class SearchFilterBloc extends Bloc<SearchFilterEvent, SearchFilterState> {
     if (strings.isNotEmpty) {
       for (int i = 0; i < strings.length; i++) {
         _result.add(strings[i].split(""));
-
-        // if (query.length > 1) {
-        //   int _index = strings[i].indexOf(query);
-
-        //   logger.e(_index);
-        //   _result.add(strings[i].split(""));
-        // } else {
-        //   _result.add(strings[i].split(""));
-        // }
       }
     }
     return _result;

@@ -13,7 +13,7 @@ class SearchFilterStringScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => SearchFilterBloc(),
+      create: (_) => SearchFilterBloc(false),
       child: BlocBuilder<SearchFilterBloc, SearchFilterState>(
         builder: (context, state) {
           return GestureDetector(
@@ -23,9 +23,13 @@ class SearchFilterStringScreen extends StatelessWidget {
               body: Column(
                 children: [
                   Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 12),
                     width: MediaQueryData.fromWindow(window).size.width,
                     height: 50,
-                    color: Colors.green,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Colors.green,
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 12),
                       child: TextFormField(
@@ -47,23 +51,40 @@ class SearchFilterStringScreen extends StatelessWidget {
                           itemCount: state.strings!.length,
                           itemBuilder: (context, index) {
                             return Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 8, bottom: 12),
-                              child: RichText(
-                                  text: TextSpan(children: [
-                                ...List.generate(
-                                    state.strings![index].length,
-                                    (i) => TextSpan(
-                                        text: state.strings![index][i],
-                                        style: TextStyle(
-                                            color: _isSame(
-                                                    query:
-                                                        state.query.split(""),
-                                                    result: state
-                                                        .strings![index][i])
-                                                ? Colors.amber
-                                                : Colors.white)))
-                              ])),
+                              padding: const EdgeInsets.only(
+                                  top: 20, bottom: 4, left: 12, right: 12),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "${index + 1}",
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 13),
+                                  ),
+                                  const SizedBox(width: 12),
+                                  Flexible(
+                                    child: RichText(
+                                        text: TextSpan(children: [
+                                      ...List.generate(
+                                          state.strings![index].length,
+                                          (i) => TextSpan(
+                                              text: state.strings![index][i],
+                                              style: TextStyle(
+                                                color: _isSame(
+                                                        query: state.query
+                                                            .split(""),
+                                                        result: state
+                                                            .strings![index][i])
+                                                    ? Colors.amber
+                                                    : const Color.fromRGBO(
+                                                        215, 215, 215, 1),
+                                                fontSize: 12,
+                                              )))
+                                    ])),
+                                  ),
+                                ],
+                              ),
                             );
                           }),
                     )

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
 import 'package:flutter_velog_sample/app/search/filter/presentation/search_filter_string_screen.dart';
+import 'package:flutter_velog_sample/app/search/filter/presentation/search_filter_strings_screen.dart';
 
 class AppSearchFilterScreen extends StatelessWidget {
   const AppSearchFilterScreen({super.key});
@@ -10,6 +11,7 @@ class AppSearchFilterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: appBar(title: "Search Filtering..."),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -21,7 +23,7 @@ class AppSearchFilterScreen extends StatelessWidget {
           _button(
               context: context,
               title: "일치 문자열 필터링",
-              widget: const SearchFilterStringScreen()),
+              widget: const SearchFilterStringsScreen()),
         ],
       ),
     );
@@ -49,7 +51,7 @@ class AppSearchFilterScreen extends StatelessWidget {
             child: Text(
           title,
           style: const TextStyle(
-              fontWeight: FontWeight.bold, color: Colors.amber, fontSize: 24),
+              fontWeight: FontWeight.bold, color: Colors.amber, fontSize: 18),
         )),
       ),
     );
