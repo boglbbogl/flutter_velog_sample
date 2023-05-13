@@ -21,17 +21,18 @@ class SearchFilterBloc extends Bloc<SearchFilterEvent, SearchFilterState> {
       state.timer?.cancel();
       add(SearchFilterSearchingEvent(query: event.query));
     });
-    emit(SearchFilterSearchingState(timer: _timer, strings: const []));
+    emit(SearchFilterSearchingState(
+        timer: _timer, strings: const [], filterings: const []));
   }
 
   Future<void> _searching(
       SearchFilterSearchingEvent event, Emitter<SearchFilterState> emit) async {
     List<String> _result =
         await SearchRepository.instance.getNaverBlogSearch(query: event.query);
-
     if (isFilter) {
-      _filtering();
-      emit(SearchFilterSearchedState(query: event.query, filterings: []));
+      List<List<Map<String, int>>> _strings =
+          _filtering(strings: _result, query: event.query);
+      emit(SearchFilterSearchedState(query: event.query, filterings: _strings));
     } else {
       List<List<String>> _strings =
           _allMatching(strings: _result, query: event.query);
@@ -39,7 +40,51 @@ class SearchFilterBloc extends Bloc<SearchFilterEvent, SearchFilterState> {
     }
   }
 
-  _filtering() {}
+  List<List<Map<String, int>>> _filtering({
+    required String query,
+    required List<String> strings,
+  }) {
+    List<List<Map<String, int>>> _result = [];
+    if (strings.isNotEmpty) {
+      for (int i = 0; i < strings.length; i++) {
+        List<Map<String, int>> _toMap = [];
+        if (strings[i].toLowerCase().contains(query.toLowerCase())) {
+          int _splitIndex =
+              strings[i].toLowerCase().indexOf(query.toLowerCase());
+          String _first = strings[i].substring(0, _splitIndex);
+          String _last = strings[i]
+              .substring(_splitIndex + query.length, strings[i].length);
+          if (_splitIndex == 0 && strings[i].length - 1 == _splitIndex) {
+            _toMap.addAll([
+              {strings[i]: 1}
+            ]);
+          } else if (_splitIndex == 0 && strings[i].length - 1 != _splitIndex) {
+            _toMap.addAll([
+              {strings[i].replaceFirst(_last, ""): 1},
+              {_last: 0}
+            ]);
+          } else if (_splitIndex != 0 && strings[i].length - 1 == _splitIndex) {
+            _toMap.addAll([
+              {_first: 0},
+              {strings[i].replaceFirst(_first, ""): 1}
+            ]);
+          } else {
+            String _query = strings[i].replaceFirst(_first, "");
+            _query = _query.replaceFirst(_last, "");
+            _toMap.addAll([
+              {_first: 0},
+              {_query: 1},
+              {_last: 0}
+            ]);
+          }
+        } else {
+          _toMap.add({strings[i]: 0});
+        }
+        _result.add(_toMap);
+      }
+    }
+    return _result;
+  }
 
   List<List<String>> _allMatching({
     required List<String> strings,
@@ -56,7 +101,6 @@ class SearchFilterBloc extends Bloc<SearchFilterEvent, SearchFilterState> {
 
   @override
   void onChange(Change<SearchFilterState> change) {
-    // logger.e(change);
     super.onChange(change);
   }
 
