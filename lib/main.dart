@@ -72,6 +72,7 @@ import 'package:flutter_velog_sample/tab_view/pageview/tab_view_page_view_screen
 import 'package:flutter_velog_sample/tab_view/tabbar/tab_view_tabbar_screen.dart';
 import 'package:flutter_velog_sample/ui/heart_motion/sns_ui_heart_icon_screen.dart';
 import 'package:flutter_velog_sample/ui/heart_motion/sns_ui_heart_motion_screen.dart';
+import 'package:flutter_velog_sample/ui/images/network_image_screen.dart';
 import 'package:flutter_velog_sample/ui/slider/flexible/flexible_slider_ui_screen.dart';
 import 'package:flutter_velog_sample/ui/slider/over_image/over_image_ui_screen.dart';
 import 'package:flutter_velog_sample/webview/webview_with_inapp_screen.dart';
@@ -117,9 +118,7 @@ class Observer extends BlocObserver {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Provider.debugCheckInvalidValueType = null;
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseMessaging.onBackgroundMessage(_onBackgroundMessage);
   Bloc.observer = Observer();
   runApp(const App());
@@ -192,6 +191,7 @@ class App extends StatelessWidget {
           "/ui/sns/heart/motion": (context) => const SnsUIHeartMotionScreen(),
           "/ui/flexible/slider": (context) => const FlexibleSliderUIScreen(),
           "/ui/over/image/slider": (context) => const OverImageUIScreen(),
+          "/ui/image/network": (context) => const NetworkImageScreen(),
           "/tabview/tabbar": (context) => const TabViewTabbarScreen(),
           "/tabview/pageView": (context) => const TabViewPageViewScreen(),
           "/tabview/custom": (context) => const TabViewCustomScreen(),
