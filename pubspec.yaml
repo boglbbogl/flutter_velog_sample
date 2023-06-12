@@ -27,6 +27,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  cached_network_image: ^3.2.3
   cloud_firestore: ^4.4.3
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
@@ -46,6 +47,7 @@ dependencies:
     sdk: flutter
   flutter_app_badger: ^1.5.0
   flutter_bloc: ^8.1.1
+  flutter_cache_manager: ^3.3.0
   flutter_inappwebview: ^5.7.2+3
   flutter_mobx: ^2.0.6+5
   flutter_riverpod: ^2.1.3
