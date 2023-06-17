@@ -258,31 +258,32 @@ class MainScreen extends StatelessWidget {
             ]),
             _category(title: 'Scroll View', widgets: [
               _item(
-                length: 3,
                 context: context,
                 content: 'Single Child',
                 namedRouter: '/scroll/view/single',
               ),
               _item(
-                length: 3,
                 context: context,
                 content: 'Custom Scroll',
                 namedRouter: '/scroll/view/custom',
               ),
               _item(
-                length: 3,
                 context: context,
                 content: 'List View',
                 namedRouter: '/scroll/view/list/view',
               ),
               _item(
-                length: 2,
+                context: context,
+                content: 'Performance',
+                namedRouter: '/scroll/view/performance',
+                isPost: true,
+              ),
+              _item(
                 context: context,
                 content: 'Gesture To Scroll',
                 namedRouter: '/scroll/view/gestureToScroll',
               ),
               _item(
-                length: 2,
                 context: context,
                 content: 'View vs Builder',
                 namedRouter: '/scroll/view/viewAndBuilder',
