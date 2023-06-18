@@ -57,6 +57,7 @@ import 'package:flutter_velog_sample/life_cycle/life_cycle_screen_with_statful.d
 import 'package:flutter_velog_sample/management/changed_image/presentation/changed_image_cubit_screen.dart';
 import 'package:flutter_velog_sample/management/infinity_image/presentation/infinity_image_bloc_screen.dart';
 import 'package:flutter_velog_sample/management/text_listener/screen/text_listener_screen.dart';
+import 'package:flutter_velog_sample/performance/tabview/performance_tabview_screen.dart';
 import 'package:flutter_velog_sample/platform_channel/battery_level/platform_battery_screen.dart';
 import 'package:flutter_velog_sample/platform_channel/count/platform_count_screen.dart';
 import 'package:flutter_velog_sample/scroll_indicator/vertical_indicator/vertical_indicator_screen.dart';
@@ -83,7 +84,6 @@ import 'package:flutter_velog_sample/webview/webview_with_webview_flutter_screen
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'scroll_indicator/horizontal_indicator/horizontal_indicator_screen.dart';
-import 'scroll_view/performance/scroll_view_performance_screen.dart';
 import 'webview/daum_post/webview_with_daum_post_screen.dart';
 import 'dart:developer' as dev;
 
@@ -164,6 +164,7 @@ class App extends StatelessWidget {
               const DynamicLinksThirdScreen(),
           "/firebase/messaging": (context) => const FirebaseMessageScreen(),
           "/firebase/analytics": (context) => const FirebaseAnalyticsScreen(),
+          "/performance/tabview": (context) => const PerformanceTabViewScreen(),
           "/custom/painter/bubble/chat": (context) =>
               const PainterBubbleChatScreen(),
           "/custom/painter/apple/watch": (context) =>
@@ -202,8 +203,6 @@ class App extends StatelessWidget {
               const ScrollViewWithCustomScrollScreen(),
           "/scroll/view/list/view": (context) =>
               const ScrollViewWithListViewScreen(),
-          "/scroll/view/performance": (context) =>
-              const ScrollViewPerformanceScreen(),
           "/scroll/view/gestureToScroll": (context) =>
               const ScrollViewWithGestureToScrollScreen(),
           "/scroll/view/viewAndBuilder": (context) =>

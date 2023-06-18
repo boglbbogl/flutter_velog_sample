@@ -108,6 +108,14 @@ class MainScreen extends StatelessWidget {
                 content: "Crashlytics",
               ),
             ]),
+            _category(title: "Performance", widgets: [
+              _item(
+                context: context,
+                content: "TabView",
+                namedRouter: "/performance/tabview",
+                isPost: true,
+              ),
+            ]),
             _category(title: "Custom Painter", widgets: [
               _item(
                 context: context,
@@ -258,25 +266,22 @@ class MainScreen extends StatelessWidget {
             ]),
             _category(title: 'Scroll View', widgets: [
               _item(
+                length: 3,
                 context: context,
                 content: 'Single Child',
                 namedRouter: '/scroll/view/single',
               ),
               _item(
+                length: 3,
                 context: context,
                 content: 'Custom Scroll',
                 namedRouter: '/scroll/view/custom',
               ),
               _item(
+                length: 3,
                 context: context,
                 content: 'List View',
                 namedRouter: '/scroll/view/list/view',
-              ),
-              _item(
-                context: context,
-                content: 'Performance',
-                namedRouter: '/scroll/view/performance',
-                isPost: true,
               ),
               _item(
                 context: context,
