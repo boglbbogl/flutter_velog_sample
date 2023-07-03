@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
@@ -80,12 +79,10 @@ class AddressStepScreen extends StatelessWidget {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 SizedBox(
-                                                  width:
-                                                      MediaQueryData.fromWindow(
-                                                                  window)
-                                                              .size
-                                                              .width -
-                                                          130,
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width -
+                                                      130,
                                                   height: 64,
                                                   child: Padding(
                                                     padding:
@@ -161,8 +158,8 @@ class AddressStepScreen extends StatelessWidget {
                       duration: const Duration(milliseconds: 350),
                       curve: Curves.ease),
                   child: Container(
-                    width: MediaQueryData.fromWindow(window).size.width,
-                    height: MediaQueryData.fromWindow(window).padding.top,
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).padding.top,
                     color: Colors.white.withOpacity(0.01),
                   ),
                 ),

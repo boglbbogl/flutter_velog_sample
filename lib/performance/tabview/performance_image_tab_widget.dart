@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class PerformanceImageTabWidget extends StatefulWidget {
@@ -17,14 +16,15 @@ class _PerformanceImageTabWidgetState extends State<PerformanceImageTabWidget>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return ListView.builder(
         key: const PageStorageKey("velog/sample/performance/list_builder"),
         itemCount: widget.images.length,
         itemBuilder: (context, index) {
           return Container(
             padding: const EdgeInsets.symmetric(vertical: 8),
-            width: MediaQueryData.fromWindow(window).size.width / 2,
-            height: MediaQueryData.fromWindow(window).size.width / 2,
+            width: MediaQuery.of(context).size.width / 2,
+            height: MediaQuery.of(context).size.width / 2,
             child: Image.network(
               _url(widget.images[index]),
               loadingBuilder: (context, child, loadingProgress) {
@@ -41,7 +41,6 @@ class _PerformanceImageTabWidgetState extends State<PerformanceImageTabWidget>
   }
 
   String _url(String url) {
-    print(url);
     return url;
   }
 

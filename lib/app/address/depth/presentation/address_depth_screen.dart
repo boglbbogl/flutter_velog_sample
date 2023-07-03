@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
@@ -13,7 +11,7 @@ class AddressDepthScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double _width = MediaQueryData.fromWindow(window).size.width;
+    double _width = MediaQuery.of(context).size.width;
     return BlocProvider<AddressDepthBloc>(
       create: (_) => AddressDepthBloc(),
       child: BlocConsumer<AddressDepthBloc, AddressDepthState>(

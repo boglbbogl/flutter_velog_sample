@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
@@ -41,7 +40,7 @@ class AppAddressScreen extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12), color: Colors.green),
-          width: MediaQueryData.fromWindow(window).size.width,
+          width: MediaQuery.of(context).size.width,
           height: 60,
           child: Center(
             child: Text(
