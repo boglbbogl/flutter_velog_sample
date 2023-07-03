@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
@@ -18,7 +17,7 @@ class PlatformBatteryScreen extends StatelessWidget {
           return Scaffold(
             appBar: appBar(title: "Platform Battery Level"),
             body: SizedBox(
-              width: MediaQueryData.fromWindow(window).size.width,
+              width: MediaQuery.of(context).size.width,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -36,7 +35,7 @@ class PlatformBatteryScreen extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    width: MediaQueryData.fromWindow(window).size.width - 40,
+                    width: MediaQuery.of(context).size.width - 40,
                     height: 150,
                     decoration: BoxDecoration(
                       color: const Color.fromRGBO(71, 71, 71, 1),
@@ -53,13 +52,11 @@ class PlatformBatteryScreen extends StatelessWidget {
                                     ? Colors.orange
                                     : Colors.green,
                           ),
-                          width: (MediaQueryData.fromWindow(window).size.width -
-                                  40) /
+                          width: (MediaQuery.of(context).size.width - 40) /
                               (100 / state.level),
                         ),
                         SizedBox(
-                          width:
-                              MediaQueryData.fromWindow(window).size.width - 40,
+                          width: MediaQuery.of(context).size.width - 40,
                           height: 150,
                           child: Center(
                             child: Text(

@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
@@ -84,7 +83,7 @@ class _FirebaseRealtimeScreenState extends State<FirebaseRealtimeScreen> {
               child: Container(
                 height: 1,
                 color: const Color.fromRGBO(91, 91, 91, 1),
-                width: MediaQueryData.fromWindow(window).size.width,
+                width: MediaQuery.of(context).size.width,
               ),
             );
           },

@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -174,8 +173,8 @@ class _FirebaseStorageScreenState extends State<FirebaseStorageScreen> {
                       await _deleteFeed(_feed[index]);
                     },
                     child: Container(
-                      width: MediaQueryData.fromWindow(window).size.width,
-                      height: MediaQueryData.fromWindow(window).size.width,
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.width,
                       color: const Color.fromRGBO(115, 115, 115, 1),
                       child: Image.network(
                         _feed[index].image,
@@ -186,8 +185,8 @@ class _FirebaseStorageScreenState extends State<FirebaseStorageScreen> {
                 })),
         if (_isUpload) ...[
           Container(
-            width: MediaQueryData.fromWindow(window).size.width,
-            height: MediaQueryData.fromWindow(window).size.height,
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
             color: Colors.black38,
             child: const Center(
               child: CircularProgressIndicator(

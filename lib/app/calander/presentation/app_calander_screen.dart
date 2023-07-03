@@ -21,7 +21,7 @@ class AppCalanderScreen extends StatelessWidget {
               children: [
                 const SizedBox(height: 24),
                 Container(
-                  width: MediaQueryData.fromWindow(window).size.width,
+                  width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
                       color: const Color.fromRGBO(71, 71, 71, 1)),
@@ -75,11 +75,8 @@ class AppCalanderScreen extends StatelessWidget {
                                       color:
                                           const Color.fromRGBO(51, 51, 51, 1))),
                               height:
-                                  MediaQueryData.fromWindow(window).size.width /
-                                      7.0001,
-                              width:
-                                  MediaQueryData.fromWindow(window).size.width /
-                                      7.0001,
+                                  MediaQuery.of(context).size.width / 7.0001,
+                              width: MediaQuery.of(context).size.width / 7.0001,
                               child: Center(
                                 child: Text(
                                   ["S", "M", "T", "W", "T", "F", "S"][index],
@@ -121,13 +118,10 @@ class AppCalanderScreen extends StatelessWidget {
                                           border: Border.all(
                                               color: const Color.fromRGBO(
                                                   51, 51, 51, 1))),
-                                      height: MediaQueryData.fromWindow(window)
-                                              .size
-                                              .width /
-                                          7.0001,
-                                      width: MediaQueryData.fromWindow(window)
-                                              .size
-                                              .width /
+                                      height:
+                                          MediaQuery.of(context).size.width /
+                                              7.0001,
+                                      width: MediaQuery.of(context).size.width /
                                           7.0001,
                                       child: Padding(
                                         padding: const EdgeInsets.only(

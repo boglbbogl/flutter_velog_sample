@@ -1,6 +1,4 @@
 import 'dart:math';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
 import 'package:flutter_velog_sample/tab_view/custom/tab_view_custom_getx.dart';
@@ -65,6 +63,7 @@ class TabViewCustomScreen extends StatelessWidget {
                     child: Stack(
                       children: [
                         _tabView(
+                          context: context,
                           duration: state.duration,
                           position: state.positions[0],
                           onUpdate: (details) =>
@@ -91,6 +90,7 @@ class TabViewCustomScreen extends StatelessWidget {
                               }),
                         ),
                         _tabView(
+                          context: context,
                           duration: state.duration,
                           position: state.positions[1],
                           onUpdate: (details) =>
@@ -126,6 +126,7 @@ class TabViewCustomScreen extends StatelessWidget {
                               })),
                         ),
                         _tabView(
+                          context: context,
                           duration: state.duration,
                           position: state.positions[2],
                           onUpdate: (details) =>
@@ -154,6 +155,7 @@ class TabViewCustomScreen extends StatelessWidget {
   }
 
   Obx _tabView({
+    required BuildContext context,
     required RxInt duration,
     required RxDouble position,
     required Function(DragUpdateDetails) onUpdate,
@@ -170,7 +172,7 @@ class TabViewCustomScreen extends StatelessWidget {
             child: Container(
               color: Colors.transparent,
               height: Get.height -
-                  MediaQueryData.fromWindow(window).padding.top -
+                  MediaQuery.of(context).padding.top -
                   kToolbarHeight,
               width: Get.width,
               child: body,

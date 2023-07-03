@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class OverImageCustomSlider extends StatefulWidget {
@@ -23,7 +22,7 @@ class _OverImageCustomSliderState extends State<OverImageCustomSlider> {
     double _width = MediaQuery.of(context).size.width;
     return SizedBox(
       height: MediaQuery.of(context).size.height -
-          MediaQueryData.fromWindow(window).padding.top -
+          MediaQuery.of(context).padding.top -
           kToolbarHeight,
       child: Stack(
         children: [
@@ -68,7 +67,7 @@ class _OverImageCustomSliderState extends State<OverImageCustomSlider> {
               child: Container(
                 width: _width * widget.itemCount,
                 height: MediaQuery.of(context).size.height -
-                    MediaQueryData.fromWindow(window).padding.top -
+                    MediaQuery.of(context).padding.top -
                     kToolbarHeight,
                 decoration: const BoxDecoration(
                     image: DecorationImage(

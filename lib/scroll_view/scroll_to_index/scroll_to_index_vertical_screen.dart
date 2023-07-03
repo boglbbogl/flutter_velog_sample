@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
@@ -54,7 +52,7 @@ class ScrollToIndexVerticalScreen extends StatelessWidget {
               key: _globalKeys[index],
               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
               child: Container(
-                width: MediaQueryData.fromWindow(window).size.width,
+                width: MediaQuery.of(context).size.width,
                 height: 150,
                 decoration: BoxDecoration(
                     color: const Color.fromRGBO(31, 31, 31, 1),

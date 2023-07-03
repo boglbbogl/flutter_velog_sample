@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
@@ -33,7 +31,7 @@ class AppDatePickerScreen extends StatelessWidget {
                   context: context,
                   builder: (context) {
                     return Container(
-                      width: MediaQueryData.fromWindow(window).size.width,
+                      width: MediaQuery.of(context).size.width,
                       height: 400,
                       color: const Color.fromRGBO(71, 71, 71, 1),
                       child: Stack(
@@ -70,10 +68,8 @@ class AppDatePickerScreen extends StatelessWidget {
                 );
               }),
           SizedBox(
-              height: MediaQueryData.fromWindow(window).size.height -
-                  (540 +
-                      kToolbarHeight +
-                      MediaQueryData.fromWindow(window).padding.top)),
+              height: MediaQuery.of(context).size.height -
+                  (540 + kToolbarHeight + MediaQuery.of(context).padding.top)),
           _form(
             valueListenable: _currentDate,
             colors: const [

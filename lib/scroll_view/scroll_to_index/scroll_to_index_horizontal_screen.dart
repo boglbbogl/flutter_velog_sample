@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
@@ -80,17 +78,17 @@ class _ScrollToIndexHorizontalScreenState
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 20, right: 20, top: 40, bottom: 16),
+            const Padding(
+              padding:
+                  EdgeInsets.only(left: 20, right: 20, top: 40, bottom: 16),
               child: DefaultTextStyle(
-                style: const TextStyle(
+                style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
                     color: Colors.white),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
+                  children: [
                     Text("RenderKey"),
                     Text("Alignment ${0.5}"),
                   ],
@@ -98,7 +96,7 @@ class _ScrollToIndexHorizontalScreenState
               ),
             ),
             SizedBox(
-              width: MediaQueryData.fromWindow(window).size.width,
+              width: MediaQuery.of(context).size.width,
               height: 70,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -181,7 +179,7 @@ class _ScrollToIndexHorizontalScreenState
           ),
         ),
         SizedBox(
-          width: MediaQueryData.fromWindow(window).size.width,
+          width: MediaQuery.of(context).size.width,
           height: 70,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,

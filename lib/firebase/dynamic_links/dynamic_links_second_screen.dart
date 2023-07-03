@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
 
@@ -11,14 +9,13 @@ class DynamicLinksSecondScreen extends StatelessWidget {
     return Scaffold(
       appBar: appBar(title: "Second Dynamic Links"),
       body: Container(
-        width: MediaQueryData.fromWindow(window).size.width,
-        height: MediaQueryData.fromWindow(window).size.height,
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
         color: Colors.purple,
         child: Center(
           child: Padding(
             padding: EdgeInsets.only(
-                bottom: kToolbarHeight +
-                    MediaQueryData.fromWindow(window).padding.top),
+                bottom: kToolbarHeight + MediaQuery.of(context).padding.top),
             child: const Text(
               "Second",
               style: TextStyle(

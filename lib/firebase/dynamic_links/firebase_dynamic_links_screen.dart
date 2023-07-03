@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
@@ -46,7 +45,7 @@ class FirebaseDynamicLinksScreen extends StatelessWidget {
               Navigator.of(context).pushNamed("firebase/dynamicLinks/$content");
             },
             child: Container(
-              width: MediaQueryData.fromWindow(window).size.width / 2 - 30,
+              width: MediaQuery.of(context).size.width / 2 - 30,
               height: 60,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
@@ -68,7 +67,7 @@ class FirebaseDynamicLinksScreen extends StatelessWidget {
                   .createDynamicLink(context, content);
             },
             child: Container(
-              width: MediaQueryData.fromWindow(window).size.width / 2 - 30,
+              width: MediaQuery.of(context).size.width / 2 - 30,
               height: 60,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),

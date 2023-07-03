@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:math';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
 
@@ -39,7 +38,7 @@ class _PainterAppleWatchScreenState extends State<PainterAppleWatchScreen> {
       body: Container(
         alignment: Alignment.center,
         child: SizedBox(
-          width: MediaQueryData.fromWindow(window).size.width / 2,
+          width: MediaQuery.of(context).size.width / 2,
           child: AspectRatio(
             aspectRatio: 2 / 3,
             child: CustomPaint(

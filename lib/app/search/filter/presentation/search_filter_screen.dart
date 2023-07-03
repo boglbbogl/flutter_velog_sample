@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
@@ -45,7 +44,7 @@ class AppSearchFilterScreen extends StatelessWidget {
           color: Colors.green,
         ),
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-        width: MediaQueryData.fromWindow(window).size.width,
+        width: MediaQuery.of(context).size.width,
         height: 60,
         child: Center(
             child: Text(

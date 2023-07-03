@@ -1,7 +1,4 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-
 import 'package:flutter_velog_sample/_core/app_bar.dart';
 import 'package:flutter_velog_sample/_core/app_size.dart';
 import 'package:flutter_velog_sample/app/calculator/app_calculator_provider.dart';
@@ -25,8 +22,7 @@ class AppCaculatorScreen extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.height -
                     (((size.width / 4) - 10 - (30 / 4)) * 4 + 64) -
-                    (kToolbarHeight +
-                        MediaQueryData.fromWindow(window).padding.top),
+                    (kToolbarHeight + MediaQuery.of(context).padding.top),
                 width: MediaQuery.of(context).size.width,
                 child: Padding(
                   padding: const EdgeInsets.only(

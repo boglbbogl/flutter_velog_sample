@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -38,7 +37,7 @@ class _DatePickerSpinnerState extends State<DatePickerSpinner> {
   void initState() {
     currentDate = ValueNotifier(
         widget.date.toString().replaceAll("-", "").substring(0, 8));
-    _width = widget.width ?? MediaQueryData.fromWindow(window).size.width;
+    _width = widget.width ?? MediaQuery.of(context).size.width;
     _height = widget.height ?? 300;
     _itemSize = Size(_width / 3, _height);
     int _currentYear = DateTime.now().year;

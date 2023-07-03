@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
 
@@ -13,8 +11,8 @@ class PainterBubbleChatScreen extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            width: MediaQueryData.fromWindow(window).size.width,
-            height: MediaQueryData.fromWindow(window).size.width,
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.width,
             color: Colors.amber,
             child: CustomPaint(
               painter: _BubbleChat(),

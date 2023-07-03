@@ -1,6 +1,4 @@
 import 'dart:io';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
@@ -116,7 +114,7 @@ class _ClosedAppNativeScreenState extends State<ClosedAppNativeScreen> {
             borderRadius: BorderRadius.circular(12),
             color: color ?? const Color.fromRGBO(71, 71, 71, 1),
           ),
-          width: (MediaQueryData.fromWindow(window).size.width / 4) - (70 / 4),
+          width: (MediaQuery.of(context).size.width / 4) - (70 / 4),
           height: 50,
           child: Center(
               child: content == null

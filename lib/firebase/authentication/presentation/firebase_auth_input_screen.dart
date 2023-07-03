@@ -1,5 +1,3 @@
-
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
@@ -50,14 +48,19 @@ class FirebaseAuthInPutScreen extends StatelessWidget {
                 const SizedBox(height: 40),
                 if (type.isEmail) ...[
                   _textFormField(
-                      controller: emailController, hintText: "email"),
+                      context: context,
+                      controller: emailController,
+                      hintText: "email"),
                 ],
                 if (type.isPassword) ...[
                   _textFormField(
-                      controller: passwordController, hintText: "password"),
+                      context: context,
+                      controller: passwordController,
+                      hintText: "password"),
                 ],
                 if (!type.isEmail && !type.isPassword) ...[
                   _textFormField(
+                      context: context,
                       controller: phoneController,
                       hintText: "phone number",
                       textInputType: TextInputType.number),
@@ -98,7 +101,7 @@ class FirebaseAuthInPutScreen extends StatelessWidget {
                     }
                   },
                   child: Container(
-                    width: MediaQueryData.fromWindow(window).size.width - 40,
+                    width: MediaQuery.of(context).size.width - 40,
                     height: 60,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
@@ -132,8 +135,8 @@ class FirebaseAuthInPutScreen extends StatelessWidget {
             color: const Color.fromRGBO(71, 71, 71, 1),
             child: SafeArea(
               child: Container(
-                  width: MediaQueryData.fromWindow(window).size.width,
-                  height: MediaQueryData.fromWindow(window).size.height * 0.45,
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * 0.45,
                   color: const Color.fromRGBO(71, 71, 71, 1),
                   child: Stack(
                     children: [
@@ -158,7 +161,7 @@ class FirebaseAuthInPutScreen extends StatelessWidget {
                             ),
                           )),
                       SizedBox(
-                        width: MediaQueryData.fromWindow(window).size.width,
+                        width: MediaQuery.of(context).size.width,
                         child: Column(
                           children: [
                             const Padding(
@@ -173,6 +176,7 @@ class FirebaseAuthInPutScreen extends StatelessWidget {
                               ),
                             ),
                             _textFormField(
+                                context: context,
                                 controller: smsController,
                                 hintText: "SMS Code",
                                 textInputType: TextInputType.number),
@@ -213,6 +217,7 @@ class FirebaseAuthInPutScreen extends StatelessWidget {
   }
 
   Padding _textFormField({
+    required BuildContext context,
     required TextEditingController controller,
     required String hintText,
     TextInputType? textInputType,
@@ -220,7 +225,7 @@ class FirebaseAuthInPutScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: Container(
-        width: MediaQueryData.fromWindow(window).size.width - 40,
+        width: MediaQuery.of(context).size.width - 40,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           color: const Color.fromRGBO(31, 31, 31, 1),

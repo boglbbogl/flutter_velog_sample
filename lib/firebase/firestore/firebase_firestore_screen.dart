@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
@@ -124,7 +123,7 @@ class _FirebaseFirestoreScreenState extends State<FirebaseFirestoreScreen> {
             padding: const EdgeInsets.symmetric(vertical: 12),
             child: Container(
               height: 1,
-              width: MediaQueryData.fromWindow(window).size.width,
+              width: MediaQuery.of(context).size.width,
               color: const Color.fromRGBO(91, 91, 91, 1),
             ),
           );

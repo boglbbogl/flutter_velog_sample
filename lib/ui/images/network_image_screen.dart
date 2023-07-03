@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
@@ -15,8 +14,8 @@ class NetworkImageScreen extends StatelessWidget {
         children: [
           CachedNetworkImage(
             imageUrl: "https://picsum.photos/id/28/5000/5000",
-            width: MediaQueryData.fromWindow(window).size.width,
-            height: MediaQueryData.fromWindow(window).size.width,
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.width,
             memCacheHeight: 300,
             memCacheWidth: 300,
             cacheManager: CacheManager(Config(

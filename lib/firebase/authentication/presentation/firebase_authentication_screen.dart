@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,23 +44,31 @@ class FirebaseAuthenticationScreen extends StatelessWidget {
                             ),
                           ],
                           if (state.user != null) ...[
-                            _state("UID", state.user!.uid),
-                            _state("Name", state.user!.displayName ?? "NULL"),
-                            _state("Email", state.user!.email ?? "NULL"),
-                            _state("Phone", state.user!.phoneNumber ?? "NULL"),
-                            _state("Creation Time",
-                                "${state.user!.metadata.creationTime ?? 'NUll'}"),
-                            _state("Last Time",
-                                "${state.user!.metadata.lastSignInTime ?? 'NUll'}"),
+                            _state("UID", state.user!.uid, context),
+                            _state("Name", state.user!.displayName ?? "NULL",
+                                context),
                             _state(
-                                "Is Annoymouse", "${state.user!.isAnonymous}"),
+                                "Email", state.user!.email ?? "NULL", context),
+                            _state("Phone", state.user!.phoneNumber ?? "NULL",
+                                context),
                             _state(
-                                "Email Verify", "${state.user!.emailVerified}"),
+                                "Creation Time",
+                                "${state.user!.metadata.creationTime ?? 'NUll'}",
+                                context),
+                            _state(
+                                "Last Time",
+                                "${state.user!.metadata.lastSignInTime ?? 'NUll'}",
+                                context),
+                            _state("Is Annoymouse",
+                                "${state.user!.isAnonymous}", context),
+                            _state("Email Verify",
+                                "${state.user!.emailVerified}", context),
                             _state(
                                 "Provider",
                                 state.user!.providerData.isNotEmpty
                                     ? state.user!.providerData[0].providerId
-                                    : "NULL"),
+                                    : "NULL",
+                                context),
                           ],
                         ],
                       ),
@@ -143,7 +150,7 @@ class FirebaseAuthenticationScreen extends StatelessWidget {
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height -
                         kToolbarHeight -
-                        MediaQueryData.fromWindow(window).padding.top,
+                        MediaQuery.of(context).padding.top,
                     color: Colors.black.withOpacity(0.3),
                     child: const Center(
                         child: CircularProgressIndicator(
@@ -170,13 +177,13 @@ class FirebaseAuthenticationScreen extends StatelessWidget {
             )));
   }
 
-  Padding _state(String title, String content) {
+  Padding _state(String title, String content, BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 4),
       child: Row(
         children: [
           SizedBox(
-              width: MediaQueryData.fromWindow(window).size.width * 0.3,
+              width: MediaQuery.of(context).size.width * 0.3,
               child: Text(
                 title,
                 style:

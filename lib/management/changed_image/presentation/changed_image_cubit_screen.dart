@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,7 +21,7 @@ class ChangedImageCubitScreen extends StatelessWidget {
                     children: [
                       const SizedBox(height: 100),
                       SizedBox(
-                        width: MediaQueryData.fromWindow(window).size.width,
+                        width: MediaQuery.of(context).size.width,
                         height: 100,
                         child: GestureDetector(
                             onTap: () {

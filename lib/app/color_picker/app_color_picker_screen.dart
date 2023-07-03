@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_velog_sample/app/color_picker/color_picker_model.dart';
@@ -31,7 +30,7 @@ class AppColorPickerScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  width: MediaQueryData.fromWindow(window).size.width,
+                  width: MediaQuery.of(context).size.width,
                   height: kToolbarHeight + 56,
                   child: Column(
                     children: [
@@ -67,7 +66,7 @@ class AppColorPickerScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQueryData.fromWindow(window).size.height * 0.3,
+                  height: MediaQuery.of(context).size.height * 0.3,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -111,9 +110,7 @@ class AppColorPickerScreen extends StatelessWidget {
                                         state.pickerColors[index]);
                                   },
                                   child: Container(
-                                    width: ((MediaQueryData.fromWindow(window)
-                                                .size
-                                                .width -
+                                    width: ((MediaQuery.of(context).size.width -
                                             60) /
                                         100),
                                     height: 40,
@@ -162,16 +159,11 @@ class AppColorPickerScreen extends StatelessWidget {
                                       state.colorType[index], index);
                                 },
                                 child: Container(
-                                  width: MediaQueryData.fromWindow(window)
-                                              .size
-                                              .width /
-                                          6 -
+                                  width: MediaQuery.of(context).size.width / 6 -
                                       (90 / 5.99999),
-                                  height: MediaQueryData.fromWindow(window)
-                                              .size
-                                              .width /
-                                          6 -
-                                      (90 / 5.99999),
+                                  height:
+                                      MediaQuery.of(context).size.width / 6 -
+                                          (90 / 5.99999),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(50),
                                     border: Border.all(

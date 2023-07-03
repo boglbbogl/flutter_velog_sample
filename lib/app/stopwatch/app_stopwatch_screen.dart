@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
@@ -23,7 +21,7 @@ class AppStopWatchScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
-                    width: MediaQueryData.fromWindow(window).size.width,
+                    width: MediaQuery.of(context).size.width,
                     decoration: const BoxDecoration(
                         border: Border(
                             bottom: BorderSide(
@@ -214,8 +212,7 @@ class AppStopWatchScreen extends StatelessWidget {
                           return Padding(
                             padding: const EdgeInsets.symmetric(vertical: 14),
                             child: Container(
-                              width:
-                                  MediaQueryData.fromWindow(window).size.width,
+                              width: MediaQuery.of(context).size.width,
                               height: 0.3,
                               color: const Color.fromRGBO(115, 115, 115, 1),
                             ),

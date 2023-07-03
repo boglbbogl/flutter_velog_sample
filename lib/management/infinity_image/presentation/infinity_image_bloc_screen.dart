@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -62,7 +61,7 @@ class _InfinityHorizontalImageWidget extends StatelessWidget {
         if (state is HorizontalInitState ||
             state is HorizontalDownLoadedState) {
           return SizedBox(
-            width: MediaQueryData.fromWindow(window).size.width,
+            width: MediaQuery.of(context).size.width,
             height: 100,
             child: GestureDetector(
               onTap: () {
