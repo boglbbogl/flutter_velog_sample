@@ -46,6 +46,7 @@ import 'package:flutter_velog_sample/http/http/http_with_http_screen.dart';
 import 'package:flutter_velog_sample/infinity_scroll/horizontal_infinity_scroll_screen.dart';
 import 'package:flutter_velog_sample/infinity_scroll/pageview_infinity_scroll_screen.dart';
 import 'package:flutter_velog_sample/infinity_scroll/vertical_infinity_scroll_screen.dart';
+import 'package:flutter_velog_sample/information/locale_information_screen.dart';
 import 'package:flutter_velog_sample/initial_app.dart';
 import 'package:flutter_velog_sample/library/daum_postcode/library_daum_postcode_screen.dart';
 import 'package:flutter_velog_sample/library/dio/library_dio_screen.dart';
@@ -164,6 +165,7 @@ class App extends StatelessWidget {
               const DynamicLinksThirdScreen(),
           "/firebase/messaging": (context) => const FirebaseMessageScreen(),
           "/firebase/analytics": (context) => const FirebaseAnalyticsScreen(),
+          "/information/locale": (context) => const LocaleInformationScreen(),
           "/performance/tabview": (context) => const PerformanceTabViewScreen(),
           "/custom/painter/bubble/chat": (context) =>
               const PainterBubbleChatScreen(),

@@ -108,12 +108,19 @@ class MainScreen extends StatelessWidget {
                 content: "Crashlytics",
               ),
             ]),
+            _category(title: "Information", widgets: [
+              _item(
+                context: context,
+                content: "Locale",
+                namedRouter: "/information/locale",
+                isPost: true,
+              ),
+            ]),
             _category(title: "Performance", widgets: [
               _item(
                 context: context,
                 content: "TabView",
                 namedRouter: "/performance/tabview",
-                isPost: true,
               ),
             ]),
             _category(title: "Custom Painter", widgets: [
