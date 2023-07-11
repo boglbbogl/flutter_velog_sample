@@ -135,6 +135,27 @@ class MainScreen extends StatelessWidget {
                 content: "Apple Watch",
                 namedRouter: "/custom/painter/apple/watch",
               ),
+              _item(
+                length: 3,
+                context: context,
+                content: "Pie Chart",
+                namedRouter: "/custom/painter/pie/chart",
+                isPost: true,
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: "Animation Pie",
+                namedRouter: "/custom/painter/animation/pie/chart",
+                isPost: true,
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: "Split Pie",
+                namedRouter: "/custom/painter/split/pie/chart",
+                isPost: true,
+              ),
             ]),
             _category(title: "Platform Channel", widgets: [
               _item(

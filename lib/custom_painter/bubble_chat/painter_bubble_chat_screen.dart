@@ -13,21 +13,10 @@ class PainterBubbleChatScreen extends StatelessWidget {
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.width,
-            color: Colors.amber,
-            child: CustomPaint(
-              painter: _BubbleChat(),
-            ),
+            color: Colors.amber.withOpacity(0.3),
           ),
         ],
       ),
     );
   }
-}
-
-class _BubbleChat extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {}
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

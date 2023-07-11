@@ -24,6 +24,9 @@ import 'package:flutter_velog_sample/count_app/mobx/count_screen_with_mobx.dart'
 import 'package:flutter_velog_sample/count_app/provider/count_screen_with_provider.dart';
 import 'package:flutter_velog_sample/count_app/count_screen_with_riverpod.dart';
 import 'package:flutter_velog_sample/custom_painter/bubble_chat/painter_bubble_chat_screen.dart';
+import 'package:flutter_velog_sample/custom_painter/pie_chart/painter_pie_chart_screen.dart';
+import 'package:flutter_velog_sample/custom_painter/pie_chart/animation_pie_chart_screen.dart';
+import 'package:flutter_velog_sample/custom_painter/pie_chart/split_pie_chart_screen.dart';
 import 'package:flutter_velog_sample/custom_painter/watch/painter_apple_watch_screen.dart';
 import 'package:flutter_velog_sample/dart_lang/factory/dart_pattern_screen_with_factory.dart';
 import 'package:flutter_velog_sample/dart_lang/singleton/dart_pattern_screen_with_singleton.dart';
@@ -171,6 +174,12 @@ class App extends StatelessWidget {
               const PainterBubbleChatScreen(),
           "/custom/painter/apple/watch": (context) =>
               const PainterAppleWatchScreen(),
+          "/custom/painter/pie/chart": (context) =>
+              const PainterPieChatScreen(),
+          "/custom/painter/animation/pie/chart": (context) =>
+              const AnimationPieSelectChartScreen(),
+          "/custom/painter/split/pie/chart": (context) =>
+              const SplitPieChartScreen(),
           "/platform/count": (context) => const PlatformCountScreen(),
           "/platform/battery": (context) => const PlatformBatteryScreen(),
           "/management/changed/image": (context) =>
