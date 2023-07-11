@@ -1,7 +1,6 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
 
 class PieModel {
@@ -37,20 +36,13 @@ class _PainterPieChatScreenState extends State<PainterPieChatScreen> {
       appBar: appBar(title: "Pie Chart"),
       body: Column(
         children: [
-          GestureDetector(
-            onTapDown: (details) {
-              // print(details);
-            },
-            onTap: () => HapticFeedback.mediumImpact(),
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.width,
-              color: Colors.amber.withOpacity(0.4),
-              child: CustomPaint(
-                size: Size(MediaQuery.of(context).size.width,
-                    MediaQuery.of(context).size.width),
-                painter: _PieChart(model),
-              ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.width,
+            child: CustomPaint(
+              size: Size(MediaQuery.of(context).size.width,
+                  MediaQuery.of(context).size.width),
+              painter: _PieChart(model),
             ),
           ),
         ],
