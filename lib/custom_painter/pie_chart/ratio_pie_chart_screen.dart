@@ -40,7 +40,7 @@ class _RatioPieChartScreenState extends State<RatioPieChartScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(title: "Split Pie Chart"),
+      appBar: appBar(title: "Ratio Pie Chart"),
       body: Column(
         children: [
           AnimatedBuilder(

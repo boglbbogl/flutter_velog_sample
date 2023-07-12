@@ -27,6 +27,7 @@ import 'package:flutter_velog_sample/custom_painter/bubble_chat/painter_bubble_c
 import 'package:flutter_velog_sample/custom_painter/pie_chart/painter_pie_chart_screen.dart';
 import 'package:flutter_velog_sample/custom_painter/pie_chart/animation_pie_chart_screen.dart';
 import 'package:flutter_velog_sample/custom_painter/pie_chart/ratio_pie_chart_screen.dart';
+import 'package:flutter_velog_sample/custom_painter/pie_chart/select_pie_chart_screen.dart';
 import 'package:flutter_velog_sample/custom_painter/pie_chart/split_pie_chart_screen.dart';
 import 'package:flutter_velog_sample/custom_painter/watch/painter_apple_watch_screen.dart';
 import 'package:flutter_velog_sample/dart_lang/factory/dart_pattern_screen_with_factory.dart';
@@ -183,6 +184,8 @@ class App extends StatelessWidget {
               const SplitPieChartScreen(),
           "/custom/painter/ratio/pie/chart": (context) =>
               const RatioPieChartScreen(),
+          "/custom/painter/select/pie/chart": (context) =>
+              const SelectPieChartScreen(),
           "/platform/count": (context) => const PlatformCountScreen(),
           "/platform/battery": (context) => const PlatformBatteryScreen(),
           "/management/changed/image": (context) =>
