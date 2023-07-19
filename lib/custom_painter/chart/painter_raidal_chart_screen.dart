@@ -2,16 +2,17 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
-import 'package:flutter_velog_sample/custom_painter/pie_chart/painter_pie_chart_screen.dart';
+import 'package:flutter_velog_sample/custom_painter/chart/painter_pie_chart_screen.dart';
 
-class SplitPieChartScreen extends StatefulWidget {
-  const SplitPieChartScreen({super.key});
+class PainterRadialChartScreen extends StatefulWidget {
+  const PainterRadialChartScreen({super.key});
 
   @override
-  State<SplitPieChartScreen> createState() => _SplitPieChartScreenState();
+  State<PainterRadialChartScreen> createState() =>
+      _PainterRadialChartScreenState();
 }
 
-class _SplitPieChartScreenState extends State<SplitPieChartScreen>
+class _PainterRadialChartScreenState extends State<PainterRadialChartScreen>
     with TickerProviderStateMixin {
   late AnimationController animationController;
 
@@ -42,7 +43,7 @@ class _SplitPieChartScreenState extends State<SplitPieChartScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(title: "Split Pie Chart"),
+      appBar: appBar(title: "Radial Chart"),
       body: Column(
         children: [
           AnimatedBuilder(
@@ -55,7 +56,7 @@ class _SplitPieChartScreenState extends State<SplitPieChartScreen>
                   child: CustomPaint(
                     size: Size(MediaQuery.of(context).size.width,
                         MediaQuery.of(context).size.width),
-                    painter: _PieChart(data, animationController.value),
+                    painter: _RadialChart(data, animationController.value),
                   ),
                 );
               }
@@ -67,10 +68,10 @@ class _SplitPieChartScreenState extends State<SplitPieChartScreen>
   }
 }
 
-class _PieChart extends CustomPainter {
+class _RadialChart extends CustomPainter {
   final List<PieModel> data;
   final double value;
-  _PieChart(this.data, this.value);
+  _RadialChart(this.data, this.value);
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()..color = const Color.fromRGBO(61, 61, 61, 1);

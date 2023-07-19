@@ -2,16 +2,17 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
-import 'package:flutter_velog_sample/custom_painter/pie_chart/painter_pie_chart_screen.dart';
+import 'package:flutter_velog_sample/custom_painter/chart/painter_pie_chart_screen.dart';
 
-class RatioPieChartScreen extends StatefulWidget {
-  const RatioPieChartScreen({super.key});
+class PainterDoughnutChartScreen extends StatefulWidget {
+  const PainterDoughnutChartScreen({super.key});
 
   @override
-  State<RatioPieChartScreen> createState() => _RatioPieChartScreenState();
+  State<PainterDoughnutChartScreen> createState() =>
+      _PainterDoughnutChartScreenState();
 }
 
-class _RatioPieChartScreenState extends State<RatioPieChartScreen>
+class _PainterDoughnutChartScreenState extends State<PainterDoughnutChartScreen>
     with TickerProviderStateMixin {
   late AnimationController animationController;
   List<PieModel> data = [
@@ -40,7 +41,7 @@ class _RatioPieChartScreenState extends State<RatioPieChartScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(title: "Ratio Pie Chart"),
+      appBar: appBar(title: "Doughnut Chart"),
       body: Column(
         children: [
           AnimatedBuilder(
@@ -53,7 +54,7 @@ class _RatioPieChartScreenState extends State<RatioPieChartScreen>
                 child: CustomPaint(
                   size: Size(MediaQuery.of(context).size.width,
                       MediaQuery.of(context).size.width),
-                  painter: _PieChart(data, animationController.value),
+                  painter: _DoughnutChart(data, animationController.value),
                 ),
               );
             },
@@ -64,10 +65,10 @@ class _RatioPieChartScreenState extends State<RatioPieChartScreen>
   }
 }
 
-class _PieChart extends CustomPainter {
+class _DoughnutChart extends CustomPainter {
   final List<PieModel> data;
   final double value;
-  _PieChart(this.data, this.value);
+  _DoughnutChart(this.data, this.value);
 
   @override
   void paint(Canvas canvas, Size size) {

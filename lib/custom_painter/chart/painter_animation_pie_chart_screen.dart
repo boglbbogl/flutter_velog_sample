@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
 import 'dart:math' as math;
 
-import 'package:flutter_velog_sample/custom_painter/pie_chart/painter_pie_chart_screen.dart';
+import 'package:flutter_velog_sample/custom_painter/chart/painter_pie_chart_screen.dart';
 
-class AnimationPieSelectChartScreen extends StatefulWidget {
-  const AnimationPieSelectChartScreen({super.key});
+class PainterAnimationPieChartScreen extends StatefulWidget {
+  const PainterAnimationPieChartScreen({super.key});
 
   @override
-  State<AnimationPieSelectChartScreen> createState() =>
-      _AnimationPieSelectChartScreenState();
+  State<PainterAnimationPieChartScreen> createState() =>
+      _PainterAnimationPieChartScreenState();
 }
 
-class _AnimationPieSelectChartScreenState
-    extends State<AnimationPieSelectChartScreen> with TickerProviderStateMixin {
+class _PainterAnimationPieChartScreenState
+    extends State<PainterAnimationPieChartScreen>
+    with TickerProviderStateMixin {
   late AnimationController animationController;
   List<PieModel> model = [
     PieModel(count: 12, color: Colors.red.withOpacity(1)),
