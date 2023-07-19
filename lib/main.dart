@@ -12,6 +12,7 @@ import 'package:flutter_velog_sample/app/color_picker/app_color_picker_screen.da
 import 'package:flutter_velog_sample/app/date_picker/app_date_picker_screen.dart';
 import 'package:flutter_velog_sample/app/search/filter/presentation/search_filter_screen.dart';
 import 'package:flutter_velog_sample/app/stopwatch/app_stopwatch_screen.dart';
+import 'package:flutter_velog_sample/app/time_line/presentation/app_time_line_screen.dart';
 import 'package:flutter_velog_sample/closed_app/closed_app_flutter_screen.dart';
 import 'package:flutter_velog_sample/closed_app/closed_app_native_screen.dart';
 import 'package:flutter_velog_sample/count_app/bloc/count_screen_with_bloc.dart';
@@ -154,6 +155,7 @@ class App extends StatelessWidget {
           "/app/stopwatch": (context) => const AppStopWatchScreen(),
           "/app/address": (context) => const AppAddressScreen(),
           "/app/search/filter": (context) => const AppSearchFilterScreen(),
+          "/app/time/line": (context) => const AppTimeLineScreen(),
           "/firebase/authentication": (context) =>
               const FirebaseAuthenticationScreen(),
           "/firebase/firestore": (context) => const FirebaseFirestoreScreen(),

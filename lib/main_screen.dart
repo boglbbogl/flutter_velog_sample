@@ -41,16 +41,19 @@ class MainScreen extends StatelessWidget {
                 namedRouter: "/app/date/picker",
               ),
               _item(
+                length: 3,
                 context: context,
                 content: 'Calander',
                 namedRouter: "/app/calander",
               ),
               _item(
+                length: 3,
                 context: context,
                 content: "Color Picker",
                 namedRouter: "/app/color/picker",
               ),
               _item(
+                length: 3,
                 context: context,
                 content: "Address",
                 namedRouter: "/app/address",
@@ -59,6 +62,12 @@ class MainScreen extends StatelessWidget {
                 context: context,
                 content: "Search Filter",
                 namedRouter: "/app/search/filter",
+              ),
+              _item(
+                isPost: true,
+                context: context,
+                content: "Time Line",
+                namedRouter: "/app/time/line",
               ),
             ]),
             _category(title: "Firebase", widgets: [
