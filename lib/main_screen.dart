@@ -23,37 +23,31 @@ class MainScreen extends StatelessWidget {
           children: [
             _category(title: 'App', widgets: [
               _item(
-                length: 3,
                 context: context,
                 content: 'Stopwatch',
                 namedRouter: "/app/stopwatch",
               ),
               _item(
-                length: 3,
                 context: context,
                 content: 'Calculator',
                 namedRouter: '/app/caculator',
               ),
               _item(
-                length: 3,
                 context: context,
                 content: 'Date Picker',
                 namedRouter: "/app/date/picker",
               ),
               _item(
-                length: 3,
                 context: context,
                 content: 'Calander',
                 namedRouter: "/app/calander",
               ),
               _item(
-                length: 3,
                 context: context,
                 content: "Color Picker",
                 namedRouter: "/app/color/picker",
               ),
               _item(
-                length: 3,
                 context: context,
                 content: "Address",
                 namedRouter: "/app/address",
@@ -64,7 +58,6 @@ class MainScreen extends StatelessWidget {
                 namedRouter: "/app/search/filter",
               ),
               _item(
-                isPost: true,
                 context: context,
                 content: "Time Line",
                 namedRouter: "/app/time/line",

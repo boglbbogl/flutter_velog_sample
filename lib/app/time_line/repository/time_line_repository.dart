@@ -8,10 +8,36 @@ class TimeLineRepository {
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future<List<TimeLineModel>?> getTimeLine() async {
+  Future<List<TimeLineModel>?> getAllTimeLine() async {
     try {
       QuerySnapshot snapshot = await _firestore
           .collection("time_line")
+          .orderBy("time", descending: true)
+          .get();
+      List<TimeLineModel> list = snapshot.docs
+          .map((e) => TimeLineModel.fromJson(e.data()! as Map<String, dynamic>))
+          .toList();
+      return list;
+    } on FirebaseException catch (_) {
+      return null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<List<TimeLineModel>?> getTimeLine({
+    DateTime? date,
+  }) async {
+    try {
+      DateTime _date = date ?? DateTime.now();
+      QuerySnapshot snapshot = await _firestore
+          .collection("time_line")
+          .where(
+            "time",
+            isGreaterThan: DateTime(_date.year, _date.month, _date.day),
+            isLessThan: DateTime(_date.year, _date.month, _date.day)
+                .subtract(const Duration(days: -1)),
+          )
           .orderBy("time", descending: true)
           .get();
       List<TimeLineModel> list = snapshot.docs

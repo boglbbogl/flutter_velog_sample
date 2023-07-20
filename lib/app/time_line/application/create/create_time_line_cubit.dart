@@ -16,9 +16,10 @@ class CreateTimeLineCubit extends Cubit<CreateTimeLineState> {
 
   Future<void> submitted() async {
     TimeLineModel _model = TimeLineModel(
-        time: Timestamp.fromDate(state.time),
-        type: state.type!,
-        content: state.content!);
+      time: Timestamp.fromDate(state.time),
+      type: state.type!,
+      content: state.content!,
+    );
     TimeLineModel? _result =
         await TimeLineRepository.instance.setTimeLine(_model);
     if (_result != null) {
@@ -55,11 +56,5 @@ class CreateTimeLineCubit extends Cubit<CreateTimeLineState> {
   void inputContent(String value) {
     emit(state.copyWith(content: value.isEmpty ? null : value));
     _checked();
-  }
-
-  @override
-  void onChange(Change<CreateTimeLineState> change) {
-    print(change);
-    super.onChange(change);
   }
 }

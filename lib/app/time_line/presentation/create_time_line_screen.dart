@@ -16,7 +16,7 @@ class CreateTimeLineScreen extends StatelessWidget {
       child: BlocConsumer<CreateTimeLineCubit, CreateTimeLineState>(
         listener: (context, state) {
           if (state.isSuccess) {
-            Navigator.of(context).pop();
+            Navigator.of(context).pop(state.time);
           }
         },
         builder: (context, state) {
@@ -68,10 +68,8 @@ class CreateTimeLineScreen extends StatelessWidget {
                                       .changedDateTime(null, time);
                                 },
                                 child: Text(timeLineTimeToString(TimeOfDay(
-                                        hour: state.time.hour,
-                                        minute: state.time.minute))
-                                    // "${state.time.hour}:${state.time.minute}",
-                                    ))
+                                    hour: state.time.hour,
+                                    minute: state.time.minute))))
                           ],
                         ),
                       ),
