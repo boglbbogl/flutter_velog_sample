@@ -6,6 +6,7 @@ class CreateTimeLineState extends Equatable {
   final String? type;
   final String? content;
   final bool isSubmitted;
+  final bool isSuccess;
 
   const CreateTimeLineState({
     required this.typeList,
@@ -13,6 +14,7 @@ class CreateTimeLineState extends Equatable {
     this.type,
     this.content,
     this.isSubmitted = false,
+    this.isSuccess = false,
   });
 
   CreateTimeLineState copyWith({
@@ -21,6 +23,7 @@ class CreateTimeLineState extends Equatable {
     final String? type,
     final String? content,
     final bool? isSubmitted,
+    final bool? isSuccess,
   }) {
     return CreateTimeLineState(
       typeList: typeList ?? this.typeList,
@@ -28,9 +31,11 @@ class CreateTimeLineState extends Equatable {
       type: type ?? this.type,
       content: content ?? this.content,
       isSubmitted: isSubmitted ?? this.isSubmitted,
+      isSuccess: isSuccess ?? this.isSuccess,
     );
   }
 
   @override
-  List<Object?> get props => [typeList, time, type, content, isSubmitted];
+  List<Object?> get props =>
+      [typeList, time, type, content, isSubmitted, isSuccess];
 }

@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_velog_sample/_core/app_bar.dart';
 import 'package:flutter_velog_sample/app/time_line/application/create/create_time_line_cubit.dart';
 import 'package:flutter_velog_sample/app/time_line/application/create/create_time_line_state.dart';
+import 'package:flutter_velog_sample/app/time_line/presentation/time_line_date_to_string.dart';
 
 class CreateTimeLineScreen extends StatelessWidget {
   const CreateTimeLineScreen({super.key});
@@ -13,7 +13,12 @@ class CreateTimeLineScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<CreateTimeLineCubit>(
       create: (_) => CreateTimeLineCubit()..init(),
-      child: BlocBuilder<CreateTimeLineCubit, CreateTimeLineState>(
+      child: BlocConsumer<CreateTimeLineCubit, CreateTimeLineState>(
+        listener: (context, state) {
+          if (state.isSuccess) {
+            Navigator.of(context).pop();
+          }
+        },
         builder: (context, state) {
           return GestureDetector(
             onTap: () => FocusScope.of(context).unfocus(),
@@ -47,8 +52,7 @@ class CreateTimeLineScreen extends StatelessWidget {
                                       .read<CreateTimeLineCubit>()
                                       .changedDateTime(date, null);
                                 },
-                                child: Text(
-                                    "${state.time.year}-${state.time.month}-${state.time.day}")),
+                                child: Text(timeLineDateToString(state.time))),
                             const SizedBox(width: 24),
                             GestureDetector(
                                 onTap: () async {
@@ -63,8 +67,11 @@ class CreateTimeLineScreen extends StatelessWidget {
                                       .read<CreateTimeLineCubit>()
                                       .changedDateTime(null, time);
                                 },
-                                child: Text(
-                                    "${state.time.hour}:${state.time.minute}"))
+                                child: Text(timeLineTimeToString(TimeOfDay(
+                                        hour: state.time.hour,
+                                        minute: state.time.minute))
+                                    // "${state.time.hour}:${state.time.minute}",
+                                    ))
                           ],
                         ),
                       ),
@@ -144,6 +151,7 @@ class CreateTimeLineScreen extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           HapticFeedback.mediumImpact();
+                          context.read<CreateTimeLineCubit>().submitted();
                         },
                         child: Container(
                             height: 50,
@@ -162,7 +170,7 @@ class CreateTimeLineScreen extends StatelessWidget {
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: state.isSubmitted
-                                        ? Colors.white
+                                        ? const Color.fromRGBO(71, 71, 71, 1)
                                         : const Color.fromRGBO(
                                             195, 195, 195, 1),
                                     fontSize: 18),

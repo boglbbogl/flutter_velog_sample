@@ -6,9 +6,32 @@ class TimeLineRepository {
   factory TimeLineRepository() => instance;
   TimeLineRepository._internal();
 
-  Future<void> setTimeLine(TimeLineModel model) async {
-    try {} on FirebaseException catch (e) {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  Future<List<TimeLineModel>?> getTimeLine() async {
+    try {
+      QuerySnapshot snapshot = await _firestore
+          .collection("time_line")
+          .orderBy("time", descending: true)
+          .get();
+      List<TimeLineModel> list = snapshot.docs
+          .map((e) => TimeLineModel.fromJson(e.data()! as Map<String, dynamic>))
+          .toList();
+      return list;
+    } on FirebaseException catch (_) {
+      return null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<TimeLineModel?> setTimeLine(TimeLineModel model) async {
+    try {
+      await _firestore.collection("time_line").doc().set(model.toJson());
+      return model;
+    } on FirebaseException catch (e) {
       print(e);
+      return null;
     }
   }
 }

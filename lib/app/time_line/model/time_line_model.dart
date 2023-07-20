@@ -26,4 +26,7 @@ class TimeLineModel {
       "content": content,
     };
   }
+
+  @override
+  String toString() => toJson().toString();
 }
