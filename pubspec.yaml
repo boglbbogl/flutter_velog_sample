@@ -63,6 +63,7 @@ dependencies:
   provider: ^6.0.4
   shared_preferences: ^2.0.17
   url_launcher: ^6.1.8
+  video_player: ^2.7.2
   webview_flutter: ^4.0.2
 
 dev_dependencies:
@@ -87,6 +88,7 @@ flutter:
     - assets/images/koenigsegg/
     - assets/images/porsche/
     - assets/images/marvel/
+    - assets/videos/
     - assets/json/
     - assets/json/minor/
 

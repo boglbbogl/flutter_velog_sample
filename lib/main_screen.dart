@@ -466,22 +466,25 @@ class MainScreen extends StatelessWidget {
                 content: "Logger",
               ),
               _item(
-                length: 3,
                 context: context,
                 content: 'Equatable',
                 namedRouter: '/library/equatable',
               ),
               _item(
-                length: 3,
                 context: context,
                 content: 'DaumPostCode',
                 namedRouter: '/library/daumPostcode',
               ),
               _item(
-                length: 3,
                 context: context,
                 content: "Dio",
                 namedRouter: '/library/dio',
+              ),
+              _item(
+                context: context,
+                content: "Video Player",
+                namedRouter: '/library/videoPlayer',
+                isPost: true,
               ),
             ]),
             _category(title: "Dart", widgets: [
