@@ -8,6 +8,7 @@ import 'package:flutter_velog_sample/_core/app_theme.dart';
 import 'package:flutter_velog_sample/app/address/presentation/app_address_screen.dart';
 import 'package:flutter_velog_sample/app/calander/presentation/app_calander_screen.dart';
 import 'package:flutter_velog_sample/app/calculator/app_calculator_screen.dart';
+import 'package:flutter_velog_sample/app/camera/app_camera_page.dart';
 import 'package:flutter_velog_sample/app/color_picker/app_color_picker_screen.dart';
 import 'package:flutter_velog_sample/app/date_picker/app_date_picker_screen.dart';
 import 'package:flutter_velog_sample/app/search/filter/presentation/search_filter_screen.dart';
@@ -157,6 +158,7 @@ class App extends StatelessWidget {
           "/app/address": (context) => const AppAddressScreen(),
           "/app/search/filter": (context) => const AppSearchFilterScreen(),
           "/app/time/line": (context) => const AppTimeLineScreen(),
+          "/app/camera": (context) => const AppCameraPage(),
           "/firebase/authentication": (context) =>
               const FirebaseAuthenticationScreen(),
           "/firebase/firestore": (context) => const FirebaseFirestoreScreen(),

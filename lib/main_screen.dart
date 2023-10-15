@@ -53,14 +53,23 @@ class MainScreen extends StatelessWidget {
                 namedRouter: "/app/address",
               ),
               _item(
+                length: 3,
                 context: context,
                 content: "Search Filter",
                 namedRouter: "/app/search/filter",
               ),
               _item(
+                length: 3,
                 context: context,
                 content: "Time Line",
                 namedRouter: "/app/time/line",
+              ),
+              _item(
+                length: 3,
+                context: context,
+                content: "Camera",
+                namedRouter: "/app/camera",
+                isPost: true,
               ),
             ]),
             _category(title: "Firebase", widgets: [
@@ -484,7 +493,6 @@ class MainScreen extends StatelessWidget {
                 context: context,
                 content: "Video Player",
                 namedRouter: '/library/videoPlayer',
-                isPost: true,
               ),
             ]),
             _category(title: "Dart", widgets: [
