@@ -494,6 +494,12 @@ class MainScreen extends StatelessWidget {
                 content: "Video Player",
                 namedRouter: '/library/videoPlayer',
               ),
+              _item(
+                context: context,
+                content: "Video Compress",
+                namedRouter: '/library/videoCompress',
+                isPost: true,
+              ),
             ]),
             _category(title: "Dart", widgets: [
               _item(

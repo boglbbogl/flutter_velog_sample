@@ -57,6 +57,7 @@ import 'package:flutter_velog_sample/initial_app.dart';
 import 'package:flutter_velog_sample/library/daum_postcode/library_daum_postcode_screen.dart';
 import 'package:flutter_velog_sample/library/dio/library_dio_screen.dart';
 import 'package:flutter_velog_sample/library/equatable/library_equatable_screen.dart';
+import 'package:flutter_velog_sample/library/video_compress/video_compress_page.dart';
 import 'package:flutter_velog_sample/library/video_player/video_player_page.dart';
 import 'package:flutter_velog_sample/life_cycle/life_cycle_native_provider.dart';
 import 'package:flutter_velog_sample/life_cycle/life_cycle_screen_with_getx.dart';
@@ -263,6 +264,7 @@ class App extends StatelessWidget {
               const LibararyDaumPostcodeScreen(),
           "/library/dio": ((context) => const LibraryDioScreen()),
           "/library/videoPlayer": (context) => const VideoPlayerPage(),
+          "/library/videoCompress": (context) => const VideoCompressPage(),
           "/dart/pattern/singleton": (context) =>
               const DartPatternScreenWithSingleton(),
           "/dart/pattern/factory": (context) =>
