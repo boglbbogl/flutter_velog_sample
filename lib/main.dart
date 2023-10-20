@@ -85,6 +85,7 @@ import 'package:flutter_velog_sample/ui/heart_motion/sns_ui_heart_motion_screen.
 import 'package:flutter_velog_sample/ui/images/network_image_screen.dart';
 import 'package:flutter_velog_sample/ui/slider/flexible/flexible_slider_ui_screen.dart';
 import 'package:flutter_velog_sample/ui/slider/over_image/over_image_ui_screen.dart';
+import 'package:flutter_velog_sample/ui/sns_tag/sns_tag_screen.dart';
 import 'package:flutter_velog_sample/webview/webview_with_inapp_screen.dart';
 import 'package:flutter_velog_sample/webview/webview_with_launcher_screen.dart';
 import 'package:flutter_velog_sample/webview/webview_with_swift_ui_webview_screen.dart';
@@ -214,6 +215,7 @@ class App extends StatelessWidget {
           "/ui/flexible/slider": (context) => const FlexibleSliderUIScreen(),
           "/ui/over/image/slider": (context) => const OverImageUIScreen(),
           "/ui/image/network": (context) => const NetworkImageScreen(),
+          "/ui/sns/tag": (context) => SnsTagScreen(),
           "/tabview/tabbar": (context) => const TabViewTabbarScreen(),
           "/tabview/pageView": (context) => const TabViewPageViewScreen(),
           "/tabview/custom": (context) => const TabViewCustomScreen(),

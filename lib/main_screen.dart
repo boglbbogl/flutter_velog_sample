@@ -281,6 +281,12 @@ class MainScreen extends StatelessWidget {
                 content: "Network Image",
                 namedRouter: "/ui/image/network",
               ),
+              _item(
+                context: context,
+                content: "SNS Tag",
+                namedRouter: "/ui/sns/tag",
+                isPost: true,
+              ),
             ]),
             _category(title: 'Tab View', widgets: [
               _item(
